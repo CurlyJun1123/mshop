@@ -2,10 +2,10 @@
   <view>
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">{{ $lang('my.user.edit.username') }}</text>
+        <text class="label">{{ $t('my.user.edit.username') }}</text>
         <input
           class="uni-input"
-          :placeholder="uid > 0 ? user_info.username : $lang('my.user.edit.username.placeholder')"
+          :placeholder="uid > 0 ? user_info.username : $t('my.user.edit.username.placeholder')"
           v-model="user_info.username"
           maxlength="100"
           :disabled="uid > 0"
@@ -13,30 +13,30 @@
       </view>
       <block v-if="uid <= 0">
         <view class="form-wrap">
-          <text class="label">{{ $lang('my.user.edit.password') }}</text>
-          <input class="uni-input" :placeholder="$lang('my.user.edit.password.placeholder')" v-model="password" password="true" maxlength="100" />
+          <text class="label">{{ $t('my.user.edit.password') }}</text>
+          <input class="uni-input" :placeholder="$t('my.user.edit.password.placeholder')" v-model="password" password="true" maxlength="100" />
         </view>
         <view class="form-wrap">
-          <text class="label">{{ $lang('my.user.edit.password.confirm') }}</text>
-          <input class="uni-input" :placeholder="$lang('my.user.edit.password.confirm.placeholder')" v-model="againPassword" password="true" maxlength="100" />
+          <text class="label">{{ $t('my.user.edit.password.confirm') }}</text>
+          <input class="uni-input" :placeholder="$t('my.user.edit.password.confirm.placeholder')" v-model="againPassword" password="true" maxlength="100" />
         </view>
       </block>
       <view class="form-wrap more-wrap">
-        <text class="label">{{ $lang('my.user.edit.userGroup') }}</text>
+        <text class="label">{{ $t('my.user.edit.userGroup') }}</text>
         <picker :value="pickerCurr" @change="pickerChange" :range="groupList" range-key="group_name" class="picker">
           <text class="uni-input" :class="{ 'color-tip': !user_info.group_id }">
-            {{ user_info.group_id ? groupList[pickerCurr].group_name : $lang('my.user.edit.userGroup.placeholder') }}
+            {{ user_info.group_id ? groupList[pickerCurr].group_name : $t('my.user.edit.userGroup.placeholder') }}
           </text>
           <text class="iconfont iconright"></text>
         </picker>
       </view>
       <view class="form-wrap" v-if="uid > 0">
-        <text class="label">{{ $lang('my.user.edit.userStatus') }}</text>
+        <text class="label">{{ $t('my.user.edit.userStatus') }}</text>
         <view class="picker"><switch :checked="user_info.status == 1" @change="switchChange" style="transform: scale(0.7)" /></view>
       </view>
     </view>
 
-    <button type="primary" @click="save()">{{ $lang('my.config.save') }}</button>
+    <button type="primary" @click="save()">{{ $t('my.config.save') }}</button>
 
     <loading-cover ref="loadingCover" v-if="uid > 0"></loading-cover>
   </view>

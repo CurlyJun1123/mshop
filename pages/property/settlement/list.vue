@@ -4,17 +4,17 @@
       <block slot="list">
         <view class="operate_tip">
           <view @click="tipShow = !tipShow">
-            {{ $lang('property.settlement.operationTip') }}
+            {{ $t('property.settlement.operationTip') }}
             <text class="iconfont iconiconangledown"></text>
           </view>
           <view class="operate_content" v-if="tipShow">
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">{{ $lang('property.settlement.pageDescription') }}</view>
+              <view class="color-tip font-size-tag">{{ $t('property.settlement.pageDescription') }}</view>
             </view>
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">{{ $lang('property.settlement.pageDescription') }}</view>
+              <view class="color-tip font-size-tag">{{ $t('property.settlement.pageDescription') }}</view>
             </view>
           </view>
         </view>
@@ -23,11 +23,11 @@
             <view class="search_btn color-tip" @click="search"><text class="iconfont iconsousuo"></text></view>
             <view class="date">
               <picker mode="date" @change="bindStartDateChange" class="margin-right">
-                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : $lang('property.settlement.startTime') }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : $t('property.settlement.startTime') }}</view>
               </picker>
               <text class="margin-right">-</text>
               <picker mode="date" @change="bindEndDateChange">
-                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : $lang('property.settlement.endTime') }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : $t('property.settlement.endTime') }}</view>
               </picker>
               <text class="clear iconfont iconqingkong1" @click="clearTime"></text>
             </view>
@@ -40,39 +40,39 @@
               <view class="withdrawal_list" @click="toDetail(item.id)">
                 <view class="withdrawal_list_title">
                   <view class="tip color-tip">{{ item.settlement_no }}</view>
-                  <view class="color-base-text">{{ $lang('property.settlement.view') }}</view>
+                  <view class="color-base-text">{{ $t('property.settlement.view') }}</view>
                   <!-- <view class="color-tip"><text class="iconfont iconreview"></text></view> -->
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.totalOrderAmount') }}</view>
+                    <view class="tip">{{ $t('property.settlement.totalOrderAmount') }}</view>
                     <view>￥{{ item.order_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.storeAmount') }}</view>
+                    <view class="tip">{{ $t('property.settlement.storeAmount') }}</view>
                     <view>￥{{ item.shop_moneys }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.platformCommission') }}</view>
+                    <view class="tip">{{ $t('property.settlement.platformCommission') }}</view>
                     <view>￥{{ item.platform_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.commissionAmount') }}</view>
+                    <view class="tip">{{ $t('property.settlement.commissionAmount') }}</view>
                     <view>{{ item.commission }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.billingStartTime') }}</view>
+                    <view class="tip">{{ $t('property.settlement.billingStartTime') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.period_start_time) }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.billingEndTime') }}</view>
+                    <view class="tip">{{ $t('property.settlement.billingEndTime') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.period_end_time) }}</view>
                   </view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else :text="$lang('property.settlement.noData')"></ns-empty>
+          <ns-empty v-else :text="$t('property.settlement.noData')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>

@@ -2,19 +2,19 @@
   <view>
     <view class="item-wrap">
       <view class="form-wrap">
-        <view class="label">{{ $lang('login.modify.originalPassword') }}</view>
-        <input class="uni-input" :placeholder="$lang('login.modify.originalPassword.placeholder')" v-model="formData.old_pass" maxlength="100" password="true" />
+        <view class="label">{{ $t('login.modify.originalPassword') }}</view>
+        <input class="uni-input" :placeholder="$t('login.modify.originalPassword.placeholder')" v-model="formData.old_pass" maxlength="100" password="true" />
       </view>
       <view class="form-wrap">
-        <view class="label">{{ $lang('login.modify.newPassword') }}</view>
-        <input class="uni-input" :placeholder="$lang('login.modify.newPassword.placeholder')" v-model="formData.new_pass" maxlength="100" password="true" />
+        <view class="label">{{ $t('login.modify.newPassword') }}</view>
+        <input class="uni-input" :placeholder="$t('login.modify.newPassword.placeholder')" v-model="formData.new_pass" maxlength="100" password="true" />
       </view>
       <view class="form-wrap">
-        <view class="label">{{ $lang('login.modify.confirmPassword') }}</view>
-        <input class="uni-input" :placeholder="$lang('login.modify.confirmPassword.placeholder')" v-model="formData.repeat_pass" maxlength="100" password="true" />
+        <view class="label">{{ $t('login.modify.confirmPassword') }}</view>
+        <input class="uni-input" :placeholder="$t('login.modify.confirmPassword.placeholder')" v-model="formData.repeat_pass" maxlength="100" password="true" />
       </view>
     </view>
-    <button type="primary" @click="save()">{{ $lang('login.modify.username') }}</button>
+    <button type="primary" @click="save()">{{ $t('login.modify.username') }}</button>
   </view>
 </template>
 

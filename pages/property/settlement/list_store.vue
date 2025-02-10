@@ -4,17 +4,17 @@
       <block slot="list">
         <view class="operate_tip">
           <view @click="tipShow = !tipShow">
-            {{ $lang('property.settlement.operationTip') }}
+            {{ $t('property.settlement.operationTip') }}
             <text class="iconfont iconiconangledown"></text>
           </view>
           <view class="operate_content" v-if="tipShow">
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">{{ $lang('property.settlement.pageDescription') }}</view>
+              <view class="color-tip font-size-tag">{{ $t('property.settlement.pageDescription') }}</view>
             </view>
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">{{ $lang('property.settlement.detailsDescription') }}</view>
+              <view class="color-tip font-size-tag">{{ $t('property.settlement.detailsDescription') }}</view>
             </view>
           </view>
         </view>
@@ -23,11 +23,11 @@
             <view class="search_btn color-tip" @click="search"><text class="iconfont iconsousuo"></text></view>
             <view class="date">
               <picker mode="date" @change="bindStartDateChange" class="margin-right">
-                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : $lang('property.settlement.startTime') }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : $t('property.settlement.startTime') }}</view>
               </picker>
               <text class="margin-right">-</text>
               <picker mode="date" @change="bindEndDateChange">
-                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : $lang('property.settlement.endTime') }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : $t('property.settlement.endTime') }}</view>
               </picker>
               <text class="clear iconfont iconqingkong1" @click="clearTime"></text>
             </view>
@@ -39,20 +39,20 @@
               <view class="withdrawal_list" @click="toDetail(item.id)">
                 <view class="withdrawal_list_title">
                   <view class="tip color-tip">{{ item.settlement_no }}</view>
-                  <view class="color-base-text">{{ $lang('property.settlement.view') }}</view>
+                  <view class="color-base-text">{{ $t('property.settlement.view') }}</view>
                   <!-- <view class="color-tip"><text class="iconfont iconreview"></text></view> -->
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.storeSettlement') }}</view>
+                    <view class="tip">{{ $t('property.settlement.storeSettlement') }}</view>
                     <view>￥{{ item.order_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.totalOrderAmount') }}</view>
+                    <view class="tip">{{ $t('property.settlement.totalOrderAmount') }}</view>
                     <view>￥{{ item.order_money * 1 + item.offline_order_money * 1 - item.refund_shop_money * 1 - item.offline_refund_money * 1 }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.onlineSettlementAmount') }}</view>
+                    <view class="tip">{{ $t('property.settlement.onlineSettlementAmount') }}</view>
                     <view class="color-base-text">
                       ￥{{
                         (
@@ -66,7 +66,7 @@
                     </view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.offlineSettlementAmount') }}</view>
+                    <view class="tip">{{ $t('property.settlement.offlineSettlementAmount') }}</view>
                     <view class="color-base-text">
                       ￥{{
                         (
@@ -79,27 +79,27 @@
                     </view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.settlementStartTime') }}</view>
+                    <view class="tip">{{ $t('property.settlement.settlementStartTime') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.start_time) }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.settlementEndTime') }}</view>
+                    <view class="tip">{{ $t('property.settlement.settlementEndTime') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.end_time) }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">{{ $lang('property.settlement.isSettled') }}</view>
-                    <view>{{ item.is_settlement ? $lang('property.settlement.settled') : $lang('property.settlement.unsettled') }}</view>
+                    <view class="tip">{{ $t('property.settlement.isSettled') }}</view>
+                    <view>{{ item.is_settlement ? $t('property.settlement.settled') : $t('property.settlement.unsettled') }}</view>
                   </view>
                 </view>
                 <view class="operate color-line-border">
                   <button type="primary" size="mini" plain="true" v-if="item.is_settlement == 0" @click.stop="settle_accounts(item.id)">
-                    {{ $lang('property.settlement.settle') }}
+                    {{ $t('property.settlement.settle') }}
                   </button>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else :text="$lang('property.settlement.noSettlementData')"></ns-empty>
+          <ns-empty v-else :text="$t('property.settlement.noSettlementData')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>
@@ -109,23 +109,23 @@
     <uni-popup ref="settleaccounts">
       <view class="pop-wrap" @touchmove.prevent.stop>
         <view class="title font-size-toolbar">
-          {{ $lang('property.settlement.settlementRemarks') }}
+          {{ $t('property.settlement.settlementRemarks') }}
           <view class="close color-tip" @click="closePopup('settleaccounts')"><text class="iconfont iconclose"></text></view>
         </view>
         <view class="textarea color-line-border">
-          <textarea :placeholder="$lang('property.settlement.remarksPlaceholder')" placeholder-class="font-size-base" v-model="remark"></textarea>
+          <textarea :placeholder="$t('property.settlement.remarksPlaceholder')" placeholder-class="font-size-base" v-model="remark"></textarea>
         </view>
         <view class="action-btn">
           <view class="line" @click="closePopup('settleaccounts')">
-            {{ $lang('property.settlement.cancel') }}
+            {{ $t('property.settlement.cancel') }}
           </view>
           <view class="color-line-border color-base-text" @click="goSettleAccounts">
-            {{ $lang('property.settlement.confirm') }}
+            {{ $t('property.settlement.confirm') }}
           </view>
         </view>
         <!-- <view class="settleaccounts_btn">
-          <view class="now_settle_btn color-base-bg color-base-border-top" @click="goSettleAccounts">{{ $lang('property.settlement.settle') }}</view>
-          <view class="cancle_settle_btn color-line-border" @click="closePopup('settleaccounts')">{{ $lang('property.settlement.cancel') }}</view>
+          <view class="now_settle_btn color-base-bg color-base-border-top" @click="goSettleAccounts">{{ $t('property.settlement.settle') }}</view>
+          <view class="cancle_settle_btn color-line-border" @click="closePopup('settleaccounts')">{{ $t('property.settlement.cancel') }}</view>
         </view> -->
       </view>
     </uni-popup>

@@ -57,25 +57,18 @@ export default {
         order_total: 0,
         order_pay_count: 0
       },
-      picker: [
-        {
-          date_value: 7,
-          date_text: '7天'
-        },
-        {
-          date_value: 15,
-          date_text: '15天'
-        },
-        {
-          date_value: 30,
-          date_text: '30天'
-        }
-      ]
+      picker: []
     }
   },
   async onShow() {
     if (!this.$util.checkToken('/pages/index/index')) return
     await this.initData()
+
+    this.picker = [
+      { date_value: 7, date_text: this.$t('index.7_days') },
+      { date_value: 15, date_text: this.$t('index.15_days') },
+      { date_value: 30, date_text: this.$t('index.30_days') }
+    ]
   },
   async onPullDownRefresh() {
     await this.initData()
@@ -141,7 +134,7 @@ export default {
             this.order_total.categories = this.order_pay_count.categories = timeTemp
             this.order_total.series = [
               {
-                name: '销售额',
+                name: this.$t('index.sales_amount'),
                 data: res.data.order_total,
                 color: '#FF6A00',
                 time: timeTempYear
@@ -149,7 +142,7 @@ export default {
             ]
             this.order_pay_count.series = [
               {
-                name: '订单数',
+                name: this.$t('index.order_count'),
                 data: res.data.order_pay_count,
                 color: '#FF6A00',
                 time: timeTempYear
@@ -238,21 +231,21 @@ export default {
         legend: false
       }
       this.order_total = Object.assign(this.order_total, Data, {
-        unit: '元'
+        unit: this.$t('index.yuan')
       })
       this.order_pay_count = Object.assign(this.order_pay_count, Data, {
-        unit: '笔'
+        unit: this.$t('index.pieces')
       })
       var serverData = [
         {
-          title: '销售额',
+          title: this.$t('index.sales_amount'),
           opts: this.order_total,
           chartType: 'area',
           extraType: 'curve',
           id: 'order_total'
         },
         {
-          title: '订单数',
+          title: this.$t('index.order_count'),
           opts: this.order_pay_count,
           chartType: 'area',
           extraType: 'curve',
@@ -300,7 +293,7 @@ export default {
     }
   },
   onShareAppMessage(res) {
-    var title = '多商户手机版商家端'
+    var title = this.$t('index.multi_merchant_mobile_app')
     var path = '/pages/index/index'
     return {
       title: title,

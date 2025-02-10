@@ -2,7 +2,7 @@ import login from './login'
 import my from './my'
 import property from './property'
 
-export const lang = {
+export default {
   // 底部选项卡
   tabBar: {
     home: '首页',
@@ -20,13 +20,85 @@ export const lang = {
     mescrollTextOutOffset: '释放更新',
     mescrollEmpty: '暂无相关数据',
     goodsRecommendTitle: '猜你喜欢',
-    currencySymbol: '¥',
-    submit: '提交'
+    currencySymbol: '¥'
   },
 
   lang: '语言',
 
   ...login,
   ...my,
-  ...property
+  ...property,
+
+  index: {
+    shop_expiring_soon: '店铺即将到期，请尽快续费',
+    shop_suspended: '店铺已暂停服务，无法正常营业',
+    shop_expired: '店铺已经过期，请尽快续费',
+    shop_remaining: '店铺剩余',
+    days_to_expire: '天到期',
+    expired: '已到期',
+    certify_now: '立即认证',
+    renew_now: '立即续费',
+    not_certified: '未认证',
+    certified: '已认证',
+    main_industry: '主营行业：',
+    shop_status: '店铺状态：',
+    normal: '正常',
+    closed: '关闭',
+    expiration_time: '到期时间：',
+    permanent: '永久',
+    data_overview: '数据概况',
+    today: '今日',
+    yesterday: '昨日',
+    total: '总计',
+    order_count: '订单数',
+    sales_amount: '销售额（元）',
+    shop_favorites_count: '店铺收藏数',
+    more: '更多',
+    pending_payment: '待支付',
+    pending_shipment: '待发货',
+    refunding: '退款中',
+    pending_review: '待审核',
+    violation_delisting: '违规下架',
+    product_release: '商品发布',
+    order_query: '订单查询',
+    financial_status: '财务状况',
+    transaction_analysis: '交易分析',
+    store_settlement: '店铺结算',
+    member_management: '会员管理',
+    contact_address: '联系地址',
+    all: '全部',
+    '7_days': '7天',
+    '15_days': '15天',
+    '30_days': '30天',
+    sales_amount: '销售额',
+    order_count: '订单数',
+    yuan: '元',
+    pieces: '笔',
+    multi_merchant_mobile_app: '多商户手机版商家端',
+
+    all_menu: {
+      store_management: '店铺经营',
+      product_release: '商品发布',
+      product_management: '商品管理',
+      order_management: '订单管理',
+      member_management: '会员管理',
+      financial_management: '财务管理',
+      asset_overview: '资产概况',
+      withdrawal_record: '提现记录',
+      settlement_fee: '入驻费用',
+      store_settlement: '店铺结算',
+      statistical_analysis: '统计分析',
+      transaction_statistics: '交易统计',
+      store_statistics: '店铺统计',
+      product_statistics: '商品统计',
+      visit_statistics: '访问统计',
+      store_settings: '店铺设置',
+      store_information: '店铺信息',
+      user_management: '用户管理',
+      contact_address: '联系地址',
+      platform_announcements: '平台公告',
+      verification_platform: '核销台',
+      verification_personnel: '核销人员'
+    }
+  }
 }

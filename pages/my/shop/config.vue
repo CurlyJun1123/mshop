@@ -2,69 +2,69 @@
   <view class="iphone-safe-area">
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">{{ $lang('my.config.storePackage') }}</text>
+        <text class="label">{{ $t('my.config.storePackage') }}</text>
         <text class="value">{{ shopInfo.group_name }}</text>
       </view>
       <view class="form-wrap">
-        <text class="label">{{ $lang('my.config.mainIndustry') }}</text>
+        <text class="label">{{ $t('my.config.mainIndustry') }}</text>
         <text class="value">{{ shopInfo.category_name }}</text>
       </view>
       <view class="form-wrap">
-        <text class="label">{{ $lang('my.config.storeName') }}</text>
+        <text class="label">{{ $t('my.config.storeName') }}</text>
         <text class="value">{{ shopInfo.site_name }}</text>
       </view>
       <view class="form-wrap goods-img">
-        <text class="label">{{ $lang('my.config.storeLogo') }}</text>
+        <text class="label">{{ $t('my.config.storeLogo') }}</text>
         <view class="img-list">
           <view class="add logo" @click="uplodImg('logo')">
             <text class="iconfont iconadd1" v-if="!shopInfo.logo"></text>
             <image v-else :src="$util.img(shopInfo.logo)" mode="aspectFit" @error="imgError('logo')" @click.stop="previewMedia('logo')"></image>
             <view class="del-wrap iconfont iconclose" @click.stop="delImg('logo')" v-if="shopInfo.logo"></view>
           </view>
-          <view class="tips">{{ $lang('my.config.logoImageSize') }}</view>
+          <view class="tips">{{ $t('my.config.logoImageSize') }}</view>
         </view>
       </view>
       <view class="form-wrap goods-img">
-        <text class="label">{{ $lang('my.config.storeAvatar') }}</text>
+        <text class="label">{{ $t('my.config.storeAvatar') }}</text>
         <view class="img-list">
           <view class="add avatar" @click="uplodImg('avatar')">
             <text class="iconfont iconadd1" v-if="!shopInfo.avatar"></text>
             <image v-else :src="$util.img(shopInfo.avatar)" mode="aspectFit" @error="imgError('avatar')" @click.stop="previewMedia('avatar')"></image>
             <view class="del-wrap iconfont iconclose" @click.stop="delImg('avatar')" v-if="shopInfo.avatar"></view>
           </view>
-          <view class="tips">{{ $lang('my.config.avatarImageSize') }}</view>
+          <view class="tips">{{ $t('my.config.avatarImageSize') }}</view>
         </view>
       </view>
       <view class="form-wrap goods-img">
-        <text class="label">{{ $lang('my.config.storeBanner') }}</text>
+        <text class="label">{{ $t('my.config.storeBanner') }}</text>
         <view class="img-list">
           <view class="add banner" @click="uplodImg('banner')">
             <text class="iconfont iconadd1" v-if="!shopInfo.banner"></text>
             <image v-else :src="$util.img(shopInfo.banner)" mode="aspectFit" @error="imgError('banner')" @click.stop="previewMedia('banner')"></image>
             <view class="del-wrap iconfont iconclose" @click.stop="delImg('banner')" v-if="shopInfo.banner"></view>
           </view>
-          <view class="tips">{{ $lang('my.config.bannerImageHeight') }}</view>
+          <view class="tips">{{ $t('my.config.bannerImageHeight') }}</view>
         </view>
       </view>
       <view class="form-wrap more-wrap">
-        <text class="label">{{ $lang('my.config.storeDescription') }}</text>
+        <text class="label">{{ $t('my.config.storeDescription') }}</text>
         <textarea
           v-model="shopInfo.seo_description"
           class="uni-input font-size-base"
           maxlength="300"
           auto-height="true"
-          :placeholder="$lang('my.config.enterStoreDescription')"
+          :placeholder="$t('my.config.enterStoreDescription')"
         ></textarea>
       </view>
       <view class="form-wrap more-wrap">
-        <text class="label" style="align-self: flex-start">{{ $lang('my.config.storeKeywords') }}</text>
+        <text class="label" style="align-self: flex-start">{{ $t('my.config.storeKeywords') }}</text>
         <view class="flex_1">
-          <input v-model="shopInfo.seo_keywords" class="uni-input" maxlength="100" :placeholder="$lang('my.config.enterStoreKeywords')" />
-          <view class="tips font-size-activity-tag color-tip padding-bottom">{{ $lang('my.config.keywordsSeparator') }}</view>
+          <input v-model="shopInfo.seo_keywords" class="uni-input" maxlength="100" :placeholder="$t('my.config.enterStoreKeywords')" />
+          <view class="tips font-size-activity-tag color-tip padding-bottom">{{ $t('my.config.keywordsSeparator') }}</view>
         </view>
       </view>
     </view>
-    <button type="primary" @click="save()">{{ $lang('my.config.save') }}</button>
+    <button type="primary" @click="save()">{{ $t('my.config.save') }}</button>
   </view>
 </template>
 

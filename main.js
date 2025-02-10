@@ -1,10 +1,25 @@
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
 import App from './App'
 import Config from './common/js/config.js'
 import Http from './common/js/http.js'
-import Lang from './common/js/lang.js'
 import Util from './common/js/util.js'
 import store from './store'
+
+import enUs from './lang/en-us/common.js'
+import zhCn from './lang/zh-cn/common.js'
+
+const messages = {
+  en: enUs,
+  'zh-CN': zhCn,
+  'zh-Hans': zhCn
+}
+
+let i18nConfig = {
+  locale: uni.getLocale(), // 获取已设置的语言
+  fallbackLocale: 'zh-CN',
+  messages
+}
 
 Vue.prototype.$store = store //挂在vue
 
@@ -12,9 +27,6 @@ Vue.config.productionTip = false
 
 Vue.prototype.$util = Util
 Vue.prototype.$api = Http
-
-Vue.prototype.$langConfig = Lang //语言包对象
-Vue.prototype.$lang = Lang.lang //解析语言包
 
 Vue.prototype.$config = Config
 
@@ -33,8 +45,12 @@ Vue.component('mescroll-uni', MescrollUni) //上拉加载,下拉刷新组件
 import MescrollBody from '@/components/mescroll/mescroll-body.vue'
 Vue.component('mescroll-body', MescrollBody)
 
+Vue.use(VueI18n)
+const i18n = new VueI18n(i18nConfig)
+
 const app = new Vue({
   ...App,
+  i18n,
   store
 })
 app.$mount()

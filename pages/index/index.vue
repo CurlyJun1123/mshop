@@ -4,15 +4,15 @@
     <view class="cret_now" v-if="data.shop_info.is_reopen && (data.shop_info.is_reopen == 2 || data.shop_info.is_reopen == 3)">
       <view class="tip iconfont icongantanhao color-base-text"></view>
       <view class="text">
-        <view v-if="data.shop_info.is_reopen == 2">店铺即将到期，请尽快续费</view>
-        <view v-else-if="data.shop_info.is_reopen == 3">{{ data.shop_info.shop_status == 0 ? '店铺已暂停服务，无法正常营业' : '店铺已经过期，请尽快续费' }}</view>
+        <view v-if="data.shop_info.is_reopen == 2">{{ $t('index.shop_expiring_soon') }}</view>
+        <view v-else-if="data.shop_info.is_reopen == 3">{{ data.shop_info.shop_status == 0 ? $t('index.shop_suspended') : $t('index.shop_expired') }}</view>
         <view class="color-base-text">
-          店铺剩余{{ data.shop_info.expires_date }}天到期
-          <text v-if="data.shop_info.is_reopen == 3">（已到期）</text>
+          {{ $t('index.shop_remaining') }}{{ data.shop_info.expires_date }}{{ $t('index.days_to_expire') }}
+          <text v-if="data.shop_info.is_reopen == 3">（{{ $t('index.expired') }}）</text>
         </view>
       </view>
       <view class="cret_btn color-base-bg" @click="getProcedureState">
-        {{ data.shop_info.cert_id == 0 ? '立即认证' : data.is_reopen == 1 ? '立即续费' : '立即续费' }}
+        {{ data.shop_info.cert_id == 0 ? $t('index.certify_now') : data.is_reopen == 1 ? $t('index.renew_now') : $t('index.renew_now') }}
       </view>
     </view>
     <view class="shop" :style="{ backgroundImage: 'url(' + $util.img('upload/uniapp/shop_uniapp/shop_bg.png') + ')' }">
@@ -29,14 +29,16 @@
           <view class="shop_title">
             <text class="title">{{ data.shop_info.site_name }}</text>
             <text class="tag">{{ data.shop_info.group_name }}</text>
-            <text class="tag" @click="toCert">{{ data.shop_info.cert_id == 0 ? '未认证' : '已认证' }}</text>
+            <text class="tag" @click="toCert">{{ data.shop_info.cert_id == 0 ? $t('index.not_certified') : $t('index.certified') }}</text>
           </view>
           <view class="shop_other_info">
-            <text class="margin-right">主营行业：{{ data.shop_info.category_name }}</text>
-            <text>店铺状态：{{ data.shop_info.shop_status == 1 ? '正常' : '关闭' }}</text>
+            <text class="margin-right">{{ $t('index.main_industry') }}{{ data.shop_info.category_name }}</text>
+            <text>{{ $t('index.shop_status') }}{{ data.shop_info.shop_status == 1 ? $t('index.normal') : $t('index.closed') }}</text>
           </view>
           <view class="shop_other_info">
-            <text>到期时间：{{ data.shop_info.expire_time == 0 ? '永久' : $util.timeStampTurnTime(data.shop_info.expire_time) }}</text>
+            <text>
+              {{ $t('index.expiration_time') }}{{ data.shop_info.expire_time == 0 ? $t('index.permanent') : $util.timeStampTurnTime(data.shop_info.expire_time) }}
+            </text>
           </view>
         </view>
         <text class="weixincode iconfont iconrichscan_icon" @click.stop="$util.redirectTo('/pages/verify/index')"></text>
@@ -44,24 +46,24 @@
       <!-- 数据概况 -->
       <view class="trading_statistics margin_none">
         <view class="title">
-          <view class="title_left">数据概况</view>
+          <view class="title_left">{{ $t('index.data_overview') }}</view>
           <view class="title_right color-base-border">
-            <text @click="transactionChange('stat_day')" :class="{ active: transaction_statistics == 'stat_day' }">今日</text>
-            <text @click="transactionChange('stat_yesterday')" :class="{ active: transaction_statistics == 'stat_yesterday' }">昨日</text>
-            <text @click="transactionChange('shop_stat_sum')" :class="{ active: transaction_statistics == 'shop_stat_sum' }">总计</text>
+            <text @click="transactionChange('stat_day')" :class="{ active: transaction_statistics == 'stat_day' }">{{ $t('index.today') }}</text>
+            <text @click="transactionChange('stat_yesterday')" :class="{ active: transaction_statistics == 'stat_yesterday' }">{{ $t('index.yesterday') }}</text>
+            <text @click="transactionChange('shop_stat_sum')" :class="{ active: transaction_statistics == 'shop_stat_sum' }">{{ $t('index.total') }}</text>
           </view>
         </view>
         <view class="content">
           <view>
-            <view class="color-tip">订单数</view>
+            <view class="color-tip">{{ $t('index.order_count') }}</view>
             <view class="num">{{ data[transaction_statistics].order_pay_count }}</view>
           </view>
           <view>
-            <view class="color-tip">销售额（元）</view>
+            <view class="color-tip">{{ $t('index.sales_amount') }}</view>
             <view class="num">{{ data[transaction_statistics].order_total }}</view>
           </view>
           <view>
-            <view class="color-tip">店铺收藏数</view>
+            <view class="color-tip">{{ $t('index.shop_favorites_count') }}</view>
             <view class="num">{{ data[transaction_statistics].collect_shop }}</view>
           </view>
           <!-- <view>
@@ -79,7 +81,7 @@
             <!-- <view class="time">{{ $util.timeStampTurnTime(item.create_time, 1) }}</view> -->
           </swiper-item>
         </swiper>
-        <view class="more color-base-text" @click="$util.redirectTo('/pages/notice/list')">更多</view>
+        <view class="more color-base-text" @click="$util.redirectTo('/pages/notice/list')">{{ $t('index.more') }}</view>
       </view>
       <!-- 待处理事项 -->
       <view class="trading_statistics padding">
@@ -89,35 +91,35 @@
               <view @click="pendingLink('/pages/order/list', 'order_id', 0)" class="grid_item">
                 <image class="image" :src="$util.img('upload/uniapp/shop_uniapp/index/wating_pay.png')" mode="aspectFit" />
                 <text class="num" v-if="data.num_data.waitpay > 0">{{ data.num_data.waitpay }}</text>
-                <view class="text">待支付</view>
+                <view class="text">{{ $t('index.pending_payment') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="pendingLink('/pages/order/list', 'order_id', 1)" class="grid_item">
                 <image class="image" :src="$util.img('upload/uniapp/shop_uniapp/index/wating_send.png')" mode="aspectFit" />
                 <text class="num" v-if="data.num_data.waitsend > 0">{{ data.num_data.waitsend }}</text>
-                <view class="text">待发货</view>
+                <view class="text">{{ $t('index.pending_shipment') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="pendingLink('/pages/order/list', 'order_id', 'refunding')" class="grid_item">
                 <image class="image" :src="$util.img('upload/uniapp/shop_uniapp/index/return_money.png')" mode="aspectFit" />
                 <text class="num" v-if="data.num_data.refund > 0">{{ data.num_data.refund }}</text>
-                <view class="text">退款中</view>
+                <view class="text">{{ $t('index.refunding') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="pendingLink('/pages/goods/list', 'status', '2')" class="grid_item">
                 <image class="image" :src="$util.img('upload/uniapp/shop_uniapp/index/stock_warn.png')" mode="aspectFit" />
                 <text class="num" v-if="data.num_data.wait_audit_count > 0">{{ data.num_data.wait_audit_count }}</text>
-                <view class="text">待审核</view>
+                <view class="text">{{ $t('index.pending_review') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="pendingLink('/pages/goods/list', 'status', '4')" class="grid_item">
                 <image class="image" :src="$util.img('upload/uniapp/shop_uniapp/index/xiajia.png')" mode="aspectFit" />
                 <text class="num" v-if="data.num_data.audit_refuse_count > 0">{{ data.num_data.audit_refuse_count }}</text>
-                <view class="text">违规下架</view>
+                <view class="text">{{ $t('index.violation_delisting') }}</view>
               </view>
             </uni-grid-item>
           </uni-grid>
@@ -130,49 +132,49 @@
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/goods/edit/index')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/manage_good_send.png')" mode="aspectFit" />
-                <view class="text">商品发布</view>
+                <view class="text">{{ $t('index.product_release') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/order/list')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/manage_order.png')" mode="aspectFit" />
-                <view class="text">订单查询</view>
+                <view class="text">{{ $t('index.order_query') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/property/dashboard/index')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/finance_survey.png')" mode="aspectFit" />
-                <view class="text">财务状况</view>
+                <view class="text">{{ $t('index.financial_status') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/statistics/transaction')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/tongji_jiaoyi.png')" mode="aspectFit" />
-                <view class="text">交易分析</view>
+                <view class="text">{{ $t('index.transaction_analysis') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/property/settlement/list')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/my/store.png')" mode="aspectFit" />
-                <view class="text">店铺结算</view>
+                <view class="text">{{ $t('index.store_settlement') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/member/list')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/set_member.png')" mode="aspectFit" />
-                <view class="text">会员管理</view>
+                <view class="text">{{ $t('index.member_management') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/my/shop/contact')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/set_address.png')" mode="aspectFit" />
-                <view class="text">联系地址</view>
+                <view class="text">{{ $t('index.contact_address') }}</view>
               </view>
             </uni-grid-item>
             <uni-grid-item>
               <view @click="$util.redirectTo('/pages/index/all_menu')" class="grid_item">
                 <image class="image50" :src="$util.img('upload/uniapp/shop_uniapp/index/more.png')" mode="aspectFit" />
-                <view class="text">全部</view>
+                <view class="text">{{ $t('index.all') }}</view>
               </view>
             </uni-grid-item>
           </uni-grid>
@@ -222,6 +224,7 @@ import uniGrid from '@/components/uni-grid/uni-grid.vue'
 import uniGridItem from '@/components/uni-grid-item/uni-grid-item.vue'
 import uCharts from '@/components/u-charts/u-charts.vue'
 import index from './js/index.js'
+
 export default {
   mixins: [index],
   components: {

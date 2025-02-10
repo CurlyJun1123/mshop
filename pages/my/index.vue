@@ -14,63 +14,63 @@
         <view class="item-wrap" @click="$util.redirectTo('/pages/my/shop/config')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/my/store.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.storeInfo') }}</text>
+            <text>{{ $t('my.storeInfo') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/my/shop/contact')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/my/address.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.contactAddress') }}</text>
+            <text>{{ $t('my.contactAddress') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/my/user/user')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/my/member.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.userManagement') }}</text>
+            <text>{{ $t('my.userManagement') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/login/modify_pwd')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/my/password.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.changePassword') }}</text>
+            <text>{{ $t('my.changePassword') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/property/settlement/list_store')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/index/store_jiesuan.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.storeSettlement') }}</text>
+            <text>{{ $t('my.storeSettlement') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/property/settlement/list')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/index/shop_jiesuan.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.shopSettlement') }}</text>
+            <text>{{ $t('my.shopSettlement') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/property/withdraw/list')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/index/tixian.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.withdrawalRecords') }}</text>
+            <text>{{ $t('my.withdrawalRecords') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="$util.redirectTo('/pages/verify/user')">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/index/verify_peo.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.verifier') }}</text>
+            <text>{{ $t('my.verifier') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
         <view class="item-wrap" @click="handleSwitchLanguage">
           <view class="info">
             <image class="img" :src="$util.img('/upload/uniapp/shop_uniapp/index/verify_peo.png')" mode="aspectFit"></image>
-            <text>{{ $lang('my.switchLanguage') }}</text>
+            <text>{{ $t('my.switchLanguage') }}</text>
           </view>
           <text class="iconfont iconright"></text>
         </view>
@@ -78,15 +78,15 @@
     </view>
 
     <view class="footer-wrap">
-      <view class="primary" @click="openPopup()">{{ $lang('my.logout') }}</view>
+      <view class="primary" @click="openPopup()">{{ $t('my.logout') }}</view>
     </view>
 
     <uni-popup ref="loginOutPopup">
       <view class="pop-wrap" @touchmove.prevent.stop>
-        <view class="title">{{ $lang('my.confirmLogout') }}</view>
+        <view class="title">{{ $t('my.confirmLogout') }}</view>
         <view class="action-btn">
-          <view @click="closePopup()">{{ $lang('my.cancel') }}</view>
-          <view class="color-base-text" @click="loginOut()">{{ $lang('my.confirm') }}</view>
+          <view @click="closePopup()">{{ $t('my.cancel') }}</view>
+          <view class="color-base-text" @click="loginOut()">{{ $t('my.confirm') }}</view>
         </view>
       </view>
     </uni-popup>
@@ -101,7 +101,6 @@ export default {
     }
   },
   onShow() {
-    this.initLang()
     if (!this.$util.checkToken('/pages/index/index')) return
     this.$nextTick(function () {
       this.userInfo = uni.getStorageSync('user_info') ? JSON.parse(uni.getStorageSync('user_info')) : {}
@@ -109,22 +108,6 @@ export default {
     })
   },
   methods: {
-    // 初始化语言
-    initLang() {
-      //获取语言列表
-      this.langList = this.$langConfig.list()
-
-      if (!uni.getStorageSync('lang')) {
-        this.langIndex = 0
-      } else {
-        for (let i = 0; i < this.langList.length; i++) {
-          if (this.langList[i].value == uni.getStorageSync('lang')) {
-            this.langIndex = i
-            break
-          }
-        }
-      }
-    },
     loginOut() {
       uni.removeStorageSync('token')
       uni.removeStorageSync('site_id')
@@ -144,19 +127,11 @@ export default {
       this.$refs.loginOutPopup.close()
     },
     handleSwitchLanguage() {
-      const _this = this
-      let newArray = []
-      for (let i = 0; i < this.langList.length; i++) {
-        newArray.push(this.langList[i].name)
-      }
-      uni.showActionSheet({
-        itemList: newArray,
-        success: function (res) {
-          if (_this.langIndex != res.tapIndex) {
-            _this.$langConfig.change(_this.langList[res.tapIndex].value)
-          }
-        }
-      })
+      const locale = uni.getLocale()
+
+      uni.setLocale(locale === 'zh-Hans' ? 'en' : 'zh-Hans')
+      // 同步更新 vue-i18n 的语言
+      this.$i18n.locale = locale === 'zh-Hans' ? 'en' : 'zh-Hans'
     }
   }
 }
