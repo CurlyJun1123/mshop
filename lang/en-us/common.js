@@ -28,6 +28,15 @@ export default {
   ...my,
   ...property,
 
+  apply: {
+    agreement: {
+      sign_agreement: 'Sign the Entry Agreement',
+      agree_terms: 'I have read and agree to the above agreement',
+      next_step: 'Next step, fill in the application information',
+      agree_first: 'Please agree to the agreement first'
+    }
+  },
+
   index: {
     shop_expiring_soon: 'The store is about to expire, please renew it as soon as possible',
     shop_suspended: 'The store has suspended service and cannot operate normally',
@@ -98,6 +107,38 @@ export default {
       platform_announcements: 'Platform Announcements',
       verification_platform: 'Verification Platform',
       verification_personnel: 'Verification Personnel'
+    }
+  },
+
+  verify: {
+    verification_records: 'Verification Records',
+    click_to_scan_verification_code: 'Click this area to scan the verification code',
+    input_verification_code: 'Enter Verification Code',
+    please_enter_verification_code: 'Please enter the verification code',
+    submit_verification_code: 'Submit Verification Code',
+    verify_usage: 'Verify Usage',
+    h5_not_support_scan: 'H5 does not support scanning verification codes',
+    please_scan_mini_program_qr_code: 'Please scan the mini program QR code',
+
+    records: {
+      placeholder_verifier_name: "Please enter the verifier's name",
+      filter: 'Filter',
+      verifier_name: 'Verifier Name',
+      verification_type: 'Verification Type',
+      verification_time: 'Verification Time',
+      start_time: 'Start Time',
+      end_time: 'End Time',
+      verification_code: 'Verification Code',
+      placeholder_verification_code: 'Please enter the verification code',
+      reset: 'Reset',
+      confirm: 'Confirm',
+      copy: 'Copy',
+      verified: 'Verified',
+      not_verified: 'Not Verified',
+      verifier: 'Verifier',
+      creation_time: 'Creation Time',
+      verification_time: 'Verification Time',
+      no_verification_data: 'No verification data available'
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <view class="agreement">
-    <view class="agreement-title">签订入驻协议</view>
+    <view class="agreement-title">{{ $t('apply.agreement.sign_agreement') }}</view>
     <view class="agreement-content">
       <view class="agreement-item">{{ title }}</view>
       <rich-text :nodes="content"></rich-text>
@@ -8,9 +8,9 @@
     <view class="agreement-btn">
       <view @click="isChecked()" class="checkbox-wrap">
         <text class="checkbox iconfont" :class="checked ? 'iconfuxuankuang1 color-base-text' : 'iconfuxuankuang2'"></text>
-        <text class="color-base-text">我已阅读并同意以上协议</text>
+        <text class="color-base-text">{{ $t('apply.agreement.agree_terms') }}</text>
       </view>
-      <button type="primary" @click="toApplyInfo()">下一步，填写申请信息</button>
+      <button type="primary" @click="toApplyInfo()">{{ $t('apply.agreement.next_step') }}</button>
     </view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
@@ -40,7 +40,7 @@ export default {
     toApplyInfo() {
       if (this.checked == false) {
         this.$util.showToast({
-          title: '请先同意协议'
+          title: $t('apply.agreement.agree_first')
         })
       } else {
         if (this.type == 1) {

@@ -1,18 +1,18 @@
 <template>
   <view class="verify iphone-safe-area">
     <view class="scan">
-      <view class="recode color-base-text" @click="$util.redirectTo('/pages/verify/records')">核销记录</view>
+      <view class="recode color-base-text" @click="$util.redirectTo('/pages/verify/records')">{{ $t('verify.verification_records') }}</view>
       <image :src="$util.img('/upload/uniapp/shop_uniapp/verify/verify.png')" mode="aspectFit" @click="scanCode()"></image>
-      <view class="tip color-tip">点击此区域扫描核销码</view>
+      <view class="tip color-tip">{{ $t('verify.click_to_scan_verify_code') }}</view>
     </view>
     <view class="menu_item">
       <view class="menu_title">
         <text class="line color-base-bg margin-right"></text>
-        <text>输入核销码</text>
+        <text>{{ $t('verify.input_verify_code') }}</text>
       </view>
       <view class="menu_content">
-        <input placeholder="请输入核销码" v-model="verify_code" class="uni-input" @confirm="search()" />
-        <button type="primary" :disabled="verify_code == ''" @click="search">提交核销码</button>
+        <input :placeholder="$t('verify.please_enter_verify_code')" v-model="verify_code" class="uni-input" @confirm="search()" />
+        <button type="primary" :disabled="verify_code == ''" @click="search">{{ $t('verify.submit_verify_code') }}</button>
       </view>
     </view>
     <view v-if="search_info">
@@ -32,7 +32,7 @@
         </view>
         <view class="other_info" v-for="(item_r, index_r) in remark_array" :key="index_r">{{ item_r.title }}：{{ item_r.value }}</view>
       </view>
-      <button type="primary" @click="verify">验证使用</button>
+      <button type="primary" @click="verify">{{ $t('verify.verify_usage') }}</button>
     </view>
   </view>
 </template>
@@ -97,7 +97,7 @@ export default {
       // #ifdef H5
       if (!this.$util.isWeiXin()) {
         this.$util.showToast({
-          title: 'H5端不支持扫码核销'
+          title: this.$t('verify.h5_not_support_scan')
         })
         return
       }
@@ -122,7 +122,7 @@ export default {
             this.search()
           } else {
             this.$util.showToast({
-              title: res.errorMsg ? res.errorMsg : '请扫描小程序二维码'
+              title: res.errorMsg ? res.errorMsg : this.$t('verify.please_scan_mini_program_qr_code')
             })
           }
         }

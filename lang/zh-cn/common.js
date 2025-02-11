@@ -10,7 +10,6 @@ export default {
     cart: '购物车',
     member: '个人中心'
   },
-
   //公共
   common: {
     //语言包名称
@@ -28,6 +27,15 @@ export default {
   ...login,
   ...my,
   ...property,
+
+  apply: {
+    agreement: {
+      sign_agreement: '签订入驻协议',
+      agree_terms: '我已阅读并同意以上协议',
+      next_step: '下一步，填写申请信息',
+      agree_first: '请先同意协议'
+    }
+  },
 
   index: {
     shop_expiring_soon: '店铺即将到期，请尽快续费',
@@ -99,6 +107,38 @@ export default {
       platform_announcements: '平台公告',
       verification_platform: '核销台',
       verification_personnel: '核销人员'
+    }
+  },
+
+  verify: {
+    verification_records: '核销记录',
+    click_to_scan_verification_code: '点击此区域扫描核销码',
+    input_verification_code: '输入核销码',
+    please_enter_verification_code: '请输入核销码',
+    submit_verification_code: '提交核销码',
+    verify_usage: '验证使用',
+    h5_not_support_scan: 'H5端不支持扫码核销',
+    please_scan_mini_program_qr_code: '请扫描小程序二维码',
+
+    records: {
+      placeholder_verifier_name: '请输入核销人员名称',
+      filter: '筛选',
+      verifier_name: '核销人员名称',
+      verification_type: '核销类型',
+      verification_time: '核销时间',
+      start_time: '开始时间',
+      end_time: '结束时间',
+      verification_code: '核销码',
+      placeholder_verification_code: '请输入核销码',
+      reset: '重置',
+      confirm: '确定',
+      copy: '复制',
+      verified: '已核销',
+      not_verified: '尚未核销',
+      verifier: '核销员',
+      creation_time: '创建时间',
+      verification_time: '核销时间',
+      no_verification_data: '暂无核销数据'
     }
   }
 }
