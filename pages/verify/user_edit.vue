@@ -2,14 +2,14 @@
   <view class="user iphone-safe-area">
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">核销人员姓名</text>
-        <input class="uni-input" placeholder="请输入核销人员姓名" v-model="formData.verifier_name" maxlength="100" />
+        <text class="label">{{ $t('verify.user_edit.verifier_name') }}</text>
+        <input class="uni-input" :placeholder="$t('verify.user_edit.enter_verifier_name')" v-model="formData.verifier_name" maxlength="100" />
       </view>
     </view>
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">关联前台会员</text>
-        <input class="uni-input" placeholder="请输入会员名或手机" maxlength="100" v-model="verifyUSerInfo.member_account" @confirm="searchAccount()" />
+        <text class="label">{{ $t('verify.user_edit.associate_member') }}</text>
+        <input class="uni-input" :placeholder="$t('verify.user_edit.enter_member_info')" maxlength="100" v-model="verifyUSerInfo.member_account" @confirm="searchAccount()" />
         <text class="margin-left iconfont iconsousuo color-base-text" @click="searchAccount()"></text>
       </view>
       <view class="userlist" v-if="searchUSerInfo">
@@ -20,14 +20,14 @@
           @error="imgError()"
         ></image>
         <view class="base_info margin-left">
-          <view>用户名：{{ searchUSerInfo.username }}</view>
-          <view>手机号：{{ searchUSerInfo.mobile }}</view>
+          <view>{{ $t('verify.user_edit.username') }}：{{ searchUSerInfo.username }}</view>
+          <view>{{ $t('verify.user_edit.mobile') }}：{{ searchUSerInfo.mobile }}</view>
         </view>
         <text class="iconfont iconclose" @click="clearSearch()"></text>
       </view>
-      <view class="tip">关联会员后才能在手机上使用核销台功能，否则无法在手机上核销</view>
+      <view class="tip">{{ $t('verify.user_edit.associate_member_tip') }}</view>
     </view>
-    <button type="primary" @click="save()">保存</button>
+    <button type="primary" @click="save()">{{ $t('verify.user_edit.save') }}</button>
     <loading-cover ref="loadingCover" v-if="formData.verifier_id"></loading-cover>
   </view>
 </template>
@@ -53,11 +53,11 @@ export default {
       this.formData.verifier_id = option.verifier_id
       this.getUserDetail()
       uni.setNavigationBarTitle({
-        title: '编辑核销人员'
+        title: this.$t('verify.user_edit.edit_verifier')
       })
     } else {
       uni.setNavigationBarTitle({
-        title: '添加核销人员'
+        title: this.$t('verify.user_edit.add_verifier')
       })
     }
   },
@@ -110,13 +110,13 @@ export default {
       var url = this.formData.verifier_id ? '/shopapi/verify/editUser' : '/shopapi/verify/addUser'
       if (!this.formData.verifier_name) {
         this.$util.showToast({
-          title: '核销人员姓名不能为空'
+          title: this.$t('verify.user_edit.verifier_name_required')
         })
         return false
       }
       if (!this.formData.member_id) {
         this.$util.showToast({
-          title: '关联前台会员不能为空'
+          title: this.$t('verify.user_edit.member_required')
         })
         return false
       }

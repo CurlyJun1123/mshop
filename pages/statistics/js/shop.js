@@ -36,32 +36,8 @@ export default {
       refCurr: '',
       transaction_time: 7,
       picker: {
-        gaikuang: [
-          {
-            date_type: 0,
-            date_text: '今日实时'
-          },
-          {
-            date_type: 1,
-            date_text: '近7天'
-          },
-          {
-            date_type: 2,
-            date_text: '近30天'
-          }
-        ],
-        table: [
-          {
-            date_type: 1,
-            date_text: '近7天',
-            day: 7
-          },
-          {
-            date_type: 2,
-            date_text: '近30天',
-            day: 30
-          }
-        ]
+        gaikuang: [],
+        table: []
       },
       pickerCurr: {
         gaikuang: 0,
@@ -89,6 +65,18 @@ export default {
   },
   onShow() {
     if (!this.$util.checkToken('/pages/statistics/shop')) return
+
+    this.picker = {
+      gaikuang: [
+        { date_type: 0, date_text: this.$t('statistics.shop.today_realtime') },
+        { date_type: 1, date_text: this.$t('statistics.shop.last_7_days') },
+        { date_type: 2, date_text: this.$t('statistics.shop.last_30_days') }
+      ],
+      table: [
+        { date_type: 1, date_text: this.$t('statistics.shop.last_7_days'), day: 7 },
+        { date_type: 2, date_text: this.$t('statistics.shop.last_30_days'), day: 30 }
+      ]
+    }
     this.getChartsInfo()
     this.getTotalData()
     this.getTotalData(1)
@@ -173,7 +161,7 @@ export default {
                 timeTemp
             this.add_goods_count.series = [
               {
-                name: '新增商品数',
+                name: this.$t('statistics.shop.new_goods_count'),
                 data: res.data.add_goods_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -181,7 +169,7 @@ export default {
             ]
             this.visit_count.series = [
               {
-                name: '新增商品数',
+                name: this.$t('statistics.shop.new_goods_count'),
                 data: res.data.visit_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -189,7 +177,7 @@ export default {
             ]
             this.collect_goods.series = [
               {
-                name: '商品收藏数',
+                name: this.$t('statistics.shop.goods_collect_count'),
                 data: res.data.collect_goods,
                 color: '#FF6A00',
                 time: res.data.time
@@ -197,7 +185,7 @@ export default {
             ]
             this.goods_pay_count.series = [
               {
-                name: '订单商品数',
+                name: this.$t('statistics.shop.order_goods_count'),
                 data: res.data.goods_pay_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -205,7 +193,7 @@ export default {
             ]
             this.collect_shop.series = [
               {
-                name: '店铺收藏数',
+                name: this.$t('statistics.shop.shop_collect_count'),
                 data: res.data.collect_shop,
                 color: '#FF6A00',
                 time: res.data.time
@@ -213,7 +201,7 @@ export default {
             ]
             this.order_total.series = [
               {
-                name: '订单金额',
+                name: this.$t('statistics.shop.order_amount'),
                 data: res.data.order_total,
                 color: '#FF6A00',
                 time: res.data.time
@@ -221,7 +209,7 @@ export default {
             ]
             this.order_pay_count.series = [
               {
-                name: '订单数',
+                name: this.$t('statistics.shop.order_count'),
                 data: res.data.order_pay_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -279,71 +267,71 @@ export default {
         legend: false
       }
       this.add_goods_count = Object.assign(this.add_goods_count, Data, {
-        unit: '件'
+        unit: this.$t('statistics.shop.unit_piece')
       })
       this.collect_goods = Object.assign(this.collect_goods, Data, {
-        unit: '件'
+        unit: this.$t('statistics.shop.unit_piece')
       })
       this.visit_count = Object.assign(this.visit_count, Data, {
-        unit: '条'
+        unit: this.$t('statistics.shop.unit_item')
       })
       this.goods_pay_count = Object.assign(this.goods_pay_count, Data, {
-        unit: '件'
+        unit: this.$t('statistics.shop.unit_piece')
       })
       this.collect_shop = Object.assign(this.collect_shop, Data, {
-        unit: '个'
+        unit: this.$t('statistics.shop.unit_shop')
       })
       this.order_total = Object.assign(this.order_total, Data, {
-        unit: '元'
+        unit: this.$t('statistics.shop.unit_currency')
       })
       this.order_pay_count = Object.assign(this.order_pay_count, Data, {
-        unit: '笔'
+        unit: this.$t('statistics.shop.unit_order')
       })
       var serverData = [
         {
-          title: '新增商品数',
+          title: this.$t('statistics.shop.new_goods_count'),
           opts: this.add_goods_count,
           chartType: 'area',
           extraType: 'curve',
           id: 'add_goods_count'
         },
         {
-          title: '商品浏览数',
+          title: this.$t('statistics.shop.goods_view_count'),
           opts: this.visit_count,
           chartType: 'area',
           extraType: 'curve',
           id: 'visit_count'
         },
         {
-          title: '商品收藏数',
+          title: this.$t('statistics.shop.goods_collect_count'),
           opts: this.collect_goods,
           chartType: 'area',
           extraType: 'curve',
           id: 'collect_goods'
         },
         {
-          title: '订单商品数',
+          title: this.$t('statistics.shop.order_goods_count'),
           opts: this.goods_pay_count,
           chartType: 'area',
           extraType: 'curve',
           id: 'goods_pay_count'
         },
         {
-          title: '店铺收藏数',
+          title: this.$t('statistics.shop.shop_collect_count'),
           opts: this.collect_shop,
           chartType: 'area',
           extraType: 'curve',
           id: 'collect_shop'
         },
         {
-          title: '订单金额',
+          title: this.$t('statistics.shop.order_amount'),
           opts: this.order_total,
           chartType: 'area',
           extraType: 'curve',
           id: 'order_total'
         },
         {
-          title: '订单数',
+          title: this.$t('statistics.shop.order_count'),
           opts: this.order_pay_count,
           chartType: 'area',
           extraType: 'curve',

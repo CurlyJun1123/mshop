@@ -4,7 +4,7 @@
       <view class="withdrawal_title">
         <view class="withdrawal_title_info">
           <text class="line color-base-bg margin-right"></text>
-          <text>交易概况</text>
+          <text>{{ $t('statistics.transaction.transaction_overview') }}</text>
         </view>
         <picker :value="pickerCurr.gaikuang" @change="pickerChangeShop" :range="picker.gaikuang" range-key="date_text">
           <view class="select color-tip">
@@ -16,15 +16,15 @@
       <view class="withdrawal_content margin-top">
         <view class="flex_two">
           <view class="flex_three-item overhidden">
-            <view class="tip overhidden">订单金额(元)</view>
+            <view class="tip overhidden">{{ $t('statistics.transaction.order_amount') }}</view>
             <view class="num overhidden">{{ shop_info.order_total }}</view>
           </view>
           <view class="flex_three-item overhidden">
-            <view class="tip overhidden">订单数(笔)</view>
+            <view class="tip overhidden">{{ $t('statistics.transaction.order_count') }}</view>
             <view class="num overhidden">{{ shop_info.order_pay_count }}</view>
           </view>
           <view class="flex_three-item overhidden">
-            <view class="tip overhidden">订单商品数(件)</view>
+            <view class="tip overhidden">{{ $t('statistics.transaction.goods_count') }}</view>
             <view class="num overhidden">{{ shop_info.goods_pay_count }}</view>
           </view>
         </view>
@@ -49,17 +49,7 @@
         <view class="withdrawal_content margin-top">
           <view class="charts">
             <view @click="refCurr = item.id">
-              <uCharts
-                :scroll="item.opts.enableScroll"
-                :show="canvas"
-                :canvasId="item.id"
-                :chartType="item.chartType"
-                :extraType="item.extraType"
-                :cWidth="cWidth"
-                :cHeight="cHeight"
-                :opts="item.opts"
-                :ref="item.id"
-              />
+              <uCharts :scroll="item.opts.enableScroll" :show="canvas" :canvasId="item.id" :chartType="item.chartType" :extraType="item.extraType" :cWidth="cWidth" :cHeight="cHeight" :opts="item.opts" :ref="item.id" />
             </view>
           </view>
         </view>

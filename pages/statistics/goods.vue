@@ -4,7 +4,7 @@
       <view class="withdrawal_title">
         <view class="withdrawal_title_info">
           <text class="line color-base-bg margin-right"></text>
-          <text>实时概况</text>
+          <text>{{ $t('statistics.goods.real_time_overview') }}</text>
         </view>
         <picker :value="pickerCurr.gaikuang" @change="pickerChangeShop" :range="picker.gaikuang" range-key="date_text">
           <view class="select color-tip">
@@ -16,19 +16,19 @@
       <view class="withdrawal_content margin-top">
         <view class="flex_two">
           <view class="flex_two-item">
-            <view class="tip">新增商品(件)</view>
+            <view class="tip">{{ $t('statistics.goods.new_goods') }}({{ $t('statistics.goods.piece') }})</view>
             <view class="num">{{ shop_info.add_goods_count }}</view>
           </view>
           <view class="flex_two-item">
-            <view class="tip">商品浏览(条)</view>
+            <view class="tip">{{ $t('statistics.goods.goods_views') }}({{ $t('statistics.goods.item') }})</view>
             <view class="num">{{ shop_info.visit_count }}</view>
           </view>
           <view class="flex_two-item border_none">
-            <view class="tip">商品收藏(件)</view>
+            <view class="tip">{{ $t('statistics.goods.goods_favorites') }}({{ $t('statistics.goods.piece') }})</view>
             <view class="num">{{ shop_info.collect_goods }}</view>
           </view>
           <view class="flex_two-item border_none">
-            <view class="tip">订单商品(件)</view>
+            <view class="tip">{{ $t('statistics.goods.order_goods_piece') }}</view>
             <view class="num">{{ shop_info.goods_pay_count }}</view>
           </view>
         </view>

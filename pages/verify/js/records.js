@@ -14,15 +14,15 @@ export default {
       pickerCurr: 0,
       picker: [
         {
-          date_text: '全部',
+          date_text: this.$t('verify.records.all'),
           date_value: ''
         },
         {
-          date_text: '订单自提',
+          date_text: this.$t('verify.records.pickup'),
           date_value: 'pickup'
         },
         {
-          date_text: '虚拟商品',
+          date_text: this.$t('verify.records.virtual_goods'),
           date_value: 'virtualgoods'
         }
       ],
@@ -52,7 +52,7 @@ export default {
     bindTimeStartChange(e) {
       if (e.detail.value >= this.formData.end_time && this.formData.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('verify.records.start_time_error')
         })
         return false
       }
@@ -62,7 +62,7 @@ export default {
     bindTimeEndChange(e) {
       if (e.detail.value <= this.formData.start_time) {
         this.$util.showToast({
-          title: '结束时间不能小于开始时间'
+          title: this.$t('verify.records.end_time_error')
         })
         return false
       }
@@ -105,7 +105,7 @@ export default {
           var arr = [
             {
               date_value: '',
-              date_name: '全部'
+              date_name: this.$t('verify.records.all')
             }
           ]
           for (var index in res.data) {

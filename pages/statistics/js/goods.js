@@ -20,32 +20,8 @@ export default {
       refCurr: '',
       transaction_time: 7,
       picker: {
-        gaikuang: [
-          {
-            date_type: 0,
-            date_text: '今日实时'
-          },
-          {
-            date_type: 1,
-            date_text: '近7天'
-          },
-          {
-            date_type: 2,
-            date_text: '近30天'
-          }
-        ],
-        table: [
-          {
-            date_type: 1,
-            date_text: '近7天',
-            day: 7
-          },
-          {
-            date_type: 2,
-            date_text: '近30天',
-            day: 30
-          }
-        ]
+        gaikuang: [],
+        table: []
       },
       pickerCurr: {
         gaikuang: 0,
@@ -65,6 +41,19 @@ export default {
   },
   onShow() {
     if (!this.$util.checkToken('/pages/statistics/goods')) return
+
+    this.picker = {
+      gaikuang: [
+        { date_type: 0, date_text: this.$t('statistics.goods.real_time_today') },
+        { date_type: 1, date_text: this.$t('statistics.goods.last_7_days') },
+        { date_type: 2, date_text: this.$t('statistics.goods.last_30_days') }
+      ],
+      table: [
+        { date_type: 1, date_text: this.$t('statistics.goods.last_7_days'), day: 7 },
+        { date_type: 2, date_text: this.$t('statistics.goods.last_30_days'), day: 30 }
+      ]
+    }
+
     this.getChartsInfo()
     this.getTotalData()
     this.getTotalData(1)
@@ -138,7 +127,7 @@ export default {
             this.goods_pay_count.categories = this.collect_goods.categories = this.visit_count.categories = timeTemp
             this.goods_pay_count.series = [
               {
-                name: '商品订单数',
+                name: this.$t('statistics.goods.goods_order_count'),
                 data: res.data.goods_pay_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -146,7 +135,7 @@ export default {
             ]
             this.collect_goods.series = [
               {
-                name: '商品收藏数',
+                name: this.$t('statistics.goods.goods_collect_count'),
                 data: res.data.collect_goods,
                 color: '#FF6A00',
                 time: res.data.time
@@ -154,7 +143,7 @@ export default {
             ]
             this.visit_count.series = [
               {
-                name: '商品浏览数',
+                name: this.$t('statistics.goods.goods_view_count'),
                 data: res.data.visit_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -219,21 +208,21 @@ export default {
       })
       var serverData = [
         {
-          title: '商品订单数',
+          title: this.$t('statistics.goods.goods_order_count'),
           opts: this.goods_pay_count,
           chartType: 'area',
           extraType: 'curve',
           id: 'goods_pay_count'
         },
         {
-          title: '商品收藏数',
+          title: this.$t('statistics.goods.goods_collect_count'),
           opts: this.collect_goods,
           chartType: 'area',
           extraType: 'goods_curve',
           id: 'collect_goods'
         },
         {
-          title: '商品浏览数',
+          title: this.$t('statistics.goods.goods_view_count'),
           opts: this.visit_count,
           chartType: 'area',
           extraType: 'curve',

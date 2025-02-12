@@ -4,7 +4,7 @@
       <view class="withdrawal_title">
         <view class="withdrawal_title_info">
           <text class="line color-base-bg margin-right"></text>
-          <text>访问概况</text>
+          <text>{{ $t('statistics.visit_overview') }}</text>
         </view>
         <picker :value="pickerCurr.gaikuang" @change="pickerChangeShop" :range="picker.gaikuang" range-key="date_text">
           <view class="select color-tip">
@@ -16,15 +16,15 @@
       <view class="withdrawal_content margin-top">
         <view class="flex_two">
           <view class="flex_three-item overhidden">
-            <view class="tip overhidden">店铺收藏</view>
+            <view class="tip overhidden">{{ $t('statistics.shop_collect') }}</view>
             <view class="num overhidden">{{ shop_info.collect_shop }}</view>
           </view>
           <view class="flex_three-item overhidden">
-            <view class="tip overhidden">商品收藏</view>
+            <view class="tip overhidden">{{ $t('statistics.goods_collect') }}</view>
             <view class="num overhidden">{{ shop_info.collect_goods }}</view>
           </view>
           <view class="flex_three-item overhidden">
-            <view class="tip overhidden">商品浏览</view>
+            <view class="tip overhidden">{{ $t('statistics.goods_browse') }}</view>
             <view class="num overhidden">{{ shop_info.visit_count }}</view>
           </view>
         </view>

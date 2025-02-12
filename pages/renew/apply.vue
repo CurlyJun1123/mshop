@@ -2,22 +2,24 @@
   <view class="authentication-info">
     <view class="company-info info-chunk">
       <view class="apply-input-wrap">
-        <text>店铺名称</text>
+        <text>{{ $t('renew.apply.shop_name') }}</text>
         <input type="text" class="input-content" disabled="false" v-model="infoData.shop_name" />
       </view>
       <view class="apply-input-wrap">
-        <text>开店套餐</text>
+        <text>{{ $t('renew.apply.shop_package') }}</text>
         <input type="text" class="input-content" disabled="false" v-model="infoData.shop_group_name" />
       </view>
       <view class="apply-input-wrap">
-        <text>主营行业</text>
+        <text>{{ $t('renew.apply.main_industry') }}</text>
         <input type="text" class="input-content" disabled="false" v-model="selectCategory" />
       </view>
       <view class="apply-input-wrap more-wrap">
-        <text>入驻时长</text>
+        <text>{{ $t('renew.apply.entry_duration') }}</text>
         <block v-if="isRenew">
           <picker mode="selector" :value="selectApplyYear.key" :range="applyYearArr" @change="applyYearChange">
-            <text class="input-content" :class="{ 'color-tip': !selectApplyYear.value }">{{ selectApplyYear.value ? selectApplyYear.value : '请选择入驻时长' }}</text>
+            <text class="input-content" :class="{ 'color-tip': !selectApplyYear.value }">
+              {{ selectApplyYear.value ? selectApplyYear.value : $t('renew.apply.select_duration') }}
+            </text>
             <text class="iconfont iconright"></text>
           </picker>
         </block>
@@ -25,52 +27,52 @@
       </view>
 
       <view class="apply-input-wrap">
-        <text>服务费</text>
+        <text>{{ $t('renew.apply.service_fee') }}</text>
         <input type="text" class="input-content" placeholder="0.00 元" disabled="false" v-model="applyMoney.paying_apply" />
       </view>
       <view class="apply-input-wrap">
-        <text>总计</text>
+        <text>{{ $t('renew.apply.total') }}</text>
         <input type="text" class="input-content" placeholder="0.00 元" disabled="false" v-model="applyMoney.paying_amount" />
       </view>
     </view>
 
     <view class="company-info info-chunk">
       <view class="apply-input-wrap">
-        <text>付款凭证</text>
+        <text>{{ $t('renew.apply.payment_voucher') }}</text>
         <view class="input-img" @click="uplodImg()">
           <text class="iconfont iconadd1" v-if="!payData.paying_money_certificate"></text>
           <image v-else :src="$util.img(payData.paying_money_certificate)" mode="aspectFit"></image>
         </view>
       </view>
       <view class="apply-input-wrap">
-        <text>付款凭证说明</text>
-        <input type="text" class="input-content" placeholder="请输入付款凭证说明" v-model="payData.paying_money_certificate_explain" />
+        <text>{{ $t('renew.apply.voucher_desc') }}</text>
+        <input type="text" class="input-content" :placeholder="$t('renew.apply.voucher_desc_placeholder')" v-model="payData.paying_money_certificate_explain" />
       </view>
     </view>
     <view class="company-info info-chunk">
       <view class="shroff-account">
-        <text class="account-title">收款账户信息</text>
+        <text class="account-title">{{ $t('renew.apply.receiving_account') }}</text>
         <view class="account-content">
           <view>
-            <text>银行开户名：</text>
+            <text>{{ $t('renew.apply.bank_account_name') }}：</text>
             <text>{{ infoData.bank_account_name }}</text>
           </view>
           <view>
-            <text>银行账户：</text>
+            <text>{{ $t('renew.apply.bank_account') }}：</text>
             <text>{{ infoData.bank_account_no }}</text>
           </view>
           <view>
-            <text>开户名称：</text>
+            <text>{{ $t('renew.apply.bank_name') }}：</text>
             <text>{{ infoData.bank_name }}</text>
           </view>
           <view>
-            <text>开户所在地：</text>
+            <text>{{ $t('renew.apply.bank_address') }}：</text>
             <text>{{ infoData.bank_address }}</text>
           </view>
         </view>
       </view>
     </view>
-    <button type="primary" @click="save">提交</button>
+    <button type="primary" @click="save">{{ $t('renew.apply.submit') }}</button>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
 </template>
@@ -237,7 +239,7 @@ export default {
         (res) => {
           if (res) {
             this.$util.showToast({
-              title: '上传成功'
+              title: this.$t('renew.apply.upload_success')
             })
             this.payData.paying_money_certificate = res[0]
           }
@@ -248,10 +250,10 @@ export default {
       let rule = []
       let obj = {}
       if (!this.isEditRenew) {
-        rule.push({ name: 'apply_year', checkType: 'required', errorMsg: '请选择入驻年长' })
+        rule.push({ name: 'apply_year', checkType: 'required', errorMsg: this.$t('renew.apply.select_duration_tip') })
         obj.apply_year = this.infoData.apply_year
       }
-      rule.push({ name: 'paying_money_certificate', checkType: 'required', errorMsg: '请上传支付凭证' })
+      rule.push({ name: 'paying_money_certificate', checkType: 'required', errorMsg: this.$t('renew.apply.upload_voucher_tip') })
 
       obj = Object.assign(obj, this.payData)
       let checkRes = validate.check(obj, rule)
@@ -284,7 +286,7 @@ export default {
                 uni.removeStorageSync('renewObj')
               }
               this.$util.showToast({
-                title: '申请续签成功'
+                title: this.$t('renew.apply.renew_success')
               })
               this.$util.redirectTo('/pages/property/reopen/list', {}, 'reLaunch')
             } else {

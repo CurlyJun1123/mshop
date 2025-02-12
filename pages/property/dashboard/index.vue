@@ -5,45 +5,45 @@
         <view class="withdrawal_item margin-top">
           <view class="withdrawal_title">
             <text class="line color-base-bg margin-right"></text>
-            <text>账户概况</text>
+            <text>{{ $t('property.dashboard.account_overview') }}</text>
           </view>
           <view class="withdrawal_content">
             <view class="flex_two">
               <view class="flex_two-item">
-                <view class="tip">店铺总收入(元)</view>
+                <view class="tip">{{ $t('property.dashboard.shop_total_income') }}</view>
                 <view class="num">{{ base_info.total }}</view>
               </view>
               <view class="flex_two-item">
                 <view class="tip">
-                  可用余额(元)
-                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/withdraw/index')">提现</text>
+                  {{ $t('property.dashboard.available_balance') }}
+                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/withdraw/index')">{{ $t('property.dashboard.withdraw') }}</text>
                 </view>
                 <view class="num">{{ base_info.account }}</view>
               </view>
               <view class="flex_two-item">
                 <view class="tip">
-                  待结算(元)
-                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/dashboard/orderlist')">查看明细</text>
+                  {{ $t('property.dashboard.pending_settlement') }}
+                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/dashboard/orderlist')">{{ $t('property.dashboard.view_details') }}</text>
                 </view>
                 <view class="num">{{ base_info.order_apply }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">入驻费用(元)</view>
+                <view class="tip">{{ $t('property.dashboard.entry_fee') }}</view>
                 <view class="num">{{ base_info.shop_info.shop_open_fee }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">店铺保证金(元)</view>
+                <view class="tip">{{ $t('property.dashboard.shop_deposit') }}</view>
                 <view class="num">{{ base_info.shop_info.shop_baozhrmb }}</view>
               </view>
               <view class="flex_two-item">
                 <view class="tip">
-                  已提现(元)
-                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/withdraw/list')">提现记录</text>
+                  {{ $t('property.dashboard.withdrawn') }}
+                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/withdraw/list')">{{ $t('property.dashboard.withdrawal_records') }}</text>
                 </view>
                 <view class="num">{{ base_info.account_withdraw }}</view>
               </view>
               <view class="flex_two-item border_none">
-                <view class="tip">提现中(元)</view>
+                <view class="tip">{{ $t('property.dashboard.withdrawing') }}</view>
                 <view class="num">{{ base_info.account_withdraw_apply }}</view>
               </view>
             </view>
@@ -81,27 +81,27 @@
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">收支来源</view>
+                    <view class="tip">{{ $t('property.dashboard.income_source') }}</view>
                     <view>{{ item.type_name }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">金额（元）</view>
+                    <view class="tip">{{ $t('property.dashboard.amount') }}</view>
                     <view :class="{ red: item.account_data > 0, green: item.account_data < 0 }">{{ item.account_data > 0 ? '+' : '' }}{{ item.account_data }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">收支类型</view>
+                    <view class="tip">{{ $t('property.dashboard.transaction_type') }}</view>
                     <view>{{ item.account_data >= 0 ? '收入' : '支出' }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">时间</view>
+                    <view class="tip">{{ $t('property.dashboard.time') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.create_time) }}</view>
                   </view>
-                  <view class="margin-top color-tip mark">说明：{{ item.remark }}</view>
+                  <view class="margin-top color-tip mark">{{ $t('property.dashboard.description') }}：{{ item.remark }}</view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无账户数据"></ns-empty>
+          <ns-empty v-else text="{{ $t('property.dashboard.no_account_data') }}"></ns-empty>
         </view>
       </block>
     </mescroll-uni>
@@ -114,18 +114,9 @@ export default {
   data() {
     return {
       selectType: [
-        {
-          type: 0,
-          type_name: '全部'
-        },
-        {
-          type: 1,
-          type_name: '收入'
-        },
-        {
-          type: 2,
-          type_name: '支出'
-        }
+        { type: 0, type_name: this.$t('property.dashboard.all') },
+        { type: 1, type_name: this.$t('property.dashboard.income') },
+        { type: 2, type_name: this.$t('property.dashboard.expense') }
       ],
       isFiexd: {
         fiexd: false,
@@ -146,6 +137,13 @@ export default {
   },
   onShow() {
     if (!this.$util.checkToken('/pages/property/dashboard/index')) return
+
+    this.selectType = [
+      { type: 0, type_name: this.$t('property.dashboard.all') },
+      { type: 1, type_name: this.$t('property.dashboard.income') },
+      { type: 2, type_name: this.$t('property.dashboard.expense') }
+    ]
+
     this.getBaseInfo()
   },
   methods: {
@@ -200,7 +198,7 @@ export default {
       }
       if (data.start_time && data.end_time && data.start_time > data.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('property.dashboard.start_time_error')
         })
         this.dateObj.endDate = ''
         return false

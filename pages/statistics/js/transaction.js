@@ -24,32 +24,8 @@ export default {
       refCurr: '',
       transaction_time: 7,
       picker: {
-        gaikuang: [
-          {
-            date_type: 0,
-            date_text: '今日实时'
-          },
-          {
-            date_type: 1,
-            date_text: '近7天'
-          },
-          {
-            date_type: 2,
-            date_text: '近30天'
-          }
-        ],
-        table: [
-          {
-            date_type: 1,
-            date_text: '近7天',
-            day: 7
-          },
-          {
-            date_type: 2,
-            date_text: '近30天',
-            day: 30
-          }
-        ]
+        gaikuang: [],
+        table: []
       },
       pickerCurr: {
         gaikuang: 0,
@@ -71,6 +47,19 @@ export default {
   },
   onShow() {
     if (!this.$util.checkToken('/pages/statistics/transaction')) return
+
+    this.picker = {
+      gaikuang: [
+        { date_type: 0, date_text: this.$t('statistics.transaction.today_realtime') },
+        { date_type: 1, date_text: this.$t('statistics.transaction.last_7_days') },
+        { date_type: 2, date_text: this.$t('statistics.transaction.last_30_days') }
+      ],
+      table: [
+        { date_type: 1, date_text: this.$t('statistics.transaction.last_7_days'), day: 7 },
+        { date_type: 2, date_text: this.$t('statistics.transaction.last_30_days'), day: 30 }
+      ]
+    }
+
     this.getChartsInfo()
     this.getTotalData()
     this.getTotalData(1)
@@ -144,7 +133,7 @@ export default {
             this.order_total.categories = this.order_pay_count.categories = this.goods_pay_count.categories = timeTemp
             this.order_total.series = [
               {
-                name: '订单金额',
+                name: this.$t('statistics.transaction.order_amount_text'),
                 data: res.data.order_total,
                 color: '#FF6A00',
                 time: res.data.time
@@ -152,7 +141,7 @@ export default {
             ]
             this.order_pay_count.series = [
               {
-                name: '订单数',
+                name: this.$t('statistics.transaction.order_count_text'),
                 data: res.data.order_pay_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -160,7 +149,7 @@ export default {
             ]
             this.goods_pay_count.series = [
               {
-                name: '订单商品数',
+                name: this.$t('statistics.transaction.goods_count_text'),
                 data: res.data.goods_pay_count,
                 color: '#FF6A00',
                 time: res.data.time
@@ -217,31 +206,31 @@ export default {
         legend: false
       }
       this.order_total = Object.assign(this.order_total, Data, {
-        unit: '元'
+        unit: this.$t('statistics.transaction.unit_yuan')
       })
       this.order_pay_count = Object.assign(this.order_pay_count, Data, {
-        unit: '笔'
+        unit: this.$t('statistics.transaction.unit_count')
       })
       this.goods_pay_count = Object.assign(this.goods_pay_count, Data, {
-        unit: '件'
+        unit: this.$t('statistics.transaction.unit_piece')
       })
       var serverData = [
         {
-          title: '订单金额',
+          title: this.$t('statistics.transaction.order_amount'),
           opts: this.order_total,
           chartType: 'area',
           extraType: 'curve',
           id: 'order_total'
         },
         {
-          title: '订单数',
+          title: this.$t('statistics.transaction.order_count'),
           opts: this.order_pay_count,
           chartType: 'area',
           extraType: 'curve',
           id: 'order_pay_count'
         },
         {
-          title: '订单商品数',
+          title: this.$t('statistics.transaction.goods_count'),
           opts: this.goods_pay_count,
           chartType: 'area',
           extraType: 'curve',

@@ -23,26 +23,26 @@ export default {
         gaikuang: [
           {
             date_type: 0,
-            date_text: '今日实时'
+            date_text: this.$t('statistics.today_realtime')
           },
           {
             date_type: 1,
-            date_text: '近7天'
+            date_text: this.$t('statistics.last_7_days')
           },
           {
             date_type: 2,
-            date_text: '近30天'
+            date_text: this.$t('statistics.last_30_days')
           }
         ],
         table: [
           {
             date_type: 1,
-            date_text: '近7天',
+            date_text: this.$t('statistics.last_7_days'),
             day: 7
           },
           {
             date_type: 2,
-            date_text: '近30天',
+            date_text: this.$t('statistics.last_30_days'),
             day: 30
           }
         ]
@@ -220,21 +220,21 @@ export default {
       })
       var serverData = [
         {
-          title: '店铺收藏数',
+          title: this.$t('statistics.shop_collect_count'),
           opts: this.collect_shop,
           chartType: 'area',
           extraType: 'curve',
           id: 'collect_shop'
         },
         {
-          title: '商品收藏数',
+          title: this.$t('statistics.goods_collect_count'),
           opts: this.collect_goods,
           chartType: 'area',
           extraType: 'curve',
           id: 'collect_goods'
         },
         {
-          title: '商品浏览数',
+          title: this.$t('statistics.goods_browse_count'),
           opts: this.visit_count,
           chartType: 'area',
           extraType: 'curve',

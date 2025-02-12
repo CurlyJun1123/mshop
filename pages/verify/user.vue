@@ -3,11 +3,11 @@
     <view class="search-wrap">
       <view class="search-input-inner">
         <text class="search-input-icon iconfont iconsousuo" @click="search()"></text>
-        <input class="search-input-text font-size-tag" maxlength="50" v-model="formData.verifier_name" placeholder="请输入核销人员名称" @confirm="search()" />
+        <input class="search-input-text font-size-tag" maxlength="50" v-model="formData.verifier_name" :placeholder="$t('verify.user.enter_verifier_name')" @confirm="search()" />
       </view>
       <view class="search-btn color-base-bg" @click="$util.redirectTo('/pages/verify/user_edit')">
         <text>+</text>
-        <text>核销人员</text>
+        <text>{{ $t('verify.user.verifier') }}</text>
       </view>
     </view>
     <mescroll-uni class="list-wrap" @getData="getListData" top="160" ref="mescroll" :size="8">
@@ -15,22 +15,22 @@
         <block v-if="recordsList.length > 0">
           <view class="list" v-for="(item, index) in recordsList" :key="index">
             <view class="title">
-              <text class="time">核销人员：{{ item.verifier_name }}</text>
+              <text class="time">{{ $t('verify.user.verifier_label') }}{{ item.verifier_name }}</text>
               <view>
-                <text class="color-base-text" @click="edit_user(item.verifier_id)">编辑</text>
-                <text class="margin-left color-base-text" @click="delete_user(index)">删除</text>
+                <text class="color-base-text" @click="edit_user(item.verifier_id)">{{ $t('verify.user.edit') }}</text>
+                <text class="margin-left color-base-text" @click="delete_user(index)">{{ $t('verify.user.delete') }}</text>
               </view>
             </view>
             <view class="other_info padding-top">
-              会员账号：
+              {{ $t('verify.user.member_account') }}
               <block v-if="item.member_id && item.username">{{ item.username }}</block>
               <block v-else-if="item.member_id && !item.username">{{ item.mobile }}</block>
               <block v-else>--</block>
             </view>
-            <view class="other_info">创建时间：{{ $util.timeStampTurnTime(item.create_time) }}</view>
+            <view class="other_info">{{ $t('verify.user.create_time') }}{{ $util.timeStampTurnTime(item.create_time) }}</view>
           </view>
         </block>
-        <ns-empty v-else-if="isShow && recordsList.length == 0" text="暂无核销数据"></ns-empty>
+        <ns-empty v-else-if="isShow && recordsList.length == 0" :text="$t('verify.user.no_verify_data')"></ns-empty>
       </block>
     </mescroll-uni>
   </view>
@@ -61,8 +61,8 @@ export default {
     //删除
     delete_user(index) {
       uni.showModal({
-        title: '操作提示',
-        content: '确定要删除此核销员吗？',
+        title: this.$t('verify.user.operation_tips'),
+        content: this.$t('verify.user.confirm_delete_verifier'),
         success: (res) => {
           this.$api.sendRequest({
             url: '/shopapi/verify/deleteUser',
