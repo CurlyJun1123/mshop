@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="form-title">选择发货商品</view>
+    <view class="form-title">{{ $t('order.delivery.select_delivery_goods') }}</view>
     <view class="goods-wrap">
       <view class="goods-item" v-for="(item, index) in orderGoodsList" :key="index" @click="change(index)">
         <view class="iconfont" :class="[item.checked ? 'iconyuan_checked color-base-text' : 'iconyuan_checkbox', item.disabled ? 'disabled' : '']"></view>
@@ -8,43 +8,43 @@
         <view class="info-wrap">
           <view class="name-wrap">{{ item.sku_name }}</view>
           <view class="num">x{{ item.num }}</view>
-          <view class="delivery-no" v-if="item.delivery_no">物流单号：{{ item.delivery_no }}</view>
+          <view class="delivery-no" v-if="item.delivery_no">{{ $t('order.delivery.tracking_number') }}：{{ item.delivery_no }}</view>
           <view class="delivery-status-name color-base-text">
             <text>{{ item.delivery_status_name }}</text>
             <view class="refund" v-if="item.refund_status != 0" @click="goRefund(item.order_goods_id)">
               <text>{{ item.refund_status_name }}</text>
-              <text class="color-base-text">(处理维权)</text>
+              <text class="color-base-text">({{ $t('order.delivery.handle_refund') }})</text>
             </view>
           </view>
         </view>
       </view>
     </view>
-    <view class="form-title">填写物流信息</view>
+    <view class="form-title">{{ $t('order.delivery.fill_logistics_info') }}</view>
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">收货地址</text>
+        <text class="label">{{ $t('order.delivery.shipping_address') }}</text>
         <text class="value">{{ order.full_address }} {{ order.address }}</text>
       </view>
       <view class="form-wrap delivery-way">
-        <text class="label">发货方式</text>
-        <button :type="data.delivery_type == 1 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 1">物流发货</button>
-        <button :type="data.delivery_type == 0 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 0">无需物流</button>
+        <text class="label">{{ $t('order.delivery.delivery_method') }}</text>
+        <button :type="data.delivery_type == 1 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 1">{{ $t('order.delivery.logistics_delivery') }}</button>
+        <button :type="data.delivery_type == 0 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 0">{{ $t('order.delivery.no_logistics_needed') }}</button>
       </view>
       <template v-if="data.delivery_type == 1">
         <view class="form-wrap more-wrap">
-          <text class="label">物流公司</text>
+          <text class="label">{{ $t('order.delivery.logistics_company') }}</text>
           <picker class="selected" @change="bindPickerChange" :value="picker.index" :range="picker.arr">
-            <view class="uni-input" :class="{ 'color-tip': !company_name }">{{ company_name ? company_name : '请选择物流公司' }}</view>
+            <view class="uni-input" :class="{ 'color-tip': !company_name }">{{ company_name ? company_name : $t('order.delivery.select_logistics_company') }}</view>
           </picker>
           <text class="iconfont iconright"></text>
         </view>
         <view class="form-wrap">
-          <view class="label">快递单号</view>
-          <input class="uni-input" v-model="data.delivery_no" placeholder="请输入快递单号" />
+          <view class="label">{{ $t('order.delivery.tracking_number') }}</view>
+          <input class="uni-input" v-model="data.delivery_no" :placeholder="$t('order.delivery.enter_tracking_number')" />
         </view>
       </template>
     </view>
-    <view class="footer-wrap"><button type="primary" @click="save()">确定</button></view>
+    <view class="footer-wrap"><button type="primary" @click="save()">{{ $t('common.confirm') }}</button></view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
 </template>
@@ -160,7 +160,7 @@ export default {
       })
       if (count == 0) {
         this.$util.showToast({
-          title: '请选择发货商品'
+          title: this.$t('order.delivery.select_delivery_goods')
         })
         return false
       }
@@ -168,13 +168,13 @@ export default {
       if (this.data.delivery_type == 1) {
         if (this.data.express_company_id == 0) {
           this.$util.showToast({
-            title: '请选择物流公司'
+            title: this.$t('order.delivery.select_logistics_company')
           })
           return false
         }
         if (this.data.delivery_no.length == 0) {
           this.$util.showToast({
-            title: '请输入快递单号'
+            title: this.$t('order.delivery.enter_tracking_number')
           })
           return false
         }
@@ -207,7 +207,7 @@ export default {
         success: (res) => {
           if (res.code == 0) {
             this.$util.showToast({
-              title: '发货成功'
+              title: this.$t('order.delivery.delivery_success')
             })
             setTimeout(() => {
               uni.navigateBack({

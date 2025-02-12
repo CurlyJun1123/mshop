@@ -5,19 +5,19 @@
         <view class="withdrawal_item margin-top">
           <view class="withdrawal_title">
             <text class="line color-base-bg margin-right"></text>
-            提现金额
+            {{ $t('property.withdraw.list.amount') }}
           </view>
           <view class="withdrawal_content">
             <view class="flex_two">
               <view class="flex_two-item border_none">
                 <view class="tip">
-                  已提现(元)
-                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/withdraw/index')">申请提现</text>
+                  {{ $t('property.withdraw.list.withdrawn') }}
+                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/withdraw/index')">{{ $t('property.withdraw.list.apply') }}</text>
                 </view>
                 <view class="num">{{ base_info.account_withdraw }}</view>
               </view>
               <view class="flex_two-item border_none">
-                <view class="tip">提现中(元)</view>
+                <view class="tip">{{ $t('property.withdraw.list.processing') }}</view>
                 <view class="num">{{ base_info.account_withdraw_apply }}</view>
               </view>
             </view>
@@ -28,11 +28,11 @@
             <view class="search_btn color-tip" @click="search"><text class="iconfont iconsousuo"></text></view>
             <view class="date">
               <picker mode="date" @change="bindStartDateChange" class="margin-right">
-                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : '开始时间' }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : $t('common.start_time') }}</view>
               </picker>
               <text class="margin-right">-</text>
               <picker mode="date" @change="bindEndDateChange">
-                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : '结束时间' }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : $t('common.end_time') }}</view>
               </picker>
               <text class="clear iconfont iconqingkong1" @click="clearTime"></text>
             </view>
@@ -45,38 +45,38 @@
               <view class="withdrawal_list" @click="todetail(item.id)">
                 <view class="withdrawal_list_title">
                   <view class="tip color-tip">{{ item.withdraw_no }}</view>
-                  <view class="color-base-text">查看</view>
+                  <view class="color-base-text">{{ $t('common.view') }}</view>
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">提现金额（元）</view>
+                    <view class="tip">{{ $t('property.withdraw.list.amount_yuan') }}</view>
                     <view class="red">￥{{ item.money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">姓名</view>
+                    <view class="tip">{{ $t('common.name') }}</view>
                     <view>{{ item.name }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">电话</view>
+                    <view class="tip">{{ $t('common.phone') }}</view>
                     <view>{{ item.mobile }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">账户类型</view>
-                    <view>{{ item.bank_type == 1 ? '银行' : item.bank_type == 3 ? '微信' : '支付宝' }}</view>
+                    <view class="tip">{{ $t('property.withdraw.list.account_type') }}</view>
+                    <view>{{ $t(`withdraw.type_${item.bank_type}`) }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">状态</view>
-                    <view :class="{ red: item.status != 2, green: item.status == 2 }">{{ item.status == 2 ? '已提现' : '提现中' }}</view>
+                    <view class="tip">{{ $t('common.status') }}</view>
+                    <view :class="{ red: item.status != 2, green: item.status == 2 }">{{ item.status == 2 ? $t('property.withdraw.list.status_completed') : $t('property.withdraw.list.status_processing') }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">时间</view>
+                    <view class="tip">{{ $t('common.time') }}</view>
                     <view>{{ item.apply_time ? $util.timeStampTurnTime(item.apply_time) : '--' }}</view>
                   </view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无提现数据"></ns-empty>
+          <ns-empty v-else :text="$t('property.withdraw.list.no_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>
@@ -145,7 +145,7 @@ export default {
       }
       if (data.start_time && data.end_time && data.start_time > data.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('property.withdraw.list.time_error')
         })
         this.dateObj.endDate = ''
         return false

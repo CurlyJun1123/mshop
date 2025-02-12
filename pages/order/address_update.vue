@@ -4,26 +4,26 @@
       <view class="form-wrap">
         <view class="label">
           <text class="required color-base-text">*</text>
-          <text>收货人</text>
+          <text>{{ $t('order.address.receiver') }}</text>
         </view>
-        <input class="uni-input" placeholder="请填写收货联系人" v-model="order.name" />
+        <input class="uni-input" :placeholder="$t('order.address.please_enter_receiver')" v-model="order.name" />
       </view>
       <view class="form-wrap">
         <view class="label">
           <text class="required color-base-text">*</text>
-          <text>手机号码</text>
+          <text>{{ $t('order.address.mobile_number') }}</text>
         </view>
-        <input class="uni-input" placeholder="请填写手机号码" v-model="order.mobile" />
+        <input class="uni-input" :placeholder="$t('order.address.please_enter_mobile')" v-model="order.mobile" />
       </view>
       <view class="form-wrap more-wrap">
         <view class="label">
           <text class="required color-base-text">*</text>
-          <text>收货地址</text>
+          <text>{{ $t('order.address.shipping_address') }}</text>
         </view>
-        <text class="selected" @click="selectAddress" v-if="order.order_type == 3">{{ order.full_address ? order.full_address : '请选择' }}</text>
+        <text class="selected" @click="selectAddress" v-if="order.order_type == 3">{{ order.full_address ? order.full_address : $t('order.address.please_select') }}</text>
         <view class="selected" v-else>
           <pick-regions :default-regions="defaultRegions" @getRegions="handleGetRegions">
-            <text class="select-address" :class="{ 'color-tip': !order.full_address }">{{ order.full_address ? order.full_address : '请选择省市区县' }}</text>
+            <text class="select-address" :class="{ 'color-tip': !order.full_address }">{{ order.full_address ? order.full_address : $t('order.address.please_select_region') }}</text>
           </pick-regions>
         </view>
         <text class="iconfont iconright" v-if="order.order_type == 3" @click="selectAddress"></text>
@@ -31,12 +31,12 @@
       <view class="form-wrap">
         <view class="label">
           <text class="required color-base-text">*</text>
-          <text>详细地址</text>
+          <text>{{ $t('order.address.detailed_address') }}</text>
         </view>
-        <input class="uni-input" placeholder="请输入详细地址" v-model="order.address" />
+        <input class="uni-input" :placeholder="$t('order.address.please_enter_address')" v-model="order.address" />
       </view>
     </view>
-    <view class="footer-wrap"><button type="primary" @click="save()">确定</button></view>
+    <view class="footer-wrap"><button type="primary" @click="save()">{{ $t('order.address.confirm') }}</button></view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
 </template>
@@ -131,7 +131,7 @@ export default {
             this.addressValue += res.data.district_id != undefined ? '-' + res.data.district_id : ''
           } else {
             this.$util.showToast({
-              title: '数据有误'
+              title: this.$t('order.address.data_error')
             })
           }
         }
@@ -152,15 +152,15 @@ export default {
               var statu = res.authSetting
               if (!statu['scope.userLocation']) {
                 uni.showModal({
-                  title: '是否授权当前位置',
-                  content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                  title: this.$t('order.address.location_auth_title'),
+                  content: this.$t('order.address.location_auth_content'),
                   success(tip) {
                     if (tip.confirm) {
                       uni.openSetting({
                         success: function (data) {
                           if (data.authSetting['scope.userLocation'] === true) {
                             this.$util.showToast({
-                              title: '授权成功'
+                              title: this.$t('order.address.auth_success')
                             })
                             //授权成功之后，再调用chooseLocation选择地方
                             setTimeout(function () {
@@ -178,7 +178,7 @@ export default {
                       })
                     } else {
                       this.$util.showToast({
-                        title: '授权失败'
+                        title: this.$t('order.address.auth_failed')
                       })
                     }
                   }
@@ -247,27 +247,27 @@ export default {
         {
           name: 'name',
           checkType: 'required',
-          errorMsg: '请输入姓名'
+          errorMsg: this.$t('order.address.please_enter_name')
         },
         {
           name: 'mobile',
           checkType: 'required',
-          errorMsg: '请输入手机号'
+          errorMsg: this.$t('order.address.please_enter_mobile')
         },
         {
           name: 'mobile',
           checkType: 'phoneno',
-          errorMsg: '请输入正确的手机号'
+          errorMsg: this.$t('order.address.please_enter_valid_mobile')
         },
         {
           name: 'full_address',
           checkType: 'required',
-          errorMsg: '请选择省市区县'
+          errorMsg: this.$t('order.address.please_select_area')
         },
         {
           name: 'address',
           checkType: 'required',
-          errorMsg: '详细地址不能为空'
+          errorMsg: this.$t('order.address.address_required')
         }
       ]
       var checkRes = validate.check(this.order, rule)

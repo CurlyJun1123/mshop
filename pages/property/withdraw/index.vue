@@ -4,31 +4,31 @@
       <block v-if="bankAccountInfo.bank_type == 1">
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">提现账户类型</text>
-            <view class="tx-bank">银行卡</view>
+            <text class="tx-to">{{ $t('property.withdraw.index.account_type') }}</text>
+            <view class="tx-bank">{{ $t('property.withdraw.index.bank_card') }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">银行开户名</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.bank_account_name') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_account_name }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">银行账号</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.bank_account_number') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_account_number }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">开户银行支行名称</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.bank_branch_name') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_name }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">开户银行所在地</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.bank_location') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_address }}</view>
           </view>
         </view>
@@ -36,19 +36,19 @@
       <block v-else-if="bankAccountInfo.bank_type == 3">
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">提现账户类型</text>
-            <view class="tx-bank">微信</view>
+            <text class="tx-to">{{ $t('property.withdraw.index.account_type') }}</text>
+            <view class="tx-bank">{{ $t('property.withdraw.index.wechat') }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">微信昵称</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.wechat_nickname') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_address }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">微信号</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.wechat_account') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_name }}</view>
           </view>
         </view>
@@ -56,19 +56,19 @@
       <block v-else>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">提现账户类型</text>
-            <view class="tx-bank">支付宝</view>
+            <text class="tx-to">{{ $t('property.withdraw.index.account_type') }}</text>
+            <view class="tx-bank">{{ $t('property.withdraw.index.alipay') }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">支付宝用户名</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.alipay_username') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_account_name }}</view>
           </view>
         </view>
         <view class="bank-account-wrap">
           <view class="tx-wrap">
-            <text class="tx-to">支付宝账户</text>
+            <text class="tx-to">{{ $t('property.withdraw.index.alipay_account') }}</text>
             <view class="tx-bank">{{ bankAccountInfo.settlement_bank_account_number }}</view>
           </view>
         </view>
@@ -76,7 +76,7 @@
     </block>
     <view class="empty-box"></view>
     <view class="withdraw-wrap">
-      <view class="withdraw-wrap-title">提现金额：</view>
+      <view class="withdraw-wrap-title">{{ $t('property.withdraw.index.amount') }}</view>
       <view class="money-wrap">
         <text class="unit">￥</text>
         <input type="digit" class="withdraw-money" v-model="withdrawMoney" />
@@ -86,20 +86,20 @@
       </view>
       <view class="bootom">
         <view>
-          <text class="color-tip">可提现余额：</text>
+          <text class="color-tip">{{ $t('property.withdraw.index.available_balance') }}</text>
           <text class="color-base-text">￥{{ baseInfo.account | moneyFormat }}</text>
           <!-- <text class="all-tx color-base-text" @click="allTx">全部提现</text> -->
         </view>
       </view>
       <view class="desc">
-        <text>最低提现：</text>
+        <text>{{ $t('property.withdraw.index.min_amount') }}</text>
         <text class="money color-base-text">￥{{ baseInfo.shop_withdraw_config.min_withdraw | moneyFormat }}</text>
-        <text>最高提现：</text>
+        <text>{{ $t('property.withdraw.index.max_amount') }}</text>
         <text class="money color-base-text">￥{{ baseInfo.shop_withdraw_config.max_withdraw | moneyFormat }}</text>
       </view>
     </view>
 
-    <button type="primary" :disabled="withdrawMoney == '' || withdrawMoney == 0" @click="withdraw()">提现</button>
+    <button type="primary" :disabled="withdrawMoney == '' || withdrawMoney == 0" @click="withdraw()">{{ $t('property.withdraw.index.submit') }}</button>
 
     <!-- <view class="recoend" @click="toWithdrawal">
 			<view class="recoend-con">提现记录</view>
@@ -139,7 +139,7 @@ export default {
         success: (res) => {
           if (res.code >= 0) {
             this.$util.showToast({
-              title: '申请成功，等待审核'
+              title: this.$t('property.withdraw.index.apply_success')
             })
             this.withdrawMoney = ''
             this.$util.redirectTo('/pages/property/withdraw/list', {}, 'redirectTo')
@@ -186,25 +186,25 @@ export default {
     verify() {
       if (this.withdrawMoney == '' || this.withdrawMoney == 0 || isNaN(parseFloat(this.withdrawMoney))) {
         this.$util.showToast({
-          title: '请输入提现金额'
+          title: this.$t('property.withdraw.index.please_enter_amount')
         })
         return false
       }
       if (parseFloat(this.withdrawMoney) > parseFloat(this.baseInfo.account)) {
         this.$util.showToast({
-          title: '提现金额超出可提现金额'
+          title: this.$t('property.withdraw.index.exceed_available')
         })
         return false
       }
       if (parseFloat(this.withdrawMoney) < parseFloat(this.baseInfo.shop_withdraw_config.min_withdraw)) {
         this.$util.showToast({
-          title: '提现金额小于最低提现金额'
+          title: this.$t('property.withdraw.index.less_than_min')
         })
         return false
       }
       if (parseFloat(this.withdrawMoney) > parseFloat(this.baseInfo.shop_withdraw_config.max_withdraw)) {
         this.$util.showToast({
-          title: '提现金额不能高于最高提现金额'
+          title: this.$t('property.withdraw.index.exceed_max')
         })
         return false
       }

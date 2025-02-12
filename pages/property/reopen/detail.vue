@@ -1,23 +1,23 @@
 <template>
   <view class="withdrawal iphone-safe-area">
     <view class="dl">
-      <view class="dt">店铺名称</view>
+      <view class="dt">{{ $t('property.settlement.detail.shop_name') }}</view>
       <view class="dd">{{ base_info.site_name }}</view>
     </view>
     <view class="dl">
-      <view class="dt">开店套餐</view>
+      <view class="dt">{{ $t('property.settlement.detail.shop_package') }}</view>
       <view class="dd">{{ base_info.shop_group_name }}</view>
     </view>
     <view class="dl">
-      <view class="dt">续签时长</view>
-      <view class="dd">{{ base_info.apply_year }}年</view>
+      <view class="dt">{{ $t('property.settlement.detail.renewal_duration') }}</view>
+      <view class="dd">{{ base_info.apply_year }}{{ $t('property.settlement.detail.year') }}</view>
     </view>
     <view class="dl">
-      <view class="dt">支付凭证</view>
+      <view class="dt">{{ $t('property.settlement.detail.payment_proof') }}</view>
       <view class="dd"><image class="img" :src="$util.img(base_info.paying_money_certificate)" @click="previewMedia()" mode="aspectFit"></image></view>
     </view>
     <view class="dl">
-      <view class="dt">付款凭证说明</view>
+      <view class="dt">{{ $t('property.settlement.detail.payment_proof_desc') }}</view>
       <view class="dd">{{ base_info.paying_money_certificate_explain }}</view>
     </view>
     <loading-cover ref="loadingCover"></loading-cover>

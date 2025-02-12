@@ -4,43 +4,43 @@
       <block slot="list">
         <view class="operate_tip">
           <view @click="tipShow = !tipShow">
-            操作提示
+            {{ $t('property.operation_tips') }}
             <text class="iconfont iconiconangledown"></text>
           </view>
           <view class="operate_content" v-if="tipShow">
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">店铺到期30日内可以申请续签</view>
+              <view class="color-tip font-size-tag">{{ $t('property.renew_tip') }}</view>
             </view>
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">请认准官方收款账户，支付凭据上传之后请联系官方客服人员</view>
+              <view class="color-tip font-size-tag">{{ $t('property.payment_tip') }}</view>
             </view>
           </view>
         </view>
         <view class="withdrawal_item margin-top">
           <view class="withdrawal_title">
             <text class="line color-base-bg margin-right"></text>
-            入驻费用
+            {{ $t('property.entry_fee') }}
           </view>
           <view class="withdrawal_content">
             <view class="flex_two">
               <view class="flex_two-item">
-                <view class="tip">入驻费用(元)</view>
+                <view class="tip">{{ $t('property.entry_fee_amount') }}</view>
                 <view class="num">{{ base_info.shop_open_fee }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">保证金(元)</view>
+                <view class="tip">{{ $t('property.deposit_amount') }}</view>
                 <view class="num">{{ base_info.shop_baozhrmb }}</view>
               </view>
               <view class="flex_one-item .border_none">
                 <view class="tip">
-                  到期时间
+                  {{ $t('property.expiry_date') }}
                   <block v-if="base_info.is_reopen == 2">
-                    <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/apply/shopset')" v-if="is_reopen == 1">申请续签</text>
-                    <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/apply/payinfo')" v-else>申请续签</text>
+                    <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/apply/shopset')" v-if="is_reopen == 1">{{ $t('property.apply_renew') }}</text>
+                    <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/apply/payinfo')" v-else>{{ $t('property.apply_renew') }}</text>
                   </block>
-                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/reopen/list')">续签记录</text>
+                  <text class="margin-left font-size-tag color-base-text" @click="$util.redirectTo('/pages/property/reopen/list')">{{ $t('property.renew_record') }}</text>
                 </view>
                 <view class="num">{{ base_info.expire_time }}</view>
               </view>
@@ -57,22 +57,22 @@
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">缴费金额（元）</view>
+                    <view class="tip">{{ $t('property.payment_amount') }}</view>
                     <view>{{ item.money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">费用类型</view>
+                    <view class="tip">{{ $t('property.fee_type') }}</view>
                     <view>{{ item.type_name }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">创建时间</view>
+                    <view class="tip">{{ $t('property.create_time') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.create_time) }}</view>
                   </view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无入驻费用数据"></ns-empty>
+          <ns-empty v-else :text="$t('property.no_entry_fee_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>

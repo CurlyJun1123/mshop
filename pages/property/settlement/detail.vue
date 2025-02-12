@@ -4,63 +4,63 @@
       <block slot="list">
         <view class="operate_tip">
           <view @click="tipShow = !tipShow">
-            操作提示
+            {{ $t('property.operation_tips') }}
             <text class="iconfont iconiconangledown"></text>
           </view>
           <view class="operate_content" v-if="tipShow">
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
               <view class="color-tip font-size-tag">
-                店铺收入金额 = 店铺结算总金额 - 店铺退款金额 - 佣金金额 + 平台优惠券平台承担金额 - 平台优惠券平台承担金额（退款部分）
+                {{ $t('property.shop_income_formula') }}
               </view>
             </view>
             <view class="color-tip font-size-tag">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">平台抽成金额 = 平台结算总抽成 - 平台退款抽成</view>
+              <view class="color-tip font-size-tag">{{ $t('property.platform_commission_formula') }}</view>
             </view>
           </view>
         </view>
         <view class="withdrawal_item margin-top">
           <view class="withdrawal_title">
             <text class="line color-base-bg margin-right"></text>
-            店铺结算
+            {{ $t('property.shop_settlement') }}
           </view>
           <view class="withdrawal_content">
             <view class="flex_two">
               <view class="flex_two-item">
-                <view class="tip">店铺收入金额</view>
+                <view class="tip">{{ $t('property.shop_income_amount') }}</view>
                 <view class="num">￥{{ base_info.shop_money ? base_info.shop_money : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">店铺结算总金额</view>
+                <view class="tip">{{ $t('property.shop_total_settlement') }}</view>
                 <view class="num">￥{{ base_info.info.shop_money ? base_info.info.shop_money : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">店铺退款金额</view>
+                <view class="tip">{{ $t('property.shop_refund_amount') }}</view>
                 <view class="num">{{ base_info.info.refund_shop_money ? base_info.info.refund_shop_money : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">佣金金额</view>
+                <view class="tip">{{ $t('property.commission_amount') }}</view>
                 <view class="num">￥{{ base_info.info.commission ? base_info.info.commission : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">平台抽成金额</view>
+                <view class="tip">{{ $t('property.platform_commission_amount') }}</view>
                 <view class="num">￥{{ base_info.money ? base_info.money : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">平台结算总抽成</view>
+                <view class="tip">{{ $t('property.platform_total_commission') }}</view>
                 <view class="num">￥{{ base_info.info.platform_money ? base_info.info.platform_money : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">平台退款抽成</view>
+                <view class="tip">{{ $t('property.platform_refund_commission') }}</view>
                 <view class="num">￥{{ base_info.info.refund_platform_money ? base_info.info.refund_platform_money : '0.00' }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">平台优惠券平台承担金额</view>
+                <view class="tip">{{ $t('property.platform_coupon_amount') }}</view>
                 <view class="num">￥{{ base_info.info.platform_coupon_money ? base_info.info.platform_coupon_money : '0.00' }}</view>
               </view>
               <view class="flex_one-item border_none">
-                <view class="tip">平台优惠券平台承担金额（退款部分）</view>
+                <view class="tip">{{ $t('property.platform_refund_coupon_amount') }}</view>
                 <view class="num">￥{{ base_info.info.refund_platform_coupon_money ? base_info.info.refund_platform_coupon_money : '0.00' }}</view>
               </view>
             </view>
@@ -72,46 +72,45 @@
               <view class="withdrawal_list">
                 <view class="withdrawal_list_title">
                   <view class="tip color-tip">{{ item.order_no }}</view>
-                  <!-- <view class="color-tip"><text class="iconfont iconreview"></text></view> -->
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单销售额（元）</view>
+                    <view class="tip">{{ $t('property.order_sales') }}</view>
                     <view>{{ item.order_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单退款（元）</view>
+                    <view class="tip">{{ $t('property.order_refund') }}</view>
                     <view>{{ item.refund_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">佣金（元）</view>
+                    <view class="tip">{{ $t('property.commission') }}</view>
                     <view>{{ item.commission }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台优惠券（元）</view>
+                    <view class="tip">{{ $t('property.platform_coupon') }}</view>
                     <view>{{ item.platform_coupon_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台优惠券(退款部分)（元）</view>
+                    <view class="tip">{{ $t('property.platform_refund_coupon') }}</view>
                     <view>{{ item.refund_platform_coupon_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">店铺收入（元）</view>
+                    <view class="tip">{{ $t('property.shop_income') }}</view>
                     <view>{{ item.shop_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台抽成（元）</view>
+                    <view class="tip">{{ $t('property.platform_commission') }}</view>
                     <view>{{ item.platform_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单完成时间</view>
+                    <view class="tip">{{ $t('property.order_complete_time') }}</view>
                     <view>{{ $util.timeStampTurnTime(item.finish_time) }}</view>
                   </view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无店铺结算数据"></ns-empty>
+          <ns-empty v-else :text="$t('property.no_settlement_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>

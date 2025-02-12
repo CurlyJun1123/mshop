@@ -1,8 +1,8 @@
 <template>
   <view class="order-list-wrap">
     <view class="nav-wrap">
-      <text class="selected color-base-bg color-base-border">订单列表</text>
-      <text class="color-base-border" @click="goRefundOrderList()">退款维权</text>
+      <text class="selected color-base-bg color-base-border">{{ $t('order.list.orderList') }}</text>
+      <text class="color-base-border" @click="goRefundOrderList()">{{ $t('order.list.refundAndRights') }}</text>
     </view>
     <view class="search-wrap" v-if="orderCondition.order_label_list.length > 0">
       <view class="search-input-inner">
@@ -11,7 +11,7 @@
           class="search-input-text font-size-tag"
           maxlength="50"
           v-model="formData.search"
-          :placeholder="'请输入' + orderCondition.order_label_list[orderConditionCurr.order_label_list].name"
+          :placeholder="$t('order.list.pleaseEnter') + orderCondition.order_label_list[orderConditionCurr.order_label_list].name"
           @confirm="searchOrder()"
         />
       </view>
@@ -25,7 +25,7 @@
           :class="{ 'active color-base-text color-base-bg-before': orderConditionCurr.order_status_list == 0, iphone: !$util.isAndroid() }"
           id="tab0"
         >
-          <text>全部</text>
+          <text>{{ $t('order.list.all') }}</text>
         </view>
         <block v-for="(item, index) in orderCondition.order_status_list" :key="index">
           <view
@@ -40,7 +40,7 @@
         <!-- #endif -->
         <!-- #ifndef MP -->
         <view class="tab-item" @click="tabChange(0)" :class="{ 'active color-base-text color-base-bg-before': orderConditionCurr.order_status_list == 0 }" id="tab0">
-          <text>全部</text>
+          <text>{{ $t('order.list.all') }}</text>
         </view>
         <block v-for="(item, index) in orderCondition.order_status_list" :key="index">
           <view
@@ -55,18 +55,18 @@
         <!-- #endif -->
       </scroll-view>
       <view class="choose" @click="showScreen = true">
-        <text>筛选</text>
+        <text>{{ $t('order.list.filter') }}</text>
         <text class="iconfont iconshaixuan color-tip"></text>
       </view>
     </view>
 
     <!-- 筛选弹出框 -->
     <uni-drawer :visible="showScreen" mode="right" @close="showScreen = false" class="screen-wrap">
-      <view class="title color-tip">筛选</view>
+      <view class="title color-tip">{{ $t('order.list.filter') }}</view>
       <scroll-view scroll-y="true">
         <view class="item-wrap" v-if="orderCondition.order_label_list.length > 0">
           <view class="label">
-            <text>搜索方式</text>
+            <text>{{ $t('order.list.searchMethod') }}</text>
             <view class="more">
               <picker @change="bindPickerChange" :value="orderConditionCurr.order_label_list" :range="orderCondition.order_label_list" range-key="name">
                 <view class="uni-input">{{ orderCondition.order_label_list[orderConditionCurr.order_label_list].name }}</view>
@@ -80,24 +80,26 @@
         </view>
         <view class="item-wrap">
           <view class="label">
-            <text>下单时间</text>
+            <text>{{ $t('order.list.orderTime') }}</text>
             <view class="more">
-              <uni-tag :inverted="true" text="近7天" @click="dateSelect(7)" />
-              <uni-tag :inverted="true" text="近30天" @click="dateSelect(30)" />
+              <uni-tag :inverted="true" :text="$t('order.list.last7Days')" @click="dateSelect(7)" />
+              <uni-tag :inverted="true" :text="$t('order.list.last30Days')" @click="dateSelect(30)" />
             </view>
           </view>
           <view class="value-wrap">
             <picker mode="date" @change="bindTimeStartChange" class="picker margin-right" :value="formData.start_time">
-              <view class="uni-input">{{ formData.start_time ? formData.start_time : '开始时间' }}</view>
+              <view class="uni-input">{{ formData.start_time ? formData.start_time : $t('order.list.startTime') }}</view>
             </picker>
             <view class="h-line"></view>
             <picker mode="date" @change="bindTimeEndChange" class="picker margin-left" :value="formData.end_time">
-              <view class="uni-input">{{ formData.end_time ? formData.end_time : '结束时间' }}</view>
+              <view class="uni-input">{{ formData.end_time ? formData.end_time : $t('order.list.endTime') }}</view>
             </picker>
           </view>
         </view>
         <view class="item-wrap">
-          <view class="label"><text>订单类型</text></view>
+          <view class="label">
+            <text>{{ $t('order.list.orderType') }}</text>
+          </view>
           <view class="list">
             <block v-for="(item, index) in orderCondition.order_type_list" :key="index">
               <uni-tag
@@ -110,11 +112,13 @@
           </view>
         </view>
         <view class="item-wrap">
-          <view class="label"><text>订单状态</text></view>
+          <view class="label">
+            <text>{{ $t('order.list.orderStatus') }}</text>
+          </view>
           <view class="list">
             <uni-tag
               :inverted="true"
-              text="全部"
+              :text="$t('order.list.all')"
               :type="orderConditionCurr.order_status_list == 0 ? 'primary' : 'default'"
               @click="uTag(0, 'order_status_list', 'order_status')"
             />
@@ -129,11 +133,13 @@
           </view>
         </view>
         <view class="item-wrap">
-          <view class="label"><text>营销类型</text></view>
+          <view class="label">
+            <text>{{ $t('order.list.marketingType') }}</text>
+          </view>
           <view class="list">
             <uni-tag
               :inverted="true"
-              text="全部"
+              :text="$t('order.list.all')"
               :type="orderConditionCurr.promotion_type == 0 ? 'primary' : 'default'"
               @click="uTag(0, 'promotion_type', 'promotion_type')"
             />
@@ -148,7 +154,9 @@
           </view>
         </view>
         <view class="item-wrap">
-          <view class="label"><text>付款方式</text></view>
+          <view class="label">
+            <text>{{ $t('order.list.paymentMethod') }}</text>
+          </view>
           <view class="list">
             <uni-tag :inverted="true" text="全部" :type="orderConditionCurr.pay_type_list == 0 ? 'primary' : 'default'" @click="uTag(0, 'pay_type_list', 'pay_type')" />
             <block v-for="(item, index) in orderCondition.pay_type_list" :key="index">
@@ -162,7 +170,9 @@
           </view>
         </view>
         <view class="item-wrap">
-          <view class="label"><text>订单来源</text></view>
+          <view class="label">
+            <text>{{ $t('order.list.orderSource') }}</text>
+          </view>
           <view class="list">
             <uni-tag
               :inverted="true"
@@ -181,7 +191,9 @@
           </view>
         </view>
         <view class="item-wrap">
-          <view class="label"><text>结算状态</text></view>
+          <view class="label">
+            <text>{{ $t('order.list.settlementStatus') }}</text>
+          </view>
           <view class="list">
             <block v-for="(item, index) in settlement_list" :key="index">
               <uni-tag
@@ -195,8 +207,8 @@
         </view>
       </scroll-view>
       <view class="footer">
-        <button type="default" @click="resetData">重置</button>
-        <button type="primary" @click="screenData">确定</button>
+        <button type="default" @click="resetData">{{ $t('order.list.reset') }}</button>
+        <button type="primary" @click="screenData">{{ $t('order.list.confirm') }}</button>
       </view>
     </uni-drawer>
 
@@ -223,7 +235,7 @@
                 </view>
                 <view class="more-wrap">
                   <view class="goods-class">{{ goods.goods_class_name }}</view>
-                  <text class="present-label color-base-bg" v-if="goods.is_present == 1">赠品</text>
+                  <text class="present-label color-base-bg" v-if="goods.is_present == 1">{{ $t('order.list.gift') }}</text>
                   <view class="price-wrap">
                     <view class="price">
                       <text class="unit">￥</text>
@@ -238,8 +250,8 @@
               </view>
             </view>
             <view class="total-wrap">
-              <text class="create-time">下单时间：{{ $util.timeStampTurnTime(item.create_time) }}</text>
-              <text class="label">合计：</text>
+              <text class="create-time">{{ $t('order.list.orderTime') }}：{{ $util.timeStampTurnTime(item.create_time) }}</text>
+              <text class="label">{{ $t('order.list.total') }}：</text>
               <view class="price color-base-text">
                 <text class="unit">￥</text>
                 <text>{{ item.order_money }}</text>
@@ -257,9 +269,9 @@
               </view>
               <view v-else>{{ item.nickname }} {{ item.mobile }}</view>
             </view>
-            <view class="remark-wrap color-base-bg-light color-base-text" v-if="item.remark">卖家备注：{{ item.remark }}</view>
+            <view class="remark-wrap color-base-bg-light color-base-text" v-if="item.remark">{{ $t('order.list.sellerNote') }}：{{ item.remark }}</view>
             <view class="order-action-wrap">
-              <button type="primary" size="mini" plain @click.stop="orderRemark(item)">备注</button>
+              <button type="primary" size="mini" plain @click.stop="orderRemark(item)">{{ $t('order.list.remark') }}</button>
               <button
                 type="primary"
                 size="mini"
@@ -269,12 +281,14 @@
               >
                 {{ actionItem.title }}
               </button>
-              <button v-if="item.order_status == 0" type="primary" size="mini" @click.sotp="offlinePay(item.order_id)">线下支付</button>
-              <button v-if="item.order_type == 2 && item.order_status == 2" type="primary" size="mini" @click.stop="storeOrderTakedelivery(item.order_id)">提货</button>
+              <button v-if="item.order_status == 0" type="primary" size="mini" @click.sotp="offlinePay(item.order_id)">{{ $t('order.list.offlinePayment') }}</button>
+              <button v-if="item.order_type == 2 && item.order_status == 2" type="primary" size="mini" @click.stop="storeOrderTakedelivery(item.order_id)">
+                {{ $t('order.list.pickup') }}
+              </button>
             </view>
           </view>
         </block>
-        <ns-empty v-else text="暂无订单数据"></ns-empty>
+        <ns-empty v-else :text="$t('order.list.noOrderData')"></ns-empty>
       </block>
     </mescroll-uni>
     <ns-order-remark ref="orderRemark" :order="order"></ns-order-remark>

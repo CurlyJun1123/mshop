@@ -1,6 +1,5 @@
 import login from './login'
 import my from './my'
-import property from './property'
 
 export default {
   // 底部选项卡
@@ -19,14 +18,16 @@ export default {
     mescrollTextOutOffset: 'Loading...',
     mescrollEmpty: 'No data available',
     goodsRecommendTitle: 'Guess you like',
-    currencySymbol: '¥'
+    currencySymbol: '¥',
+    tips: 'Tips',
+    yuan: 'CNY',
+    confirm: 'Confirm'
   },
 
   lang: 'Lang',
 
   ...login,
   ...my,
-  ...property,
 
   apply: {
     agreement: {
@@ -110,6 +111,120 @@ export default {
     }
   },
 
+  order: {
+    address: {
+      receiver: 'Receiver',
+      please_enter_receiver: 'Please enter receiver name',
+      mobile_number: 'Mobile Number',
+      please_enter_mobile: 'Please enter mobile number',
+      shipping_address: 'Shipping Address',
+      please_select: 'Please select',
+      please_select_region: 'Please select province/city/district',
+      detailed_address: 'Detailed Address',
+      please_enter_address: 'Please enter detailed address',
+      confirm: 'Confirm',
+      data_error: 'Data error',
+      location_auth_title: 'Location Authorization',
+      location_auth_content: 'We need to access your location. Please authorize to use the map function',
+      auth_success: 'Authorization successful',
+      auth_failed: 'Authorization failed',
+      please_enter_name: 'Please enter name',
+      please_enter_valid_mobile: 'Please enter valid mobile number',
+      please_select_area: 'Please select province/city/district',
+      address_required: 'Detailed address is required'
+    },
+
+    adjust: {
+      adjust_price_tips: 'Note: Price adjustment is only supported when the order is unpaid. After adjustment, please contact the buyer to refresh and verify the order amount before payment.',
+      goods_info: 'Product Information',
+      order_info: 'Order Information',
+      subtotal: 'Subtotal',
+      goods_total: 'Product Total',
+      discount: 'Discount',
+      coupon: 'Coupon',
+      platform_coupon: 'Platform Coupon',
+      balance: 'Balance',
+      invoice_fee: 'Invoice Fee',
+      invoice_delivery: 'Invoice Delivery',
+      total: 'Total',
+      adjust_price: 'Adjust Price',
+      adjust_amount: 'Adjustment Amount',
+      shipping_fee: 'Shipping Fee',
+      actual_goods_amount: 'Actual Product Amount',
+      discount_amount: 'Discount Amount',
+      coupon_amount: 'Coupon Amount',
+      platform_coupon_amount: 'Platform Coupon Amount',
+      price_adjustment: 'Price Adjustment',
+      invoice_rate: 'Invoice Rate',
+      actual_payment: 'Actual Payment',
+      invoice_delivery_fee: 'Invoice Delivery Fee',
+      please_enter_adjust_amount: 'Please enter adjustment amount',
+      adjust_amount_format_error: 'Invalid adjustment amount format',
+      please_enter_shipping_fee: 'Please enter shipping fee',
+      shipping_fee_format_error: 'Invalid shipping fee format'
+    },
+
+    delivery: {
+      select_delivery_goods: 'Select Delivery Goods',
+      tracking_number: 'Tracking Number',
+      handle_refund: 'Handle Refund',
+      fill_logistics_info: 'Fill Logistics Information',
+      shipping_address: 'Shipping Address',
+      delivery_method: 'Delivery Method',
+      logistics_delivery: 'Logistics Delivery',
+      no_logistics_needed: 'No Logistics Needed',
+      logistics_company: 'Logistics Company',
+      select_logistics_company: 'Please select logistics company',
+      enter_tracking_number: 'Please enter tracking number',
+      delivery_success: 'Delivery Successful'
+    },
+
+    logistics: {
+      logistics_info: 'Fill in Logistics Information',
+      shipping_address: 'Shipping Address',
+      delivery_method: 'Delivery Method',
+      logistics_delivery: 'Logistics Delivery',
+      no_logistics: 'No Logistics Required',
+      logistics_company: 'Logistics Company',
+      select_logistics_company: 'Please Select Logistics Company',
+      tracking_number: 'Tracking Number',
+      enter_tracking_number: 'Please Enter Tracking Number',
+      please_select_logistics_company: 'Please select logistics company',
+      please_enter_tracking_number: 'Please enter tracking number',
+      order_not_exist: 'Order information does not exist'
+    },
+
+    list: {
+      orderList: 'Order List',
+      refundAndRights: 'Refund & Rights',
+      pleaseEnter: 'Please Enter',
+      all: 'All',
+      filter: 'Filter',
+      searchMethod: 'Search Method',
+      orderTime: 'Order Time',
+      last7Days: 'Last 7 Days',
+      last30Days: 'Last 30 Days',
+      startTime: 'Start Time',
+      endTime: 'End Time',
+      orderType: 'Order Type',
+      orderStatus: 'Order Status',
+      marketingType: 'Marketing Type',
+      paymentMethod: 'Payment Method',
+      orderSource: 'Order Source',
+      settlementStatus: 'Settlement Status',
+      reset: 'Reset',
+      confirm: 'Confirm',
+      orderTime: 'Order Time',
+      total: 'Total',
+      sellerNote: 'Seller Note',
+      remark: 'Remark',
+      offlinePayment: 'Offline Payment',
+      pickup: 'Pick Up',
+      gift: 'Gift',
+      noOrderData: 'No Order Data'
+    }
+  },
+
   property: {
     dashboard: {
       account_overview: 'Account Overview',
@@ -134,10 +249,119 @@ export default {
       time: 'Time',
       description: 'Description',
       no_account_data: 'No Account Data',
-      start_time_error: 'Start time cannot be greater than end time'
+      start_time_error: 'Start time cannot be greater than end time',
+
+      orderlist: {
+        transaction_amount: 'Transaction Amount',
+        pending_settlement: 'Pending Settlement',
+        in_progress: 'In Progress',
+        settled: 'Settled',
+        start_time: 'Start Time',
+        end_time: 'End Time',
+        order_status: 'Order Status:',
+        order_amount: 'Order Amount',
+        shop_refund_amount: 'Shop Refund Amount',
+        platform_commission: 'Platform Commission',
+        shop_amount: 'Shop Amount',
+        completion_time: 'Completion Time',
+        no_order_data: 'No Order Data',
+        pending_settlement_orders: 'Pending Settlement Orders',
+        in_progress_orders: 'In Progress Orders',
+        settled_orders: 'Settled Orders',
+        start_time_greater: 'Start time cannot be greater than end time'
+      }
+    },
+
+    reopen: {
+      detail: {
+        shop_name: 'Shop Name',
+        shop_package: 'Shop Package',
+        renewal_duration: 'Renewal Duration',
+        year: 'Year',
+        payment_proof: 'Payment Proof',
+        payment_proof_desc: 'Payment Proof Description'
+      },
+
+      list: {
+        operation_tips: 'Operation Tips',
+        expire_notice: 'Shop renewal can be applied within 30 days before expiration',
+        payment_notice: 'Please verify the official payment account and contact customer service after uploading payment proof',
+        main_business: 'Main Business',
+        expire_time: 'Expiration Time',
+        permanent: 'Permanent',
+        view: 'View',
+        renew_duration: 'Renewal Duration (Years)',
+        payment_amount: 'Payment Amount (¥)',
+        payment_proof: 'Payment Proof',
+        status: 'Status',
+        pending_review: 'Pending Review',
+        review_failed: 'Review Failed',
+        review_success: 'Review Success',
+        time: 'Time',
+        delete: 'Delete',
+        edit: 'Edit',
+        no_data: 'No renewal data',
+        confirm_delete: 'Are you sure to delete this renewal application record?'
+      }
     },
 
     settlement: {
+      detail_store: {
+        operation_tips: 'Operation Tips',
+        account_period: 'Account Period',
+        to: 'to',
+        online_settlement: 'Online Settlement Amount',
+        shop_total: 'Shop Total Amount',
+        refund_amount: 'Refund Amount',
+        commission_amount: 'Commission Amount',
+        platform_coupon: 'Platform Coupon',
+        platform_coupon_refund: 'Platform Coupon (Refund Part)',
+        offline_settlement: 'Offline Settlement Amount',
+        offline_order: 'Offline Order Amount',
+        platform_deduction: 'Platform Deduction Amount',
+        platform_total_deduction: 'Platform Total Deduction',
+        platform_refund_deduction: 'Platform Refund Deduction',
+        offline_payment: 'Offline Payment Amount',
+        offline_refund: 'Offline Refund Amount',
+
+        // List items
+        payment_method: 'Payment Method',
+        order_sales: 'Order Sales (¥)',
+        order_refund: 'Order Refund (¥)',
+        commission: 'Commission (¥)',
+        platform_coupon_amount: 'Platform Coupon (¥)',
+        platform_coupon_refund_amount: 'Platform Coupon Refund (¥)',
+        store_income: 'Store Income (¥)',
+        platform_commission: 'Platform Commission (¥)',
+        order_complete_time: 'Order Complete Time',
+        no_order_data: 'No Order Data'
+      },
+
+      detail: {
+        operation_tips: 'Operation Tips',
+        shop_income_formula: 'Shop Income = Total Settlement - Refund Amount - Commission + Platform Coupon Amount - Platform Refund Coupon Amount',
+        platform_commission_formula: 'Platform Commission = Total Platform Commission - Platform Refund Commission',
+        shop_settlement: 'Shop Settlement',
+        shop_income_amount: 'Shop Income Amount',
+        shop_total_settlement: 'Total Settlement Amount',
+        shop_refund_amount: 'Shop Refund Amount',
+        commission_amount: 'Commission Amount',
+        platform_commission_amount: 'Platform Commission Amount',
+        platform_total_commission: 'Total Platform Commission',
+        platform_refund_commission: 'Platform Refund Commission',
+        platform_coupon_amount: 'Platform Coupon Amount',
+        platform_refund_coupon_amount: 'Platform Refund Coupon Amount',
+        order_sales: 'Order Sales (¥)',
+        order_refund: 'Order Refund (¥)',
+        commission: 'Commission (¥)',
+        platform_coupon: 'Platform Coupon (¥)',
+        platform_refund_coupon: 'Platform Refund Coupon (¥)',
+        shop_income: 'Shop Income (¥)',
+        platform_commission: 'Platform Commission (¥)',
+        order_complete_time: 'Order Complete Time',
+        no_settlement_data: 'No settlement data available'
+      },
+
       operationTip: 'Operation Tip',
       pageDescription: 'This page displays the settlement operations for all stores of the merchant.',
       detailsDescription: 'Merchants can view settlement details and operations here.',
@@ -170,6 +394,106 @@ export default {
       billingStartTime: 'Billing Start Time',
       billingEndTime: 'Billing End Time',
       noData: 'No store settlement data available.'
+    },
+
+    withdraw: {
+      detail: {
+        store_name: 'Store Name',
+        contact_person: 'Contact Person',
+        contact_phone: 'Contact Phone',
+        account_type: 'Account Type',
+        bank: 'Bank',
+        wechat: 'WeChat',
+        alipay: 'Alipay',
+        account_name: 'Account Name',
+        withdraw_account: 'Withdrawal Account',
+        account_holder: 'Account Holder',
+        wechat_nickname: 'WeChat Nickname',
+        wechat_id: 'WeChat ID',
+        alipay_username: 'Alipay Username',
+        alipay_account: 'Alipay Account',
+        withdraw_amount: 'Withdrawal Amount',
+        yuan: 'Yuan',
+        status: 'Status',
+        pending_review: 'Pending Review',
+        pending_transfer: 'Pending Transfer',
+        transferred: 'Transferred',
+        rejected: 'Rejected',
+        apply_time: 'Application Time',
+        transfer_time: 'Transfer Time',
+        transfer_voucher: 'Transfer Voucher',
+        voucher_description: 'Voucher Description',
+        none: 'None',
+        is_settlement_period: 'Settlement Period',
+        yes: 'Yes',
+        no: 'No',
+        period_name: 'Period Name',
+        remark: 'Remark'
+      },
+
+      index: {
+        account_type: 'Withdrawal Account Type',
+        bank_card: 'Bank Card',
+        bank_account_name: 'Bank Account Name',
+        bank_account_number: 'Bank Account Number',
+        bank_branch_name: 'Bank Branch Name',
+        bank_location: 'Bank Location',
+        wechat: 'WeChat',
+        wechat_nickname: 'WeChat Nickname',
+        wechat_account: 'WeChat Account',
+        alipay: 'Alipay',
+        alipay_username: 'Alipay Username',
+        alipay_account: 'Alipay Account',
+        amount: 'Withdrawal Amount:',
+        available_balance: 'Available Balance:',
+        min_amount: 'Minimum Withdrawal:',
+        max_amount: 'Maximum Withdrawal:',
+        submit: 'Withdraw',
+        please_enter_amount: 'Please enter withdrawal amount',
+        exceed_available: 'Withdrawal amount exceeds available balance',
+        less_than_min: 'Withdrawal amount is less than minimum',
+        exceed_max: 'Withdrawal amount exceeds maximum limit',
+        apply_success: 'Application successful, pending review'
+      },
+
+      list: {
+        amount: 'Withdrawal Amount',
+        withdrawn: 'Withdrawn (¥)',
+        processing: 'Processing (¥)',
+        apply: 'Apply',
+        amount_yuan: 'Amount (¥)',
+        account_type: 'Account Type',
+        type_1: 'Bank',
+        type_2: 'Alipay',
+        type_3: 'WeChat',
+        status_completed: 'Completed',
+        status_processing: 'Processing',
+        no_data: 'No withdrawal data',
+        time_error: 'Start time cannot be greater than end time',
+        start_time: 'Start Time',
+        end_time: 'End Time',
+        view: 'View',
+        name: 'Name',
+        phone: 'Phone',
+        status: 'Status',
+        time: 'Time'
+      }
+    },
+
+    fee: {
+      operation_tips: 'Operation Tips',
+      renew_tip: 'You can apply for renewal within 30 days before shop expiration',
+      payment_tip: 'Please verify the official payment account and contact customer service after uploading payment proof',
+      entry_fee: 'Entry Fee',
+      entry_fee_amount: 'Entry Fee (CNY)',
+      deposit_amount: 'Deposit (CNY)',
+      expiry_date: 'Expiry Date',
+      apply_renew: 'Apply Renewal',
+      renew_record: 'Renewal Records',
+      payment_amount: 'Payment Amount (CNY)',
+      fee_type: 'Fee Type',
+      create_time: 'Create Time',
+      no_entry_fee_data: 'No entry fee data available'
     }
   },
 

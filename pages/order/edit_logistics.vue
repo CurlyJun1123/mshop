@@ -1,31 +1,31 @@
 <template>
   <view>
-    <view class="form-title">填写物流信息</view>
+    <view class="form-title">{{ $t('order.logistics.logistics_info') }}</view>
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">收货地址</text>
+        <text class="label">{{ $t('order.logistics.shipping_address') }}</text>
         <text class="value">{{ order.full_address }} {{ order.address }}</text>
       </view>
       <view class="form-wrap delivery-way">
-        <text class="label">发货方式</text>
-        <button :type="data.delivery_type == 1 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 1">物流发货</button>
-        <button :type="data.delivery_type == 0 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 0">无需物流</button>
+        <text class="label">{{ $t('order.logistics.delivery_method') }}</text>
+        <button :type="data.delivery_type == 1 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 1">{{ $t('order.logistics.logistics_delivery') }}</button>
+        <button :type="data.delivery_type == 0 ? 'primary' : 'default'" size="mini" @click="data.delivery_type = 0">{{ $t('order.logistics.no_logistics') }}</button>
       </view>
       <template v-if="data.delivery_type == 1">
         <view class="form-wrap more-wrap">
-          <text class="label">物流公司</text>
+          <text class="label">{{ $t('order.logistics.logistics_company') }}</text>
           <picker class="selected" @change="bindPickerChange" :value="picker.index" :range="picker.arr">
-            <view class="uni-input" :class="{ 'color-tip': !company_name }">{{ company_name ? company_name : '请选择物流公司' }}</view>
+            <view class="uni-input" :class="{ 'color-tip': !company_name }">{{ company_name ? company_name : $t('order.logistics.select_logistics_company') }}</view>
           </picker>
           <text class="iconfont iconright"></text>
         </view>
         <view class="form-wrap">
-          <view class="label">快递单号</view>
-          <input class="uni-input" v-model="data.delivery_no" placeholder="请输入快递单号" />
+          <view class="label">{{ $t('order.logistics.tracking_number') }}</view>
+          <input class="uni-input" v-model="data.delivery_no" :placeholder="$t('order.logistics.enter_tracking_number')" />
         </view>
       </template>
     </view>
-    <view class="footer-wrap"><button type="primary" @click="save()">确定</button></view>
+    <view class="footer-wrap"><button type="primary" @click="save()">{{ $t('common.confirm') }}</button></view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
 </template>
@@ -65,7 +65,7 @@ export default {
       await this.getOrderInfo()
     } else {
       this.$util.showToast({
-        title: '订单信息不存在'
+        title: this.$t('order.logistics.order_not_exist')
       })
       setTimeout(() => {
         uni.navigateBack({
@@ -126,13 +126,13 @@ export default {
       if (this.data.delivery_type == 1) {
         if (this.data.express_company_id == 0) {
           this.$util.showToast({
-            title: '请选择物流公司'
+            title: this.$t('order.logistics.please_select_logistics_company')
           })
           return false
         }
         if (this.data.delivery_no.length == 0) {
           this.$util.showToast({
-            title: '请输入快递单号'
+            title: this.$t('order.logistics.please_enter_tracking_number')
           })
           return false
         }

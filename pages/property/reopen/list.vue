@@ -4,17 +4,17 @@
       <block slot="list">
         <view class="operate_tip">
           <view @click="tipShow = !tipShow">
-            操作提示
+            {{ $t('property.reopen.list.operation_tips') }}
             <text class="iconfont iconiconangledown"></text>
           </view>
           <view class="operate_content" v-if="tipShow">
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">店铺到期30日内可以申请续签</view>
+              <view class="color-tip font-size-tag">{{ $t('property.reopen.list.expire_notice') }}</view>
             </view>
             <view class="color-tip font-size-tag margin-top">
               <text class="margin-right">●</text>
-              <view class="color-tip font-size-tag">请认准官方收款账户，支付凭据上传之后请联系官方客服人员</view>
+              <view class="color-tip font-size-tag">{{ $t('property.reopen.list.payment_notice') }}</view>
             </view>
           </view>
         </view>
@@ -29,8 +29,8 @@
               <!-- <text @click="toCert">{{shop_info.cert_id == 0?'未认证':'已认证'}}</text> -->
             </view>
             <view class="shop_other_info">
-              <text class="margin-right">主营行业：{{ shop_info.category_name }}</text>
-              <text>到期时间：{{ shop_info.expire_time ? $util.timeStampTurnTime(shop_info.expire_time) : '永久有效' }}</text>
+              <text class="margin-right">{{ $t('property.reopen.list.main_business') }}：{{ shop_info.category_name }}</text>
+              <text>{{ $t('property.reopen.list.expire_time') }}：{{ shop_info.expire_time ? $util.timeStampTurnTime(shop_info.expire_time) : $t('property.reopen.list.permanent') }}</text>
             </view>
           </view>
         </view>
@@ -41,19 +41,19 @@
               <view class="withdrawal_list" @click="toDetail(item.id)">
                 <view class="withdrawal_list_title">
                   <view class="tip color-tip">{{ item.reopen_no }}</view>
-                  <view class="color-base-text">查看</view>
+                  <view class="color-base-text">{{ $t('property.reopen.list.view') }}</view>
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">续签时长（年）</view>
+                    <view class="tip">{{ $t('property.reopen.list.renew_duration') }}</view>
                     <view class="color-base-text">{{ item.apply_year }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">缴费金额（元）</view>
+                    <view class="tip">{{ $t('property.reopen.list.payment_amount') }}</view>
                     <view>{{ item.paying_amount }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">付款凭证</view>
+                    <view class="tip">{{ $t('property.reopen.list.payment_proof') }}</view>
                     <view>
                       <image
                         class="img"
@@ -64,31 +64,31 @@
                     </view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">状态</view>
+                    <view class="tip">{{ $t('property.reopen.list.status') }}</view>
                     <view>
-                      <block v-if="item.apply_state == 1">待审核</block>
-                      <block v-else-if="item.apply_state == -1">审核失败</block>
-                      <block v-else-if="item.apply_state == 2">审核成功</block>
+                      <block v-if="item.apply_state == 1">{{ $t('property.reopen.list.pending_review') }}</block>
+                      <block v-else-if="item.apply_state == -1">{{ $t('property.reopen.list.review_failed') }}</block>
+                      <block v-else-if="item.apply_state == 2">{{ $t('property.reopen.list.review_success') }}</block>
                     </view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">时间</view>
+                    <view class="tip">{{ $t('property.reopen.list.time') }}</view>
                     <view>{{ item.create_time ? $util.timeStampTurnTime(item.create_time) : '--' }}</view>
                   </view>
                 </view>
                 <view class="operate color-line-border">
                   <block v-if="item.apply_state == 1 || item.apply_state == 2">
-                    <button type="primary" size="mini" plain="true" @click.stop="delReopen(item.id, index)">删除</button>
+                    <button type="primary" size="mini" plain="true" @click.stop="delReopen(item.id, index)">{{ $t('property.reopen.list.delete') }}</button>
                   </block>
                   <block v-else-if="item.apply_state == -1">
-                    <button type="primary" size="mini" plain="true" @click.stop="delReopen(item.id, index)">删除</button>
-                    <button type="primary" size="mini" plain="true" @click.stop="editReopen(item.id)">编辑</button>
+                    <button type="primary" size="mini" plain="true" @click.stop="delReopen(item.id, index)">{{ $t('property.reopen.list.delete') }}</button>
+                    <button type="primary" size="mini" plain="true" @click.stop="editReopen(item.id)">{{ $t('property.reopen.list.edit') }}</button>
                   </block>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无续签数据"></ns-empty>
+          <ns-empty v-else :text="$t('property.reopen.list.no_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>
@@ -185,8 +185,8 @@ export default {
     },
     delReopen(id, index) {
       uni.showModal({
-        title: '提示',
-        content: '确定要删除续签申请记录吗？',
+        title: this.$t('common.tips'),
+        content: this.$t('property.reopen.list.confirm_delete'),
         success: (res) => {
           if (res.confirm) {
             this.$api.sendRequest({

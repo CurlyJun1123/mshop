@@ -4,34 +4,34 @@
       <block slot="list">
         <view class="operate_tip">
           <view @click="tipShow = !tipShow">
-            操作提示
+            {{ $t('property.settlement.detail_store.operation_tips') }}
             <text class="iconfont iconiconangledown"></text>
           </view>
           <view class="operate_content" v-if="tipShow">
             <view class="font-size-tag margin-top">
               <text class="margin-right color-tip">●</text>
               <view class="color-tip font-size-tag">
-                账期时间：
+                {{ $t('property.settlement.detail_store.account_period') }}：
                 <text class="color-base-text">
                   <block v-if="base_info.start_time">{{ $util.timeStampTurnTime(base_info.start_time) }}</block>
                   <block v-else>{{ $util.timeStampTurnTime(base_info.create_time) }}</block>
                 </text>
-                至
+                {{ $t('property.settlement.detail_store.to') }}
                 <text class="color-base-text">{{ $util.timeStampTurnTime(base_info.end_time) }}</text>
               </view>
             </view>
             <view class="font-size-tag">
               <text class="margin-right color-tip">●</text>
               <view class="color-tip font-size-tag">
-                线上结算金额 = 店铺总金额(
+                {{ $t('property.settlement.detail_store.online_settlement') }} = {{ $t('property.settlement.detail_store.shop_total') }}(
                 <text class="color-base-text">￥{{ base_info.shop_money ? base_info.shop_money : '0.00' }}</text>
-                ) - 退款金额(
+                ) - {{ $t('property.settlement.detail_store.refund_amount') }}(
                 <text class="color-base-text">￥{{ base_info.refund_shop_money ? base_info.refund_shop_money : '0.00' }}</text>
-                ) - 佣金金额(
+                ) - {{ $t('property.settlement.detail_store.commission_amount') }}(
                 <text class="color-base-text">￥{{ base_info.commission ? base_info.commission : '0.00' }}</text>
-                ) + 平台优惠券(
+                ) + {{ $t('property.settlement.detail_store.platform_coupon') }}(
                 <text class="color-base-text">￥{{ base_info.platform_coupon_money ? base_info.platform_coupon_money : '0.00' }}</text>
-                ) - 平台优惠券(退款部分)(
+                ) - {{ $t('property.settlement.detail_store.platform_coupon_refund') }}(
                 <text class="color-base-text">￥{{ base_info.refund_platform_coupon_money ? base_info.refund_platform_coupon_money : '0.00' }}</text>
                 )
               </view>
@@ -39,13 +39,13 @@
             <view class="font-size-tag">
               <text class="margin-right color-tip">●</text>
               <view class="color-tip font-size-tag">
-                线下结算金额 = 线下支付的订单金额(
+                {{ $t('property.settlement.detail_store.offline_settlement') }} = {{ $t('property.settlement.detail_store.offline_order') }}(
                 <text class="color-base-text">￥{{ base_info.offline_order_money ? base_info.offline_order_money : '0.00' }}</text>
-                ) - 退款金额(
+                ) - {{ $t('property.settlement.detail_store.refund_amount') }}(
                 <text class="color-base-text">￥{{ base_info.offline_refund_money ? base_info.offline_refund_money : '0.00' }}</text>
-                ) + 平台优惠券(
+                ) + {{ $t('property.settlement.detail_store.platform_coupon') }}(
                 <text class="color-base-text">￥{{ base_info.offline_platform_coupon_money ? base_info.offline_platform_coupon_money : '0.00' }}</text>
-                ) - 平台优惠券(退款部分)(
+                ) - {{ $t('property.settlement.detail_store.platform_coupon_refund') }}(
                 <text class="color-base-text">￥{{ base_info.offline_refund_platform_coupon_money ? base_info.offline_refund_platform_coupon_money : '0.00' }}</text>
                 )
               </view>
@@ -53,13 +53,13 @@
             <view class="font-size-tag">
               <text class="margin-right color-tip">●</text>
               <view class="color-tip font-size-tag">
-                平台抽成金额(
+                {{ $t('property.settlement.detail_store.platform_deduction') }}(
                 <text class="color-base-text">
                   ￥{{ base_info.platform_money - base_info.refund_platform_money ? base_info.platform_money - base_info.refund_platform_money : '0.00' }}
                 </text>
-                ) = 平台结算总抽成(
+                ) = {{ $t('property.settlement.detail_store.platform_total_deduction') }}(
                 <text class="color-base-text">￥{{ base_info.platform_money ? base_info.platform_money : '0.00' }}</text>
-                ) - 平台退款抽成(
+                ) - {{ $t('property.settlement.detail_store.platform_refund_deduction') }}(
                 <text class="color-base-text">￥{{ base_info.refund_platform_money ? base_info.refund_platform_money : '0.00' }}</text>
                 )
               </view>
@@ -67,14 +67,14 @@
             <view class="font-size-tag">
               <text class="margin-right color-tip">●</text>
               <view class="color-tip font-size-tag">
-                线下付款金额
+                {{ $t('property.settlement.detail_store.offline_payment') }}
                 <text class="color-base-text">￥{{ base_info.offline_order_money ? base_info.offline_order_money : '0.00' }}</text>
               </view>
             </view>
             <view class="font-size-tag">
               <text class="margin-right color-tip">●</text>
               <view class="color-tip font-size-tag">
-                线下退款金额
+                {{ $t('property.settlement.detail_store.offline_refund') }}
                 <text class="color-base-text">￥{{ base_info.offline_refund_money ? base_info.offline_refund_money : '0.00' }}</text>
               </view>
             </view>
@@ -91,46 +91,46 @@
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">支付方式</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.payment_method') }}</view>
                     <view>{{ item.pay_type_name }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单销售额（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.order_sales') }}</view>
                     <view>{{ item.order_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单退款（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.order_refund') }}</view>
                     <view>{{ item.refund_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">佣金（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.commission') }}</view>
                     <view>{{ item.commission }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台优惠券（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.platform_coupon_amount') }}</view>
                     <view>{{ item.platform_coupon_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台优惠券(退款部分)（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.platform_coupon_refund_amount') }}</view>
                     <view>{{ item.refund_platform_coupon_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">门店收入（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.store_income') }}</view>
                     <view>{{ item.shop_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台抽成（元）</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.platform_commission') }}</view>
                     <view>{{ item.platform_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单完成时间</view>
+                    <view class="tip">{{ $t('property.settlement.detail_store.order_complete_time') }}</view>
                     <view>{{ item.finish_time ? $util.timeStampTurnTime(item.finish_time) : '--' }}</view>
                   </view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无订单数据"></ns-empty>
+          <ns-empty v-else :text="$t('property.settlement.no_order_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>
@@ -280,7 +280,7 @@ export default {
           .mark {
             word-wrap: break-word;
             word-break: break-all;
-            fotn-size: $font-size-tag;
+            font-size: $font-size-tag;
           }
         }
       }

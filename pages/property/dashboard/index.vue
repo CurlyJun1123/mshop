@@ -101,7 +101,7 @@
               </view>
             </view>
           </block>
-          <ns-empty v-else text="{{ $t('property.dashboard.no_account_data') }}"></ns-empty>
+          <ns-empty v-else :text="$t('property.dashboard.no_account_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>

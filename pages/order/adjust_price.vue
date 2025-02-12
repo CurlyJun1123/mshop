@@ -1,8 +1,8 @@
 <template>
   <view class="container" :class="{ 'safe-area': isIphoneX }">
-    <view class="tips">注意：只有订单未付款时才支持改价,改价后请联系买家刷新订单核实订单金额后再支付。</view>
+    <view class="tips">{{ $t('order.adjust.adjust_price_tips') }}</view>
     <view class="order-goods-list">
-      <view class="form-title">商品信息</view>
+      <view class="form-title">{{ $t('order.adjust.goods_info') }}</view>
       <view class="goods-item" v-for="(item, index) in order.order_goods" :key="index">
         <view class="goods-img"><image :src="$util.img(item.sku_image, { size: 'mid' })" mode="widthFix" @error="imgError(index)"></image></view>
         <view class="info-wrap">
@@ -15,7 +15,7 @@
             </view>
           </view>
           <view class="total-wrap">
-            <text class="label">小计：</text>
+            <text class="label">{{ $t('order.adjust.subtotal') }}：</text>
             <view class="price color-base-text">
               <text class="unit">￥</text>
               <text>{{ item.goods_money }}</text>
@@ -23,100 +23,102 @@
           </view>
         </view>
       </view>
-      <view class="form-title">订单信息</view>
+      <view class="form-title">{{ $t('order.adjust.order_info') }}</view>
       <view class="order-info-wrap">
         <view class="cell">
-          <text class="label">商品总额</text>
+          <text class="label">{{ $t('order.adjust.goods_total') }}</text>
           <text class="value">{{ order.goods_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">优惠</text>
+          <text class="label">{{ $t('order.adjust.discount') }}</text>
           <text class="value">{{ order.promotion_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">优惠券</text>
+          <text class="label">{{ $t('order.adjust.coupon') }}</text>
           <text class="value">{{ order.coupon_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">平台优惠券</text>
+          <text class="label">{{ $t('order.adjust.platform_coupon') }}</text>
           <text class="value">{{ order.platform_coupon_total_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">余额</text>
+          <text class="label">{{ $t('order.adjust.balance') }}</text>
           <text class="value">{{ order.balance_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">发票费用</text>
+          <text class="label">{{ $t('order.adjust.invoice_fee') }}</text>
           <text class="value">{{ order.invoice_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">发票邮寄</text>
+          <text class="label">{{ $t('order.adjust.invoice_delivery') }}</text>
           <text class="value">{{ order.invoice_delivery_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="cell">
-          <text class="label">总计</text>
+          <text class="label">{{ $t('order.adjust.total') }}</text>
           <text class="value">{{ order.pay_money }}</text>
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
       </view>
-      <view class="form-title">调整价格</view>
+      <view class="form-title">{{ $t('order.adjust.adjust_price') }}</view>
       <view class="item-wrap">
         <view class="form-wrap">
-          <text class="label">调整金额</text>
+          <text class="label">{{ $t('order.adjust.adjust_amount') }}</text>
           <input class="uni-input" v-model="order.adjust_money" @input="adjustChange()" type="digit" placeholder="0.00" />
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
         <view class="form-wrap">
-          <text class="label">运费</text>
+          <text class="label">{{ $t('order.adjust.shipping_fee') }}</text>
           <input class="uni-input" v-model="order.delivery_money" @input="adjustChange()" type="digit" placeholder="0.00" />
-          <text class="unit">元</text>
+          <text class="unit">{{ $t('common.yuan') }}</text>
         </view>
       </view>
     </view>
     <view class="tips bottom">
       <view>
         <text class="dot color-base-text">·</text>
-        <text class="color-base-text">实际商品金额</text>
+        <text class="color-base-text">{{ $t('order.adjust.actual_goods_amount') }}</text>
         <text class="interval">=</text>
-        <text>商品总额</text>
+        <text>{{ $t('order.adjust.goods_total') }}</text>
         <text class="interval">-</text>
-        <text>优惠金额</text>
+        <text>{{ $t('order.adjust.discount_amount') }}</text>
         <text class="interval">-</text>
-        <text>优惠券金额</text>
+        <text>{{ $t('order.adjust.coupon_amount') }}</text>
         <text class="interval">-</text>
-        <text>平台优惠券金额</text>
+        <text>{{ $t('order.adjust.platform_coupon_amount') }}</text>
         <text class="interval">+</text>
-        <text>调价</text>
+        <text>{{ $t('order.adjust.price_adjustment') }}</text>
       </view>
       <view>
         <text class="dot color-base-text">·</text>
-        <text class="color-base-text">发票费用</text>
+        <text class="color-base-text">{{ $t('order.adjust.invoice_fee') }}</text>
         <text class="interval">=</text>
-        <text>实际商品金额 * 发票比率</text>
+        <text>{{ $t('order.adjust.actual_goods_amount') }} * {{ $t('order.adjust.invoice_rate') }}</text>
       </view>
       <view>
         <text class="dot color-base-text">·</text>
-        <text>实付金额</text>
+        <text>{{ $t('order.adjust.actual_payment') }}</text>
         <text class="interval">=</text>
-        <text class="color-base-text">实际商品金额</text>
+        <text class="color-base-text">{{ $t('order.adjust.actual_goods_amount') }}</text>
         <text class="interval">+</text>
-        <text class="color-base-text">发票费用</text>
+        <text class="color-base-text">{{ $t('order.adjust.invoice_fee') }}</text>
         <text class="interval">+</text>
-        <text>运费</text>
+        <text>{{ $t('order.adjust.shipping_fee') }}</text>
         <text class="interval">+</text>
-        <text>发票邮寄费用</text>
+        <text>{{ $t('order.adjust.invoice_delivery_fee') }}</text>
         <text class="interval">-</text>
-        <text>余额</text>
+        <text>{{ $t('order.adjust.balance') }}</text>
       </view>
     </view>
-    <view class="footer-wrap" :class="{ 'safe-area': isIphoneX }"><button type="primary" @click="save()">确定</button></view>
+    <view class="footer-wrap" :class="{ 'safe-area': isIphoneX }">
+      <button type="primary" @click="save()">{{ $t('common.confirm') }}</button>
+    </view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
 </template>
@@ -200,24 +202,29 @@ export default {
     save() {
       if (this.order.adjust_money.length == 0) {
         this.$util.showToast({
-          title: '请输入调整金额'
+          title: this.$t('order.adjust.please_enter_adjust_amount')
         })
         return
       }
 
       if (isNaN(this.order.adjust_money)) {
-        this.$util.showToast({ title: `[调整金额]格式输入错误` })
+        this.$util.showToast({ 
+          title: this.$t('order.adjust.adjust_amount_format_error')
+        })
         return
       }
+      
       if (this.order.delivery_money.length == 0) {
         this.$util.showToast({
-          title: '请输入运费'
+          title: this.$t('order.adjust.please_enter_shipping_fee')
         })
         return
       }
 
       if (isNaN(this.order.delivery_money)) {
-        this.$util.showToast({ title: `[运费]格式输入错误` })
+        this.$util.showToast({ 
+          title: this.$t('order.adjust.shipping_fee_format_error')
+        })
         return
       }
 
@@ -428,3 +435,4 @@ export default {
   padding-bottom: calc(env(safe-area-inset-bottom) + 40rpx);
 }
 </style>
+

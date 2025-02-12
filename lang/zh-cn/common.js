@@ -1,6 +1,5 @@
 import login from './login'
 import my from './my'
-import property from './property'
 
 export default {
   // 底部选项卡
@@ -19,14 +18,14 @@ export default {
     mescrollTextOutOffset: '释放更新',
     mescrollEmpty: '暂无相关数据',
     goodsRecommendTitle: '猜你喜欢',
-    currencySymbol: '¥'
+    currencySymbol: '¥',
+    tips: '提示'
   },
 
   lang: '语言',
 
   ...login,
   ...my,
-  ...property,
 
   apply: {
     agreement: {
@@ -110,6 +109,120 @@ export default {
     }
   },
 
+  order: {
+    address: {
+      receiver: '收货人',
+      please_enter_receiver: '请填写收货联系人',
+      mobile_number: '手机号码',
+      please_enter_mobile: '请填写手机号码',
+      shipping_address: '收货地址',
+      please_select: '请选择',
+      please_select_region: '请选择省市区县',
+      detailed_address: '详细地址',
+      please_enter_address: '请输入详细地址',
+      confirm: '确定',
+      data_error: '数据有误',
+      location_auth_title: '是否授权当前位置',
+      location_auth_content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+      auth_success: '授权成功',
+      auth_failed: '授权失败',
+      please_enter_name: '请输入姓名',
+      please_enter_valid_mobile: '请输入正确的手机号',
+      please_select_area: '请选择省市区县',
+      address_required: '详细地址不能为空'
+    },
+
+    adjust: {
+      adjust_price_tips: '注意：只有订单未付款时才支持改价,改价后请联系买家刷新订单核实订单金额后再支付。',
+      goods_info: '商品信息',
+      order_info: '订单信息',
+      subtotal: '小计',
+      goods_total: '商品总额',
+      discount: '优惠',
+      coupon: '优惠券',
+      platform_coupon: '平台优惠券',
+      balance: '余额',
+      invoice_fee: '发票费用',
+      invoice_delivery: '发票邮寄',
+      total: '总计',
+      adjust_price: '调整价格',
+      adjust_amount: '调整金额',
+      shipping_fee: '运费',
+      actual_goods_amount: '实际商品金额',
+      discount_amount: '优惠金额',
+      coupon_amount: '优惠券金额',
+      platform_coupon_amount: '平台优惠券金额',
+      price_adjustment: '调价',
+      invoice_rate: '发票比率',
+      actual_payment: '实付金额',
+      invoice_delivery_fee: '发票邮寄费用',
+      please_enter_adjust_amount: '请输入调整金额',
+      adjust_amount_format_error: '[调整金额]格式输入错误',
+      please_enter_shipping_fee: '请输入运费',
+      shipping_fee_format_error: '[运费]格式输入错误'
+    },
+
+    delivery: {
+      select_delivery_goods: '选择发货商品',
+      tracking_number: '物流单号',
+      handle_refund: '处理维权',
+      fill_logistics_info: '填写物流信息',
+      shipping_address: '收货地址',
+      delivery_method: '发货方式',
+      logistics_delivery: '物流发货',
+      no_logistics_needed: '无需物流',
+      logistics_company: '物流公司',
+      select_logistics_company: '请选择物流公司',
+      enter_tracking_number: '请输入快递单号',
+      delivery_success: '发货成功'
+    },
+
+    logistics: {
+      logistics_info: '填写物流信息',
+      shipping_address: '收货地址',
+      delivery_method: '发货方式',
+      logistics_delivery: '物流发货',
+      no_logistics: '无需物流',
+      logistics_company: '物流公司',
+      select_logistics_company: '请选择物流公司',
+      tracking_number: '快递单号',
+      enter_tracking_number: '请输入快递单号',
+      please_select_logistics_company: '请选择物流公司',
+      please_enter_tracking_number: '请输入快递单号',
+      order_not_exist: '订单信息不存在'
+    },
+
+    list: {
+      orderList: '订单列表',
+      refundAndRights: '退款维权',
+      pleaseEnter: '请输入',
+      all: '全部',
+      filter: '筛选',
+      searchMethod: '搜索方式',
+      orderTime: '下单时间',
+      last7Days: '近7天',
+      last30Days: '近30天',
+      startTime: '开始时间',
+      endTime: '结束时间',
+      orderType: '订单类型',
+      orderStatus: '订单状态',
+      marketingType: '营销类型',
+      paymentMethod: '付款方式',
+      orderSource: '订单来源',
+      settlementStatus: '结算状态',
+      reset: '重置',
+      confirm: '确定',
+      orderTime: '下单时间',
+      total: '合计',
+      sellerNote: '卖家备注',
+      remark: '备注',
+      offlinePayment: '线下支付',
+      pickup: '提货',
+      gift: '赠品',
+      noOrderData: '暂无订单数据'
+    }
+  },
+
   property: {
     dashboard: {
       account_overview: '账户概况',
@@ -134,7 +247,249 @@ export default {
       time: '时间',
       description: '说明',
       no_account_data: '暂无账户数据',
-      start_time_error: '开始时间不能大于结束时间'
+      start_time_error: '开始时间不能大于结束时间',
+
+      orderlist: {
+        transaction_amount: '交易金额',
+        pending_settlement: '待结算(元)',
+        in_progress: '进行中(元)',
+        settled: '已结算(元)',
+        start_time: '开始时间',
+        end_time: '结束时间',
+        order_status: '订单状态：',
+        order_amount: '订单金额（元）',
+        shop_refund_amount: '店铺退款金额（元）',
+        platform_commission: '平台抽成（元）',
+        shop_amount: '店铺金额（元）',
+        completion_time: '完成时间',
+        no_order_data: '暂无订单数据',
+        pending_settlement_orders: '待结算订单',
+        in_progress_orders: '进行中订单',
+        settled_orders: '已结算订单',
+        start_time_greater: '开始时间不能大于结束时间'
+      }
+    },
+
+    reopen: {
+      detail: {
+        shop_name: '店铺名称',
+        shop_package: '开店套餐',
+        renewal_duration: '续签时长',
+        year: '年',
+        payment_proof: '支付凭证',
+        payment_proof_desc: '付款凭证说明'
+      },
+
+      list: {
+        operation_tips: '操作提示',
+        expire_notice: '店铺到期30日内可以申请续签',
+        payment_notice: '请认准官方收款账户，支付凭据上传之后请联系官方客服人员',
+        main_business: '主营行业',
+        expire_time: '到期时间',
+        permanent: '永久有效',
+        view: '查看',
+        renew_duration: '续签时长（年）',
+        payment_amount: '缴费金额（元）',
+        payment_proof: '付款凭证',
+        status: '状态',
+        pending_review: '待审核',
+        review_failed: '审核失败',
+        review_success: '审核成功',
+        time: '时间',
+        delete: '删除',
+        edit: '编辑',
+        no_data: '暂无续签数据',
+        confirm_delete: '确定要删除续签申请记录吗？'
+      }
+    },
+
+    settlement: {
+      detail_store: {
+        operation_tips: '操作提示',
+        account_period: '账期时间',
+        to: '至',
+        online_settlement: '线上结算金额',
+        shop_total: '店铺总金额',
+        refund_amount: '退款金额',
+        commission_amount: '佣金金额',
+        platform_coupon: '平台优惠券',
+        platform_coupon_refund: '平台优惠券(退款部分)',
+        offline_settlement: '线下结算金额',
+        offline_order: '线下支付的订单金额',
+        platform_deduction: '平台抽成金额',
+        platform_total_deduction: '平台结算总抽成',
+        platform_refund_deduction: '平台退款抽成',
+        offline_payment: '线下付款金额',
+        offline_refund: '线下退款金额',
+
+        // 列表项
+        payment_method: '支付方式',
+        order_sales: '订单销售额（元）',
+        order_refund: '订单退款（元）',
+        commission: '佣金（元）',
+        platform_coupon_amount: '平台优惠券（元）',
+        platform_coupon_refund_amount: '平台优惠券(退款部分)（元）',
+        store_income: '门店收入（元）',
+        platform_commission: '平台抽成（元）',
+        order_complete_time: '订单完成时间',
+        no_order_data: '暂无订单数据'
+      },
+
+      detail: {
+        operation_tips: '操作提示',
+        shop_income_formula: '店铺收入金额 = 店铺结算总金额 - 店铺退款金额 - 佣金金额 + 平台优惠券平台承担金额 - 平台优惠券平台承担金额（退款部分）',
+        platform_commission_formula: '平台抽成金额 = 平台结算总抽成 - 平台退款抽成',
+        shop_settlement: '店铺结算',
+        shop_income_amount: '店铺收入金额',
+        shop_total_settlement: '店铺结算总金额',
+        shop_refund_amount: '店铺退款金额',
+        commission_amount: '佣金金额',
+        platform_commission_amount: '平台抽成金额',
+        platform_total_commission: '平台结算总抽成',
+        platform_refund_commission: '平台退款抽成',
+        platform_coupon_amount: '平台优惠券平台承担金额',
+        platform_refund_coupon_amount: '平台优惠券平台承担金额（退款部分）',
+        order_sales: '订单销售额（元）',
+        order_refund: '订单退款（元）',
+        commission: '佣金（元）',
+        platform_coupon: '平台优惠券（元）',
+        platform_refund_coupon: '平台优惠券(退款部分)（元）',
+        shop_income: '店铺收入（元）',
+        platform_commission: '平台抽成（元）',
+        order_complete_time: '订单完成时间',
+        no_settlement_data: '暂无店铺结算数据'
+      },
+
+      operationTip: '操作提示',
+      pageDescription: '页面展示商家所有的门店进行的结算操作',
+      detailsDescription: '商家可在此查看结算详情以及结算操作',
+      startTime: '开始时间',
+      endTime: '结束时间',
+      view: '查看',
+      storeSettlement: '门店结算',
+      totalOrderAmount: '订单总额',
+      onlineSettlementAmount: '线上结算金额',
+      offlineSettlementAmount: '线下结算金额',
+      settlementStartTime: '结算开始时间',
+      settlementEndTime: '结算结束时间',
+      isSettled: '是否结算',
+      settled: '已结算',
+      unsettled: '未结算',
+      settle: '结算',
+      noSettlementData: '暂无门店结算数据',
+      settlementRemarks: '结算备注',
+      remarksPlaceholder: '请输入结算备注',
+      cancel: '取消',
+      confirm: '确定',
+      timeValidation: '开始时间不能大于结束时间',
+
+      operationTip: '平台设置店铺结算周期后，系统会按照设置定期进行结算',
+      cycleDescription: '结算周期分为按天、按周、按月。按天是指每天0点开始，按周是指每周一0点开始，按月是指每月一号0点开始',
+      storeAmount: '店铺金额',
+      platformCommission: '平台抽成',
+      commissionAmount: '佣金金额',
+      billingStartTime: '账期开始时间',
+      billingEndTime: '账期结束时间',
+      noData: '暂无店铺结算数据'
+    },
+
+    withdraw: {
+      detail: {
+        store_name: '店铺名称',
+        contact_person: '联系人',
+        contact_phone: '联系电话',
+        account_type: '账户类型',
+        bank: '银行',
+        wechat: '微信',
+        alipay: '支付宝',
+        account_name: '账户名称',
+        withdraw_account: '提现账号',
+        account_holder: '开户名',
+        wechat_nickname: '微信昵称',
+        wechat_id: '微信号',
+        alipay_username: '支付宝用户名',
+        alipay_account: '支付宝账号',
+        withdraw_amount: '提现金额',
+        yuan: '元',
+        status: '状态',
+        pending_review: '待审核',
+        pending_transfer: '待转账',
+        transferred: '已转账',
+        rejected: '已拒绝',
+        apply_time: '申请时间',
+        transfer_time: '转账时间',
+        transfer_voucher: '转账凭证',
+        voucher_description: '转账凭证说明',
+        none: '暂无',
+        is_settlement_period: '是否结算周期',
+        yes: '是',
+        no: '否',
+        period_name: '结算周期名称',
+        remark: '备注'
+      },
+
+      index: {
+        account_type: '提现账户类型',
+        bank_card: '银行卡',
+        bank_account_name: '银行开户名',
+        bank_account_number: '银行账号',
+        bank_branch_name: '开户银行支行名称',
+        bank_location: '开户银行所在地',
+        wechat: '微信',
+        wechat_account: '微信号',
+        alipay: '支付宝',
+        alipay_username: '支付宝用户名',
+        alipay_account: '支付宝账户',
+        amount: '提现金额：',
+        available_balance: '可提现余额：',
+        min_amount: '最低提现：',
+        max_amount: '最高提现：',
+        submit: '提现',
+        please_enter_amount: '请输入提现金额',
+        exceed_available: '提现金额超出可提现金额',
+        less_than_min: '提现金额小于最低提现金额',
+        exceed_max: '提现金额不能高于最高提现金额',
+        apply_success: '申请成功，等待审核'
+      },
+
+      list: {
+        amount: '提现金额',
+        withdrawn: '已提现(元)',
+        processing: '提现中(元)',
+        apply: '申请提现',
+        amount_yuan: '提现金额（元）',
+        account_type: '账户类型',
+        type_1: '银行',
+        type_2: '支付宝',
+        type_3: '微信',
+        status_completed: '已提现',
+        status_processing: '提现中',
+        no_data: '暂无提现数据',
+        time_error: '开始时间不能大于结束时间',
+        start_time: '开始时间',
+        end_time: '结束时间',
+        view: '查看',
+        name: '姓名',
+        phone: '电话',
+        status: '状态',
+        time: '时间'
+      }
+    },
+
+    fee: {
+      operation_tips: '操作提示',
+      renew_tip: '店铺到期30日内可以申请续签',
+      payment_tip: '请认准官方收款账户，支付凭据上传之后请联系官方客服人员',
+      entry_fee: '入驻费用',
+      entry_fee_amount: '入驻费用(元)',
+      deposit_amount: '保证金(元)',
+      expiry_date: '到期时间',
+      apply_renew: '申请续签',
+      renew_record: '续签记录',
+      payment_amount: '缴费金额（元）',
+      fee_type: '费用类型',
+      create_time: '创建时间',
+      no_entry_fee_data: '暂无入驻费用数据'
     }
   },
 
@@ -300,5 +655,8 @@ export default {
       operation_tips: '操作提示',
       confirm_delete_verifier: '确定要删除此核销员吗？'
     }
-  }
+  },
+
+  yuan: '元',
+  confirm: '确定'
 }

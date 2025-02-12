@@ -5,20 +5,20 @@
         <view class="withdrawal_item margin-top">
           <view class="withdrawal_title">
             <text class="line color-base-bg margin-right"></text>
-            交易金额
+            {{ $t('property.dashboard.orderlist.transaction_amount') }}
           </view>
           <view class="withdrawal_content">
             <view class="flex_two">
               <view class="flex_two-item">
-                <view class="tip">待结算(元)</view>
+                <view class="tip">{{ $t('property.dashboard.orderlist.pending_settlement') }}</view>
                 <view class="num">{{ base_info.wait_settlement }}</view>
               </view>
               <view class="flex_two-item">
-                <view class="tip">进行中(元)</view>
+                <view class="tip">{{ $t('property.dashboard.orderlist.in_progress') }}</view>
                 <view class="num">{{ base_info.settlement }}</view>
               </view>
               <view class="flex_two-item border_none">
-                <view class="tip">已结算(元)</view>
+                <view class="tip">{{ $t('property.dashboard.orderlist.settled') }}</view>
                 <view class="num">{{ base_info.finish_settlement }}</view>
               </view>
             </view>
@@ -34,11 +34,11 @@
           <view class="search_input margin-left">
             <view class="date">
               <picker mode="date" @change="bindStartDateChange" class="margin-right">
-                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : '开始时间' }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.startDate ? dateObj.startDate : $t('property.dashboard.orderlist.start_time') }}</view>
               </picker>
               <text class="margin-right">-</text>
               <picker mode="date" @change="bindEndDateChange">
-                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : '结束时间' }}</view>
+                <view class="uni-input font-size-tag">{{ dateObj.endDate ? dateObj.endDate : $t('property.dashboard.orderlist.end_time') }}</view>
               </picker>
             </view>
             <view class="search_btn color-tip" @click="search"><text class="iconfont iconsousuo"></text></view>
@@ -52,36 +52,36 @@
                 <view class="withdrawal_list_title">
                   <view class="tip color-tip">{{ item.order_no }}</view>
                   <view class="color-tip font-size-tag">
-                    订单状态：
+                    {{ $t('property.dashboard.orderlist.order_status') }}
                     <text class="color-base-text">{{ item.order_status_name }}</text>
                   </view>
                 </view>
                 <view class="withdrawal_list_info">
                   <view class="withdrawal_list_base">
-                    <view class="tip">订单金额（元）</view>
+                    <view class="tip">{{ $t('property.dashboard.orderlist.order_amount') }}</view>
                     <view>{{ item.order_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">店铺退款金额（元）</view>
+                    <view class="tip">{{ $t('property.dashboard.orderlist.shop_refund_amount') }}</view>
                     <view>{{ item.refund_shop_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">平台抽成（元）</view>
+                    <view class="tip">{{ $t('property.dashboard.orderlist.platform_commission') }}</view>
                     <view>{{ item.platform_money }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">店铺金额（元）</view>
+                    <view class="tip">{{ $t('property.dashboard.orderlist.shop_amount') }}</view>
                     <view>{{ (item.order_money - item.refund_shop_money - item.platform_money) | moneyFormat }}</view>
                   </view>
                   <view class="withdrawal_list_base">
-                    <view class="tip">完成时间</view>
+                    <view class="tip">{{ $t('property.dashboard.orderlist.completion_time') }}</view>
                     <view>{{ item.finish_time ? $util.timeStampTurnTime(item.finish_time) : '--' }}</view>
                   </view>
                 </view>
               </view>
             </view>
           </block>
-          <ns-empty v-else text="暂无订单数据"></ns-empty>
+          <ns-empty v-else :text="$t('property.dashboard.orderlist.no_order_data')"></ns-empty>
         </view>
       </block>
     </mescroll-uni>
@@ -94,18 +94,9 @@ export default {
   data() {
     return {
       selectType: [
-        {
-          order_status: 2,
-          type_name: '待结算订单'
-        },
-        {
-          order_status: 1,
-          type_name: '进行中订单'
-        },
-        {
-          order_status: 3,
-          type_name: '已结算订单'
-        }
+        { order_status: 2, type_name: this.$t('property.dashboard.orderlist.pending_settlement_orders') },
+        { order_status: 1, type_name: this.$t('property.dashboard.orderlist.in_progress_orders') },
+        { order_status: 3, type_name: this.$t('property.dashboard.orderlist.settled_orders') }
       ],
       isFiexd: {
         fiexd: false,
@@ -126,6 +117,13 @@ export default {
   },
   onShow() {
     if (!this.$util.checkToken('/pages/property/dashboard/orderlist')) return
+
+    this.selectType = [
+      { order_status: 2, type_name: this.$t('property.dashboard.orderlist.pending_settlement_orders') },
+      { order_status: 1, type_name: this.$t('property.dashboard.orderlist.in_progress_orders') },
+      { order_status: 3, type_name: this.$t('property.dashboard.orderlist.settled_orders') }
+    ]
+
     this.getBaseInfo()
   },
   methods: {
@@ -175,7 +173,7 @@ export default {
       }
       if (data.start_time && data.end_time && data.start_time > data.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('property.dashboard.orderlist.start_time_greater')
         })
         this.dateObj.endDate = ''
         return false
