@@ -3,7 +3,7 @@
     <view class="notice-title">{{ detail.title }}</view>
     <view class="notice-content"><rich-text :nodes="content"></rich-text></view>
     <view class="notice-meta">
-      <text class="notice-time">发表时间: {{ $util.timeStampTurnTime(detail.create_time) }}</text>
+      <text class="notice-time">{{ $t('notice.detail.publish_time') }}: {{ $util.timeStampTurnTime(detail.create_time) }}</text>
     </view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
@@ -43,7 +43,7 @@ export default {
     })
   },
   onShareAppMessage(res) {
-    var title = '[公告]' + this.detail.title
+    var title = '[' + this.$t('notice.detail.notice_prefix') + ']' + this.detail.title
     var path = '/pages/notice/detail?notice_id=' + this.notice_id
     return {
       title: title,

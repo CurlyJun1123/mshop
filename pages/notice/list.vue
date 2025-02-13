@@ -8,7 +8,7 @@
               <view class="title">
                 <text>{{ item.title }}</text>
               </view>
-              <text class="top color-base-bg" v-if="item.is_top == 1">置顶</text>
+              <text class="top color-base-bg" v-if="item.is_top == 1">{{ $t('notice.list.top') }}</text>
               <text class="release-time">{{ $util.timeStampTurnTime(item.create_time, 1) }}</text>
             </view>
             <view class="more">
@@ -17,7 +17,7 @@
             </view>
           </view>
         </view>
-        <ns-empty v-else text="暂无公告"></ns-empty>
+        <ns-empty v-else :text="$t('notice.list.empty')"></ns-empty>
       </block>
     </mescroll-uni>
     <loading-cover ref="loadingCover"></loading-cover>
@@ -64,7 +64,7 @@ export default {
     }
   },
   onShareAppMessage(res) {
-    var title = '公告'
+    var title = this.$t('notice.list.share_title')
     var path = '/pages/notice/list'
     return {
       title: title,

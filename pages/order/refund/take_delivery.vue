@@ -3,37 +3,37 @@
 		<!-- 维权收货 -->
 		<view class="item-wrap">
 			<view class="form-wrap">
-				<text class="label">退款方式</text>
-				<text class="value">{{ detail.refund_type == 1 ? '仅退款' : '退货退款' }}</text>
+				<text class="label">{{ $t('order.refund.take.refund_type') }}</text>
+				<text class="value">{{ detail.refund_type == 1 ? $t('order.refund.take.refund_only') : $t('order.refund.take.refund_and_return') }}</text>
 			</view>
 			<view class="form-wrap">
-				<text class="label">退款金额</text>
+				<text class="label">{{ $t('order.refund.take.refund_amount') }}</text>
 				<text class="value color-base-text money">
-					￥{{ detail.refund_apply_money }}{{ detail.refund_delivery_money > 0 ? '(含运费' + detail.refund_delivery_money + ')' : '' }}
+					￥{{ detail.refund_apply_money }}{{ detail.refund_delivery_money > 0 ? $t('order.refund.take.include_shipping', { money: detail.refund_delivery_money }) : '' }}
 				</text>
 			</view>
 			<view class="form-wrap">
-				<text class="label">退货地址</text>
+				<text class="label">{{ $t('order.refund.take.return_address') }}</text>
 				<text class="value">{{ detail.refund_address }}</text>
 			</view>
 			<view class="form-wrap">
-				<text class="label">是否入库</text>
+				<text class="label">{{ $t('order.refund.take.is_stock') }}</text>
 				<view class="value">
 					<view class="radio-wrap" @click="isRefundStock = 0">
 						<text class="radio iconfont" :class="isRefundStock == 0 ? 'iconyuan_checked color-base-text' : 'iconyuan_checkbox'"></text>
-						<text class="txt">否</text>
+						<text class="txt">{{ $t('order.refund.take.no') }}</text>
 					</view>
 					<view class="radio-wrap" @click="isRefundStock = 1">
 						<text class="radio iconfont" :class="isRefundStock == 1 ? 'iconyuan_checked color-base-text' : 'iconyuan_checkbox'"></text>
-						<text class="txt">是</text>
+						<text class="txt">{{ $t('order.refund.take.yes') }}</text>
 					</view>
 				</view>
 			</view>
 		</view>
-		<view class="tips color-base-text">注意: 需你同意退款申请，买家才能退货给你；买家退货后你需再次确认收货后，退款将自动原路退回至买家付款账户。</view>
+		<view class="tips color-base-text">{{ $t('order.refund.take.tips') }}</view>
 		<view class="footer-wrap">
-			<button type="default" @click="cancel()">取消</button>
-			<button type="primary" @click="save()">确认收到退货</button>
+			<button type="default" @click="cancel()">{{ $t('order.refund.take.cancel') }}</button>
+			<button type="primary" @click="save()">{{ $t('order.refund.take.confirm') }}</button>
 		</view>
 		<loading-cover ref="loadingCover"></loading-cover>
 	</view>

@@ -13,7 +13,7 @@ export default {
       this.repeatFlag = true
 
       uni.showLoading({
-        title: '操作中...',
+        title: this.$t('order.refund.action.processing'),
         mask: true
       })
 
@@ -40,7 +40,7 @@ export default {
       this.repeatFlag = true
 
       uni.showLoading({
-        title: '操作中...',
+        title: this.$t('order.refund.action.processing'),
         mask: true
       })
 
@@ -67,7 +67,7 @@ export default {
       this.repeatFlag = true
 
       uni.showLoading({
-        title: '操作中...',
+        title: this.$t('order.refund.action.processing'),
         mask: true
       })
 
@@ -91,15 +91,15 @@ export default {
     // 延长收货
     extendTakeDelivery(order_id) {
       uni.showModal({
-        title: '操作提示',
-        content: '确定要延长该订单的收货时间吗？\n单次延长收货可以延迟三天的自动收货时间',
+        title: this.$t('order.refund.action.operation_tip'),
+        content: this.$t('order.refund.action.extend_delivery_confirm'),
         success: (res) => {
           if (res.confirm) {
             if (this.repeatFlag) return
             this.repeatFlag = true
 
             uni.showLoading({
-              title: '操作中...',
+              title: this.$t('order.refund.action.processing'),
               mask: true
             })
 

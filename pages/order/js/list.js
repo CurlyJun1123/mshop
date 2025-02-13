@@ -16,18 +16,9 @@ export default {
         settlement_list: 0
       },
       settlement_list: [
-        {
-          type: 0,
-          name: '全部'
-        },
-        {
-          type: 1,
-          name: '已结算'
-        },
-        {
-          type: 2,
-          name: '未结算'
-        }
+        { type: 0, name: this.$t('order.refund.list.all') },
+        { type: 1, name: this.$t('order.refund.list.settled') },
+        { type: 2, name: this.$t('order.refund.list.unsettled') }
       ],
       formData: {
         order_label: '',
@@ -49,6 +40,12 @@ export default {
   },
   onLoad(option) {
     this.getCondition()
+
+    this.settlement_list = [
+      { type: 0, name: this.$t('order.refund.list.all') },
+      { type: 1, name: this.$t('order.refund.list.settled') },
+      { type: 2, name: this.$t('order.refund.list.unsettled') }
+    ]
   },
   onShow() {
     let orderStatus = uni.getStorageSync('order_id')
@@ -118,7 +115,7 @@ export default {
     bindTimeStartChange(e) {
       if (e.detail.value >= this.formData.end_time && this.formData.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('order.refund.list.start_time_error')
         })
         return false
       }
@@ -128,7 +125,7 @@ export default {
     bindTimeEndChange(e) {
       if (e.detail.value <= this.formData.start_time) {
         this.$util.showToast({
-          title: '结束时间不能小于开始时间'
+          title: this.$t('order.refund.list.end_time_error')
         })
         return false
       }

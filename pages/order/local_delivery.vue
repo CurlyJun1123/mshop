@@ -2,29 +2,29 @@
   <view>
     <view class="item-wrap">
       <view class="form-wrap">
-        <text class="label">收货地址</text>
+        <text class="label">{{ $t('order.local.delivery_address') }}</text>
         <text class="value">{{ order.full_address }} {{ order.address }}</text>
       </view>
       <view class="form-wrap">
-        <text class="label">发货方式</text>
-        <text class="value">商家自配送</text>
+        <text class="label">{{ $t('order.local.delivery_method') }}</text>
+        <text class="value">{{ $t('order.local.merchant_self_delivery') }}</text>
       </view>
       <view class="form-wrap">
         <view class="label">
           <text class="required color-base-text">*</text>
-          <text>配送员</text>
+          <text>{{ $t('order.local.deliverer') }}</text>
         </view>
-        <input class="uni-input" v-model="data.deliverer" placeholder="请输入配送员" />
+        <input class="uni-input" v-model="data.deliverer" :placeholder="$t('order.local.please_enter_deliverer')" />
       </view>
       <view class="form-wrap">
         <view class="label">
           <text class="required color-base-text">*</text>
-          <text>手机号</text>
+          <text>{{ $t('order.local.phone_number') }}</text>
         </view>
-        <input class="uni-input" v-model="data.deliverer_mobile" type="number" placeholder="请输入手机号" />
+        <input class="uni-input" v-model="data.deliverer_mobile" type="number" :placeholder="$t('order.local.please_enter_phone')" />
       </view>
     </view>
-    <view class="footer-wrap"><button type="primary" @click="save()">确定</button></view>
+    <view class="footer-wrap"><button type="primary" @click="save()">{{ $t('common.confirm') }}</button></view>
     <loading-cover ref="loadingCover"></loading-cover>
   </view>
 </template>
@@ -74,13 +74,13 @@ export default {
     save() {
       if (this.data.deliverer.length == 0) {
         this.$util.showToast({
-          title: '请输入配送员'
+          title: this.$t('order.local.please_enter_deliverer')
         })
         return
       }
       if (this.data.deliverer.deliverer_mobile == 0) {
         this.$util.showToast({
-          title: '请输入手机号'
+          title: this.$t('order.local.please_enter_phone')
         })
         return
       }

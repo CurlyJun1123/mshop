@@ -27,11 +27,11 @@
         <view class="express-company-wrap">
           <view class="company-logo"><image :src="$util.img(packageItem.express_company_image)"></image></view>
           <view class="info">
-            <view>发货时间： {{ $util.timeStampTurnTime(packageItem.delivery_time) }}</view>
-            <view class="company">承运公司： {{ packageItem.express_company_name }}</view>
+            <view>{{ $t('order.logistics.delivery_time') }}： {{ $util.timeStampTurnTime(packageItem.delivery_time) }}</view>
+            <view class="company">{{ $t('order.logistics.carrier_company') }}： {{ packageItem.express_company_name }}</view>
             <view class="delivery-no">
-              <text>运单号：{{ packageItem.delivery_no }}</text>
-              <text class="copy color-base-text" @click="$util.copy(packageItem.delivery_no)">复制</text>
+              <text>{{ $t('order.logistics.tracking_number') }}：{{ packageItem.delivery_no }}</text>
+              <text class="copy color-base-text" @click="$util.copy(packageItem.delivery_no)">{{ $t('common.copy') }}</text>
             </view>
           </view>
         </view>
@@ -59,7 +59,9 @@
             <view class="fail-wrap font-size-base">{{ packageItem.trace.reason }}</view>
           </block>
         </view>
-        <view class="footer-wrap" v-if="orderStatus == 1 || orderStatus == 3"><button type="primary" @click="editLogistics(packageItem)">修改物流</button></view>
+        <view class="footer-wrap" v-if="orderStatus == 1 || orderStatus == 3">
+          <button type="primary" @click="editLogistics(packageItem)">{{ $t('order.logistics.edit_logistics') }}</button>
+        </view>
       </view>
     </view>
     <loading-cover ref="loadingCover"></loading-cover>
@@ -109,7 +111,7 @@ export default {
             if (this.$refs.loadingCover) this.$refs.loadingCover.hide()
           } else {
             this.$util.showToast({
-              title: '未获取到订单信息！'
+              title: this.$t('order.logistics.no_order_info')
             })
             setTimeout(() => {
               uni.navigateBack({

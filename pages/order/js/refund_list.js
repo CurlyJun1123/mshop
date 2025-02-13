@@ -69,7 +69,7 @@ export default {
     bindTimeStartChange(e) {
       if (this.formData.end_time && e.detail.value >= this.formData.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('order.refund.list.start_time_error')
         })
         return false
       }
@@ -79,7 +79,7 @@ export default {
     bindTimeEndChange(e) {
       if (e.detail.value <= this.formData.start_time) {
         this.$util.showToast({
-          title: '结束时间不能小于开始时间'
+          title: this.$t('order.refund.list.end_time_error')
         })
         return false
       }

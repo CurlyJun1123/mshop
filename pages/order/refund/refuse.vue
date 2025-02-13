@@ -3,24 +3,24 @@
 		<!-- 售后申请拒绝 -->
 		<view class="item-wrap">
 			<view class="form-wrap">
-				<text class="label">退款方式</text>
-				<text class="value">{{ detail.refund_type == 1 ? '仅退款' : '退货退款' }}</text>
+				<text class="label">{{ $t('order.refund.refuse.refund_type') }}</text>
+				<text class="value">{{ detail.refund_type == 1 ? $t('order.refund.refuse.refund_only') : $t('order.refund.refuse.refund_and_return') }}</text>
 			</view>
 			<view class="form-wrap">
-				<text class="label">退款金额</text>
+				<text class="label">{{ $t('order.refund.refuse.refund_amount') }}</text>
 				<text class="value color-base-text money">
-					￥{{ detail.refund_apply_money }}{{ detail.refund_delivery_money > 0 ? '(含运费' + detail.refund_delivery_money + ')' : '' }}
+					￥{{ detail.refund_apply_money }}{{ detail.refund_delivery_money > 0 ? $t('order.refund.refuse.include_shipping', { money: detail.refund_delivery_money }) : '' }}
 				</text>
 			</view>
 			<view class="form-wrap reason">
-				<text class="label">拒绝理由</text>
-				<textarea class="uni-input" v-model="refundRefuseReason" placeholder="请输入您的拒绝理由" maxlength="200" />
+				<text class="label">{{ $t('order.refund.refuse.refuse_reason') }}</text>
+				<textarea class="uni-input" v-model="refundRefuseReason" :placeholder="$t('order.refund.refuse.reason_placeholder')" maxlength="200" />
 			</view>
 		</view>
-		<view class="tips color-base-text">注意: 建议你与买家协商后，再确定是否拒绝退款。如你拒绝退款后，买家可修改退款申请协议重新发起退款。</view>
+		<view class="tips color-base-text">{{ $t('order.refund.refuse.tips') }}</view>
 		<view class="footer-wrap">
-			<button type="default" @click="cancel()">取消</button>
-			<button type="primary" @click="save()">确认拒绝</button>
+			<button type="default" @click="cancel()">{{ $t('order.refund.refuse.cancel') }}</button>
+			<button type="primary" @click="save()">{{ $t('order.refund.refuse.confirm') }}</button>
 		</view>
 		<loading-cover ref="loadingCover"></loading-cover>
 	</view>
@@ -39,7 +39,7 @@ export default {
 		save() {
 			if (this.refundRefuseReason.length == 0) {
 				this.$util.showToast({
-					title: '请输入拒绝理由'
+					title: this.$t('order.refund.refuse.reason_required')
 				});
 				return;
 			}

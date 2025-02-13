@@ -21,7 +21,7 @@
           </view>
           <view class="more-wrap">
             <view class="goods-class">{{ goods.goods_class_name }}</view>
-            <text class="present-label color-base-bg" v-if="goods.is_present == 1">赠品</text>
+            <text class="present-label color-base-bg" v-if="goods.is_present == 1">{{ $t('order.detail.virtual.gift') }}</text>
             <view class="price-wrap">
               <view class="price">
                 <text class="unit">￥</text>
@@ -40,54 +40,54 @@
 
     <!-- 订单信息 -->
     <view class="block-wrap">
-      <view class="title">订单信息</view>
+      <view class="title">{{ $t('order.detail.virtual.order_info') }}</view>
       <view class="order-cell">
-        <text class="tit">订单编号：</text>
+        <text class="tit">{{ $t('order.detail.virtual.order_number') }}：</text>
         <view class="box">{{ orderDetail.order_no }}</view>
-        <view class="copy color-base-text" @click="$util.copy(orderDetail.order_no)">复制</view>
+        <view class="copy color-base-text" @click="$util.copy(orderDetail.order_no)">{{ $t('order.detail.virtual.copy') }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">订单类型：</text>
+        <text class="tit">{{ $t('order.detail.virtual.order_type') }}：</text>
         <view class="box">{{ orderDetail.order_type_name }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">订单来源：</text>
+        <text class="tit">{{ $t('order.detail.virtual.order_source') }}：</text>
         <view class="box">{{ orderDetail.order_from_name }}</view>
       </view>
       <view class="order-cell" v-if="orderDetail.pay_status > 0">
-        <text class="tit">付款方式：</text>
+        <text class="tit">{{ $t('order.detail.virtual.payment_method') }}：</text>
         <view class="box">{{ orderDetail.pay_type_name }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">买家：</text>
+        <text class="tit">{{ $t('order.detail.virtual.buyer') }}：</text>
         <view class="box">{{ orderDetail.nickname }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">手机号：</text>
+        <text class="tit">{{ $t('order.detail.virtual.mobile') }}：</text>
         <view class="box">{{ orderDetail.mobile }}</view>
       </view>
       <view class="order-cell" v-if="orderDetail.delivery_type_name">
-        <text class="tit">配送方式：</text>
+        <text class="tit">{{ $t('order.detail.virtual.delivery_method') }}：</text>
         <view class="box">{{ orderDetail.delivery_type_name }}</view>
       </view>
       <view class="order-cell" v-if="orderDetail.buyer_message != ''">
-        <text class="tit">买家留言：</text>
+        <text class="tit">{{ $t('order.detail.virtual.buyer_message') }}：</text>
         <view class="box">{{ orderDetail.buyer_message }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">创建时间：</text>
+        <text class="tit">{{ $t('order.detail.virtual.create_time') }}：</text>
         <view class="box">{{ $util.timeStampTurnTime(orderDetail.create_time) }}</view>
       </view>
       <view class="order-cell" v-if="orderDetail.close_time > 0">
-        <text class="tit">关闭时间：</text>
+        <text class="tit">{{ $t('order.detail.virtual.close_time') }}：</text>
         <view class="box">{{ $util.timeStampTurnTime(orderDetail.close_time) }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">支付时间：</text>
+        <text class="tit">{{ $t('order.detail.virtual.payment_time') }}：</text>
         <view class="box">{{ $util.timeStampTurnTime(orderDetail.pay_time) }}</view>
       </view>
       <view class="order-cell" v-if="orderDetail.remark">
-        <text class="tit">卖家备注：</text>
+        <text class="tit">{{ $t('order.detail.virtual.seller_note') }}：</text>
         <view class="box">{{ orderDetail.remark }}</view>
       </view>
     </view>
@@ -95,86 +95,86 @@
     <!-- 发票信息 -->
     <template v-if="orderDetail.is_invoice == 1">
       <view class="block-wrap">
-        <view class="title">发票信息</view>
+        <view class="title">{{ $t('order.detail.virtual.invoice_info') }}</view>
         <view class="order-cell">
-          <text class="tit">发票类型：</text>
+          <text class="tit">{{ $t('order.detail.virtual.invoice_type') }}：</text>
           <view class="box">{{ orderDetail['invoice_type'] == 1 ? '纸质' : '电子' }}{{ orderDetail['is_tax_invoice'] == 1 ? '专票' : '普票' }}</view>
         </view>
         <view class="order-cell">
-          <text class="tit">发票抬头：</text>
+          <text class="tit">{{ $t('order.detail.virtual.invoice_title') }}：</text>
           <view class="box">{{ orderDetail.invoice_title }}</view>
         </view>
         <view class="order-cell">
-          <text class="tit">抬头类型：</text>
+          <text class="tit">{{ $t('order.detail.virtual.title_type') }}：</text>
           <view class="box">{{ orderDetail.invoice_title_type == 1 ? '个人' : '企业' }}</view>
         </view>
         <view class="order-cell" v-if="orderDetail.invoice_title_type == 2">
-          <text class="tit">纳税人识别号：</text>
+          <text class="tit">{{ $t('order.detail.virtual.taxpayer_number') }}：</text>
           <view class="box">{{ orderDetail.taxpayer_number }}</view>
         </view>
         <view class="order-cell">
-          <text class="tit">发票内容：</text>
+          <text class="tit">{{ $t('order.detail.virtual.invoice_content') }}：</text>
           <view class="box">{{ orderDetail.invoice_content }}</view>
         </view>
         <view class="order-cell" v-if="orderDetail.invoice_title_type == 1">
-          <text class="tit">邮寄地址：</text>
+          <text class="tit">{{ $t('order.detail.virtual.mailing_address') }}：</text>
           <view class="box">{{ orderDetail.invoice_full_address }}</view>
         </view>
         <view class="order-cell" v-else>
-          <text class="tit">接收邮件：</text>
+          <text class="tit">{{ $t('order.detail.virtual.receiving_email') }}：</text>
           <view class="box">{{ orderDetail.invoice_email }}</view>
         </view>
       </view>
 
       <view class="block-wrap">
-        <view class="title">发票费用</view>
+        <view class="title">{{ $t('order.detail.virtual.invoice_cost') }}</view>
         <view class="order-cell">
-          <text class="tit">发票费用：</text>
+          <text class="tit">{{ $t('order.detail.virtual.invoice_cost') }}：</text>
           <view class="box align-right money">￥{{ orderDetail.invoice_money }}</view>
         </view>
         <view class="order-cell">
-          <text class="tit">发票税率：</text>
+          <text class="tit">{{ $t('order.detail.virtual.invoice_tax_rate') }}：</text>
           <view class="box align-right money">{{ orderDetail.invoice_rate }}%</view>
         </view>
         <view class="order-cell">
-          <text class="tit">邮寄费用：</text>
+          <text class="tit">{{ $t('order.detail.virtual.mailing_cost') }}：</text>
           <view class="box align-right money">￥{{ orderDetail.invoice_delivery_money }}</view>
         </view>
       </view>
     </template>
 
     <view class="block-wrap tit-auto" v-if="orderDetail.pay_status > 0">
-      <view class="title">结算信息</view>
+      <view class="title">{{ $t('order.detail.virtual.settlement_info') }}</view>
       <view class="order-cell">
-        <text class="tit">店铺结算金额：</text>
+        <text class="tit">{{ $t('order.detail.virtual.shop_settlement') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.shop_money }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">平台结算金额：</text>
+        <text class="tit">{{ $t('order.detail.virtual.platform_settlement') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.platform_money }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">结算状态：</text>
+        <text class="tit">{{ $t('order.detail.virtual.settlement_status') }}：</text>
         <view class="box align-right money">{{ orderDetail.is_settlement == 1 ? '已结算' : '待结算' }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">店铺退款金额：</text>
+        <text class="tit">{{ $t('order.detail.virtual.shop_refund') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.refund_shop_money }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">平台退款金额：</text>
+        <text class="tit">{{ $t('order.detail.virtual.platform_refund') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.refund_platform_money }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">平台优惠券平台承担金额：</text>
+        <text class="tit">{{ $t('order.detail.virtual.platform_coupon_amount') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.platform_coupon_money }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">平台优惠券平台承担金额（退款部分）：</text>
+        <text class="tit">{{ $t('order.detail.virtual.platform_coupon_refund') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.refund_platform_coupon_money }}</view>
       </view>
       <view class="order-cell">
-        <text class="tit">总支出佣金：</text>
+        <text class="tit">{{ $t('order.detail.virtual.total_commission') }}：</text>
         <view class="box align-right money">￥{{ orderDetail.commission }}</view>
       </view>
     </view>
@@ -182,14 +182,14 @@
     <!-- 订单金额 -->
     <view class="block-wrap">
       <view class="order-cell">
-        <text class="tit">商品金额</text>
+        <text class="tit">{{ $t('order.detail.virtual.goods_amount') }}</text>
         <view class="box align-right money bold">
           <text class="font-size-goods-tag">￥</text>
           <text class="color-title">{{ orderDetail.goods_money }}</text>
         </view>
       </view>
       <view class="order-cell" v-if="orderDetail.coupon_money > 0">
-        <text class="tit">店铺优惠券</text>
+        <text class="tit">{{ $t('order.detail.virtual.shop_coupon') }}</text>
         <view class="box align-right money bold">
           <text class="operator">-</text>
           <text class="font-size-goods-tag">￥</text>
@@ -197,7 +197,7 @@
         </view>
       </view>
       <view class="order-cell" v-if="orderDetail.promotion_money > 0">
-        <text class="tit">店铺优惠</text>
+        <text class="tit">{{ $t('order.detail.virtual.shop_discount') }}</text>
         <view class="box align-right money bold">
           <text class="operator">-</text>
           <text class="font-size-goods-tag">￥</text>
@@ -205,7 +205,7 @@
         </view>
       </view>
       <view class="order-cell" v-if="orderDetail.adjust_money != 0">
-        <text class="tit">订单调价</text>
+        <text class="tit">{{ $t('order.detail.virtual.order_adjustment') }}</text>
         <view class="box align-right money bold">
           <text class="operator" v-if="orderDetail.adjust_money < 0">-</text>
           <text class="operator" v-else>+</text>
@@ -214,14 +214,14 @@
         </view>
       </view>
       <view class="order-cell" v-if="orderDetail.delivery_money > 0">
-        <text class="tit">运费</text>
+        <text class="tit">{{ $t('order.detail.virtual.shipping_fee') }}</text>
         <view class="box align-right money bold">
           <text class="font-size-goods-tag">￥</text>
           <text>{{ orderDetail.delivery_money }}</text>
         </view>
       </view>
       <view class="order-cell" v-if="orderDetail.platform_coupon_total_money > 0">
-        <text class="tit">平台优惠券</text>
+        <text class="tit">{{ $t('order.detail.virtual.platform_coupon') }}</text>
         <view class="box align-right money bold">
           <text class="operator">-</text>
           <text class="font-size-goods-tag">￥</text>
@@ -229,7 +229,7 @@
         </view>
       </view>
       <view class="order-cell" v-if="orderDetail.balance_money > 0">
-        <text class="tit">使用余额</text>
+        <text class="tit">{{ $t('order.detail.virtual.balance_payment') }}</text>
         <view class="box align-right money bold">
           <text class="operator">-</text>
           <text class="font-size-goods-tag">￥</text>
@@ -238,52 +238,46 @@
       </view>
       <view class="order-cell">
         <view class="box align-right money bold">
-          <text>共{{ orderDetail.goods_num }}件商品，总计：</text>
+          <text>{{ $t('order.detail.virtual.total_items') }}{{ orderDetail.goods_num }} {{ $t('order.detail.virtual.items') }}</text>
           <text class="font-size-goods-tag color-base-text">￥</text>
           <text class="font-size-base color-base-text">{{ orderDetail.order_money }}</text>
         </view>
       </view>
     </view>
     <view class="block-wrap log" v-if="log.length">
-      <view class="title color-base-text">订单日志</view>
+      <view class="title color-base-text">{{ $t('order.detail.virtual.order_log') }}</view>
       <view class="item" v-for="(item, index) in log" :key="index">
         <view class="action">
           <view class="title">
-            <text class="font-size-base">操作：{{ item.action }}</text>
+            <text class="font-size-base">{{ $t('order.detail.virtual.operation') }}：{{ item.action }}</text>
             <text class="color-sub time">{{ $util.timeStampTurnTime(item.action_time, 1) }}</text>
           </view>
           <view>
-            <text class="color-tip">操作人：{{ item.nick_name }}</text>
+            <text class="color-tip">{{ $t('order.detail.virtual.operator') }}：{{ item.nick_name }}</text>
             <br />
-            <text class="color-tip">操作端口：{{ item.module }}</text>
+            <text class="color-tip">{{ $t('order.detail.virtual.operation_port') }}：{{ item.module }}</text>
             <br />
-            <text class="color-tip">订单状态：{{ item.order_status_name }}</text>
+            <text class="color-tip">{{ $t('order.detail.virtual.order_status') }}：{{ item.order_status_name }}</text>
           </view>
         </view>
       </view>
     </view>
     <view class="block-wrap tips">
-      <view class="title color-base-text">提醒</view>
-      <text>交易成功后，平台将把货款结算至你的店铺账户余额，您可以申请提现</text>
-      <text>请及时关注你发出的包裹状态，确保能配送至买家手中</text>
-      <text>如果买家表示未收到货或者货物有问题，请及时联系买家积极处理，友好协商</text>
+      <view class="title color-base-text">{{ $t('order.detail.virtual.reminder') }}</view>
+      <text>{{ $t('order.detail.virtual.reminder_text_1') }}</text>
+      <text>{{ $t('order.detail.virtual.reminder_text_2') }}</text>
+      <text>{{ $t('order.detail.virtual.reminder_text_3') }}</text>
     </view>
 
     <view class="placeholder-height"></view>
 
     <view class="footer-wrap">
       <view class="container">
-        <button type="primary" size="mini" plain @click="orderRemark()">备注</button>
-        <button
-          type="primary"
-          size="mini"
-          v-for="(actionItem, actionIndex) in orderDetail.order_status_action.action"
-          :key="actionIndex"
-          @click="orderAction(actionItem.action, orderId)"
-        >
+        <button type="primary" size="mini" plain @click="orderRemark()">{{ $t('order.detail.virtual.note') }}</button>
+        <button type="primary" size="mini" v-for="(actionItem, actionIndex) in orderDetail.order_status_action.action" :key="actionIndex" @click="orderAction(actionItem.action, orderId)">
           {{ actionItem.title }}
         </button>
-        <button v-if="orderDetail.order_status == 0" type="primary" size="mini" @click="offlinePay(orderId)">线下支付</button>
+        <button v-if="orderDetail.order_status == 0" type="primary" size="mini" @click="offlinePay(orderId)">{{ $t('order.detail.virtual.offline_payment') }}</button>
       </view>
     </view>
     <ns-order-remark ref="orderRemark" :order="tempOrder"></ns-order-remark>

@@ -32,7 +32,7 @@ export default {
             this.detail = data.detail
             if (this.detail.refund_address == '') {
               var shopInfo = uni.getStorageSync('shop_info') ? JSON.parse(uni.getStorageSync('shop_info')) : {}
-              this.detail.refund_address = '商家未设置联系地址'
+              this.detail.refund_address = this.$t('order.refund.action.no_contact_address')
               if (shopInfo.full_address || shopInfo.address) {
                 this.detail.refund_address = shopInfo.full_address + ' ' + shopInfo.address
               }
