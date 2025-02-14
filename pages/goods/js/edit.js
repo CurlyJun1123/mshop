@@ -94,13 +94,13 @@ export default {
 		if (this.goodsData.goods_id) {
 			this.isAWait = true;
 			uni.setNavigationBarTitle({
-				title: '编辑商品'
+				title: this.goodsData.goods_id ? this.$t('goods.edit.edit_goods') : this.$t('goods.edit.add_goods')
 			});
 			await this.editGetGoodsInfo();
 		} else {
 			this.isAWait = false;
 			uni.setNavigationBarTitle({
-				title: '添加商品'
+				title: this.goodsData.goods_id ? this.$t('goods.edit.edit_goods') : this.$t('goods.edit.add_goods')
 			});
 		}
 	},
@@ -210,7 +210,7 @@ export default {
 				this.$forceUpdate();
 			} else {
 				this.$util.showToast({
-					title: '商品不存在',
+					title: this.$t('goods.edit.goods_not_exist')
 				});
 				setTimeout(() => {
 					this.$util.redirectTo('/pages/goods/list', {}, 'redirectTo');
@@ -459,7 +459,7 @@ export default {
 			for (let key in this.shopCategoryData) {
 				if (this.shopCategoryData[key].level == data.level && this.shopCategoryData[key].category_id == data.category_id) {
 					this.$util.showToast({
-						title: "请勿重复选择"
+						title: this.$t('goods.edit.please_do_not_select_repeatedly')
 					});
 					return false;
 				}
@@ -528,44 +528,44 @@ export default {
 
 			if (this.goodsData.goods_name.length == 0) {
 				this.$util.showToast({
-					title: '请输入商品名称'
+					title: this.$t('goods.edit.please_enter_goods_name')
 				});
 				return false;
 			}
 			if (this.goodsData.goods_name.length > 100) {
 				this.$util.showToast({
-					title: '商品名称不能超过100个字符'
+					title: this.$t('goods.edit.goods_name_cannot_exceed_100_characters')
 				});
 				return false;
 			}
 
 			if (this.goodsData.introduction.length > 100) {
 				this.$util.showToast({
-					title: '促销语不能超过100个字符'
+					title: this.$t('goods.edit.promotion_cannot_exceed_100_characters')
 				});
 				return false;
 			}
 
 			if (this.categoryId[0] == 0) {
 				this.$util.showToast({
-					title: `请选择一级商品分类`
+					title: this.$t('goods.edit.please_select_first_category')
 				});
 				return false;
 			} else if (this.lastLevel == 2 && this.categoryId[1] == 0) {
 				this.$util.showToast({
-					title: `请选择二级商品分类`
+					title: this.$t('goods.edit.please_select_second_category')
 				});
 				return false;
 			} else if (this.lastLevel == 3 && this.categoryId[2] == 0) {
 				this.$util.showToast({
-					title: `请选择三级商品分类`
+					title: this.$t('goods.edit.please_select_third_category')
 				});
 				return false;
 			}
 
 			if (this.goodsData.goods_image.length == 0) {
 				this.$util.showToast({
-					title: '请上传商品图片'
+					title: this.$t('goods.edit.please_upload_goods_image')
 				});
 				return false;
 			}
@@ -573,13 +573,13 @@ export default {
 			if (this.goodsData.goods_class == 2) {
 				if (this.goodsData.virtual_indate.length == 0) {
 					this.$util.showToast({
-						title: '请输入有效期'
+						title: this.$t('goods.edit.please_enter_validity')
 					});
 					return false;
 				}
 				if (isNaN(this.goodsData.virtual_indate) || !this.$util.data().regExp.number.test(this.goodsData.virtual_indate)) {
 					this.$util.showToast({
-						title: '[有效期]格式输入错误'
+						title: this.$t('goods.edit.validity_format_error')
 					});
 					return false;
 				}
@@ -589,13 +589,13 @@ export default {
 			if (this.goodsData.goods_spec_format.length == 0) {
 				if (this.goodsData.price.length == 0) {
 					this.$util.showToast({
-						title: '请输入销售价'
+						title: this.$t('goods.edit.please_enter_sale_price')
 					});
 					return false;
 				}
 				if (isNaN(this.goodsData.price) || !this.$util.data().regExp.digit.test(this.goodsData.price)) {
 					this.$util.showToast({
-						title: '[销售价]格式输入错误'
+						title: this.$t('goods.edit.sale_price_format_error')
 					});
 					return false;
 				}
@@ -604,7 +604,7 @@ export default {
 						.test(this.goodsData
 							.market_price))) {
 					this.$util.showToast({
-						title: '[划线价]格式输入错误'
+						title: this.$t('goods.edit.strikethrough_price_format_error')
 					});
 					return false;
 				}
@@ -613,7 +613,7 @@ export default {
 						this.goodsData
 						.cost_price))) {
 					this.$util.showToast({
-						title: '[成本价]格式输入错误'
+						title: this.$t('goods.edit.cost_price_format_error')
 					});
 					return false;
 				}
@@ -624,7 +624,7 @@ export default {
 						.test(this.goodsData
 							.weight))) {
 					this.$util.showToast({
-						title: '[重量(kg)]格式输入错误'
+						title: this.$t('goods.edit.weight_format_error')
 					});
 					return false;
 				}
@@ -635,7 +635,7 @@ export default {
 						.test(this.goodsData
 							.volume))) {
 					this.$util.showToast({
-						title: '[体积(m³)]格式输入错误'
+						title: this.$t('goods.edit.volume_format_error')
 					});
 					return false;
 				}
@@ -644,7 +644,7 @@ export default {
 				// 多规格
 				if (this.goodsData.goods_sku_data.length == 0) {
 					this.$util.showToast({
-						title: '请编辑规格信息'
+						title: this.$t('goods.edit.please_edit_spec_info')
 					});
 					return false;
 				}
@@ -658,7 +658,7 @@ export default {
 				}
 				if (flag) {
 					this.$util.showToast({
-						title: '请编辑规格信息'
+						title: this.$t('goods.edit.please_edit_spec_info')
 					});
 					return false;
 				}
@@ -667,14 +667,14 @@ export default {
 			// 总库存
 			if (this.goodsData.goods_stock.length == 0) {
 				this.$util.showToast({
-					title: '请输入库存'
+					title: this.$t('goods.edit.please_enter_stock')
 				});
 				return false;
 			}
 
 			if (isNaN(this.goodsData.goods_stock) || !this.$util.data().regExp.number.test(this.goodsData.goods_stock)) {
 				this.$util.showToast({
-					title: '[库存]格式输入错误'
+					title: this.$t('goods.edit.stock_format_error')
 				});
 				return false;
 			}
@@ -682,20 +682,20 @@ export default {
 			if (this.goodsData.goods_stock_alarm.length > 0) {
 				if (isNaN(this.goodsData.goods_stock_alarm) || !this.$util.data().regExp.number.test(this.goodsData.goods_stock_alarm)) {
 					this.$util.showToast({
-						title: '[库存预警]格式输入错误'
+						title: this.$t('goods.edit.stock_warning_format_error')
 					});
 					return false;
 				}
 				if (parseInt(this.goodsData.goods_stock_alarm) != 0 || parseInt(this.goodsData.goods_stock_alarm) == parseInt(this.goodsData
 						.goods_stock)) {
 					this.$util.showToast({
-						title: '[库存预警]不能等于库存数量'
+						title: this.$t('goods.edit.stock_warning_not_equal_stock')
 					});
 					return false;
 				}
 				if (parseInt(this.goodsData.goods_stock_alarm) > parseInt(this.goodsData.goods_stock)) {
 					this.$util.showToast({
-						title: '[库存预警]不能超过库存数量'
+						title: this.$t('goods.edit.stock_warning_exceed_stock')
 					});
 					return false;
 				}
@@ -704,14 +704,14 @@ export default {
 			if (this.goodsData.goods_class == 1 && this.goodsData.is_free_shipping == 0 && this.goodsData.shipping_template ==
 				'') {
 				this.$util.showToast({
-					title: '请选择运费模板'
+					title: this.$t('goods.edit.please_select_shipping_template')
 				});
 				return false;
 			}
 
 			if (this.goodsData.goods_content.length == 0) {
 				this.$util.showToast({
-					title: '请填写商品详情'
+					title: this.$t('goods.edit.please_fill_goods_details')
 				});
 				return false;
 			}
@@ -719,13 +719,13 @@ export default {
 			if (this.goodsData.max_buy.length > 0) {
 				if (isNaN(this.goodsData.max_buy) || !this.$util.data().regExp.number.test(this.goodsData.max_buy)) {
 					this.$util.showToast({
-						title: '[限购]格式输入错误'
+						title: this.$t('goods.edit.purchase_limit_format_error')
 					});
 					return false;
 				}
 				if (this.goodsData.max_buy < 0) {
 					this.$util.showToast({
-						title: '限购数量不能小于'
+						title: this.$t('goods.edit.purchase_limit_cannot_be_less_than')
 					});
 					return false;
 				}
@@ -734,20 +734,20 @@ export default {
 			if (this.goodsData.min_buy.length > 0) {
 				if (isNaN(this.goodsData.min_buy) || !this.$util.data().regExp.number.test(this.goodsData.min_buy)) {
 					this.$util.showToast({
-						title: '[起售]格式输入错误'
+						title: this.$t('goods.edit.starting_quantity_format_error')
 					});
 					return false;
 				}
 				if (this.goodsData.min_buy < 0) {
 					this.$util.showToast({
-						title: '起售数量不能小于'
+						title: this.$t('goods.edit.starting_quantity_cannot_be_less_than')
 					});
 					return false;
 				}
 
 				if (this.goodsData.max_buy > 0 && parseInt(this.goodsData.min_buy) > parseInt(this.goodsData.max_buy)) {
 					this.$util.showToast({
-						title: '起售数量不能大于限购数量'
+						title: this.$t('goods.edit.starting_quantity_cannot_exceed_purchase_limit')
 					});
 					return false;
 				}

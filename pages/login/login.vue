@@ -1,23 +1,23 @@
 <template>
 	<view class="login">
-		<view class="login-title">商家登录</view>
+		<view class="login-title">{{ $t('login.login.merchant_login') }}</view>
 		<view class="login-input">
 			<view class="iconfont icon06_huiyuanguanli color-base-text"></view>
-			<input class="uni-input" placeholder="请输入用户名" v-model="loginList.username" />
+			<input class="uni-input" :placeholder="$t('login.login.enter_username')" v-model="loginList.username" />
 		</view>
 		<view class="login-input">
 			<view class="iconfont iconmima color-base-text"></view>
-			<input class="uni-input" placeholder="请输入密码" v-model="loginList.password" password="true" />
+			<input class="uni-input" :placeholder="$t('login.login.enter_password')" v-model="loginList.password" password="true" />
 		</view>
 		<view class="login-input" v-if="captchaConfig == 1">
 			<view class="iconfont iconyanzhengma1 color-base-text"></view>
-			<input class="uni-input" placeholder="请输入验证码" type="number" v-model="loginList.vcode" @confirm="login()" />
+			<input class="uni-input" :placeholder="$t('login.login.enter_captcha')" type="number" v-model="loginList.vcode" @confirm="login()" />
 			<image class="code" :src="captcha.img" mode="aspectFit" @click="getImg"></image>
 		</view>
-		<button type="primary" @click="login()">登录</button>
+		<button type="primary" @click="login()">{{ $t('login.login.login_button') }}</button>
 		<view class="login-text">
-			<text>还没成为我们的伙伴？</text>
-			<text class="color-base-text" @click="toRegistered">申请入驻</text>
+			<text>{{ $t('login.login.not_partner') }}</text>
+			<text class="color-base-text" @click="toRegistered">{{ $t('login.login.apply_join') }}</text>
 		</view>
 		<loading-cover ref="loadingCover"></loading-cover>
 	</view>
@@ -146,8 +146,11 @@ export default {
 		vertify() {
 			let rule = [];
 			// 账号验证
-			rule = [{ name: 'username', checkType: 'required', errorMsg: '请输入用户名' }, { name: 'password', checkType: 'required', errorMsg: '请输入密码' }];
-			if (this.captchaConfig == 1 && this.captcha.id != '') rule.push({ name: 'vcode', checkType: 'required', errorMsg: '请输入验证码' });
+			rule = [
+				{ name: 'username', checkType: 'required', errorMsg: this.$t('login.login.enter_username') },
+				{ name: 'password', checkType: 'required', errorMsg: this.$t('login.login.enter_password') }
+			];
+			if (this.captchaConfig == 1 && this.captcha.id != '') rule.push({ name: 'vcode', checkType: 'required', errorMsg: this.$t('login.login.enter_captcha') });
 			var checkRes = validate.check(this.loginList, rule);
 			if (checkRes) {
 				return true;

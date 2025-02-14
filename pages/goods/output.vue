@@ -3,25 +3,25 @@
 		<view class="sku-list">
 			<view class="item-wrap" v-for="(item, index) in outputList" :key="index">
 				<view class="form-wrap">
-					<text class="label">规格</text>
+					<text class="label">{{ $t('goods.output.specification') }}</text>
 					<text class="value">{{ item.sku_name }}</text>
 				</view>
 				<view class="form-wrap">
-					<text class="label">销售价</text>
+					<text class="label">{{ $t('goods.output.sale_price') }}</text>
 					<text class="value">{{ item.price }}</text>
-					<text class="unit">元</text>
+					<text class="unit">{{ $t('goods.output.currency') }}</text>
 				</view>
 				<view class="form-wrap">
 					<view class="label">
 						<text class="required color-base-text">*</text>
-						<text>库存</text>
+						<text>{{ $t('goods.output.stock') }}</text>
 					</view>
-					<input class="uni-input" v-model="item.stock" type="number" placeholder="0" />
-					<text class="unit">件</text>
+					<input class="uni-input" v-model="item.stock" type="number" :placeholder="$t('goods.output.placeholder_stock')" />
+					<text class="unit">{{ $t('goods.output.unit') }}</text>
 				</view>
 			</view>
 		</view>
-		<view class="footer-wrap"><button type="primary" @click="save()">保存</button></view>
+		<view class="footer-wrap"><button type="primary" @click="save()">{{ $t('goods.output.save') }}</button></view>
 		<loading-cover ref="loadingCover"></loading-cover>
 	</view>
 </template>
@@ -58,13 +58,13 @@ export default {
 				var item = this.outputList[i];
 
 				if (item.stock.length == 0) {
-					this.$util.showToast({ title: `请输入[第${i + 1}个规格]的库存` });
+					this.$util.showToast({ title: this.$t('goods.output.enter_stock', { index: i + 1 }) });
 					flag = false;
 					break;
 				}
 
 				if (isNaN(item.stock) || !this.$util.data().regExp.number.test(item.stock)) {
-					this.$util.showToast({ title: `[第${i + 1}个规格的库存]格式输入错误` });
+					this.$util.showToast({ title: this.$t('goods.output.invalid_stock_format', { index: i + 1 }) });
 					flag = false;
 					break;
 				}

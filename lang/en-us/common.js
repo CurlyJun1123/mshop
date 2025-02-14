@@ -1,6 +1,3 @@
-import login from './login'
-import my from './my'
-
 export default {
   // 底部选项卡
   tabBar: {
@@ -25,10 +22,188 @@ export default {
     copy: 'Copy'
   },
 
-  lang: 'Lang',
+  lang: 'Language',
 
-  ...login,
-  ...my,
+  goods: {
+    edit: {
+      edit_goods: 'Edit Goods',
+      add_goods: 'Add Goods',
+      goods_not_exist: 'Goods do not exist',
+      please_select_first_category: 'Please select the first category',
+      please_select_second_category: 'Please select the second category',
+      please_select_third_category: 'Please select the third category',
+      please_upload_goods_image: 'Please upload goods image',
+      please_enter_validity: 'Please enter validity',
+      validity_format_error: 'Validity format error',
+      please_enter_sale_price: 'Please enter sale price',
+      sale_price_format_error: 'Sale price format error',
+      strikethrough_price_format_error: 'Strikethrough price format error',
+      cost_price_format_error: 'Cost price format error',
+      weight_format_error: 'Weight format error',
+      volume_format_error: 'Volume format error',
+      please_edit_spec_info: 'Please edit specification information',
+      please_enter_stock: 'Please enter stock',
+      stock_format_error: 'Stock format error',
+      stock_warning_format_error: 'Stock warning format error',
+      stock_warning_not_equal_stock: 'Stock warning cannot equal stock quantity',
+      stock_warning_exceed_stock: 'Stock warning cannot exceed stock quantity',
+      please_select_shipping_template: 'Please select a shipping template',
+      please_fill_goods_details: 'Please fill in goods details',
+      purchase_limit_format_error: 'Purchase limit format error',
+      purchase_limit_cannot_be_less_than: 'Purchase limit cannot be less than',
+      starting_quantity_format_error: 'Starting quantity format error',
+      starting_quantity_cannot_be_less_than: 'Starting quantity cannot be less than',
+      starting_quantity_cannot_exceed_purchase_limit: 'Starting quantity cannot exceed purchase limit',
+      please_do_not_select_repeatedly: 'Please do not select repeatedly'
+    },
+
+    album: {
+      take_photo: 'Take Photo',
+      confirm: 'Confirm'
+    },
+
+    list: {
+      enter_goods_name: 'Enter product name',
+      add_goods: 'Add product',
+      all: 'All',
+      filter: 'Filter',
+      stock: 'Stock',
+      sales: 'Sales',
+      edit: 'Edit',
+      off_shelf: 'Off shelf',
+      on_shelf: 'On shelf',
+      copy: 'Copy',
+      delete: 'Delete',
+      reason: 'Reason',
+      inventory_management: 'Inventory management',
+      no_goods_data: 'No product data',
+      goods_name: 'Product name',
+      min_sales: 'Minimum sales',
+      max_sales: 'Maximum sales',
+      goods_type: 'Product type',
+      marketing_activity: 'Marketing activity',
+      reset: 'Reset',
+      confirm: 'Confirm',
+      on_sale: 'On Sale',
+      in_warehouse: 'In Warehouse',
+      pending_review: 'Pending Review',
+      review_failed: 'Review Failed',
+      illegal_off_shelf: 'Illegal Off Shelf',
+      confirm_delete: 'After deletion, it will enter the recycle bin. Are you sure to delete?',
+      confirm_copy: 'Copying the product will be stored in the warehouse, are you sure to copy?',
+      no_violation_info: 'No violation information',
+      violation_reason: 'Violation Reason',
+      physical_goods: 'Physical Goods',
+      virtual_goods: 'Virtual Goods',
+      copied_to_warehouse: 'Product has been placed in the warehouse',
+      min_sales_cannot_exceed_max_sales: 'Minimum sales cannot exceed maximum sales'
+    },
+
+    output: {
+      specification: 'Specification',
+      sale_price: 'Sale Price',
+      currency: 'Yuan',
+      stock: 'Stock',
+      placeholder_stock: '0',
+      unit: 'Piece',
+      save: 'Save',
+      enter_stock: 'Please enter the stock for specification {index}',
+      invalid_stock_format: 'Invalid stock format for specification {index}'
+    }
+  },
+
+  index: {
+    error_message: 'Error: {message}',
+    sales_amount: 'Sales Amount',
+    order_count: 'Order Count',
+    shop_expiring: 'The shop is about to expire, please renew as soon as possible',
+    shop_paused: 'The shop has been suspended and cannot operate normally',
+    shop_expired: 'The shop has expired, please renew as soon as possible',
+    shop_remaining_days: 'The shop has {days} days remaining until expiration',
+    expired: '(Expired)',
+    certify_now: 'Certify Now',
+    renew_now: 'Renew Now',
+    seven_days: '7 Days',
+    fifteen_days: '15 Days',
+    thirty_days: '30 Days',
+    currency_unit: 'Yuan',
+    order_unit: 'Orders',
+    share_title: 'Multi-Merchant Mobile Merchant',
+    not_certified: 'Not Certified',
+    certified: 'Certified',
+    main_industry: 'Main Industry',
+    shop_status: 'Shop Status',
+    normal: 'Normal',
+    closed: 'Closed',
+    expiry_date: 'Expiry Date',
+    permanent: 'Permanent',
+    data_overview: 'Data Overview',
+    today: 'Today',
+    yesterday: 'Yesterday',
+    total: 'Total',
+    collect_shop: 'Shop Collections',
+    pending_payment: 'Pending Payment',
+    pending_shipment: 'Pending Shipment',
+    refunding: 'Refunding',
+    pending_review: 'Pending Review',
+    illegal_removal: 'Illegal Removal',
+    product_release: 'Product Release',
+    order_query: 'Order Query',
+    financial_status: 'Financial Status',
+    transaction_analysis: 'Transaction Analysis',
+    shop_settlement: 'Shop Settlement',
+    member_management: 'Member Management',
+    contact_address: 'Contact Address',
+    all: 'All',
+
+    all_menu: {
+      shop_management: 'Shop Management',
+      publish_goods: 'Publish Goods',
+      manage_goods: 'Manage Goods',
+      manage_orders: 'Manage Orders',
+      manage_members: 'Manage Members',
+      financial_management: 'Financial Management',
+      asset_overview: 'Asset Overview',
+      withdrawal_records: 'Withdrawal Records',
+      settlement_fees: 'Settlement Fees',
+      shop_settlement: 'Shop Settlement',
+      store_settlement: 'Store Settlement',
+      statistics_analysis: 'Statistics Analysis',
+      transaction_statistics: 'Transaction Statistics',
+      shop_statistics: 'Shop Statistics',
+      goods_statistics: 'Goods Statistics',
+      visit_statistics: 'Visit Statistics',
+      shop_settings: 'Shop Settings',
+      shop_info: 'Shop Info',
+      user_management: 'User Management',
+      contact_address: 'Contact Address',
+      platform_notice: 'Platform Notice',
+      verification_desk: 'Verification Desk',
+      verification_staff: 'Verification Staff'
+    }
+  },
+
+  login: {
+    login: {
+      merchant_login: 'Merchant Login',
+      enter_username: 'Please enter username',
+      enter_password: 'Please enter password',
+      enter_captcha: 'Please enter captcha',
+      login_button: 'Login',
+      not_partner: 'Not our partner yet?',
+      apply_join: 'Apply to join'
+    },
+    modify_pwd: {
+      old_password: 'Old Password',
+      new_password: 'New Password',
+      confirm_password: 'Confirm Password',
+      enter_old_password: 'Please enter old password',
+      enter_new_password: 'Please enter new password',
+      enter_confirm_password: 'Please enter confirm password',
+      save_button: 'Save',
+      password_mismatch: 'Passwords do not match'
+    }
+  },
 
   apply: {
     agreement: {
@@ -109,6 +284,155 @@ export default {
       platform_announcements: 'Platform Announcements',
       verification_platform: 'Verification Platform',
       verification_personnel: 'Verification Personnel'
+    }
+  },
+
+  member: {
+    coupon: {
+      min_use_amount: 'Available for orders over {amount}',
+      send_coupon: 'Send Coupon',
+      send_success: 'Coupon sent successfully',
+      validity_period: 'Valid until: ',
+      valid_days: 'Valid for {days} days after receiving',
+      no_data: 'No coupon data'
+    },
+
+    detail: {
+      phone: 'Phone',
+      email: 'Email',
+      follow_status: 'Follow Status',
+      followed: 'Followed',
+      unfollowed: 'Unfollowed',
+      follow_time: 'Follow Time',
+      order_no: 'Order No.',
+      order_time: 'Order Time',
+      transaction_info: 'Transaction Information',
+      no_order_data: 'No order data'
+    },
+
+    list: {
+      search_placeholder: 'Enter nickname / phone / email',
+      email: 'Email',
+      shop_follow: 'Shop Follow',
+      followed: 'Followed',
+      unfollowed: 'Unfollowed',
+      view_detail: 'View Details',
+      send_coupon: 'Send Coupon',
+      no_member_data: 'No member data'
+    }
+  },
+
+  my: {
+    contact: {
+      select_location: 'Please select a location',
+      end_time_error: 'End time cannot be earlier than start time',
+      start_time_error: 'Start time cannot be later than end time',
+      data_error: 'Data error',
+      auth_location: 'Authorize current location?',
+      auth_location_content: 'We need to access your location. Please confirm authorization, otherwise the map function will not be available.',
+      auth_success: 'Authorization successful',
+      auth_failed: 'Authorization failed',
+      name_required: 'Contact name cannot be empty',
+      mobile_required: 'Mobile number cannot be empty',
+      mobile_invalid: 'Please enter a valid mobile number',
+      monday: 'Monday',
+      tuesday: 'Tuesday',
+      wednesday: 'Wednesday',
+      thursday: 'Thursday',
+      friday: 'Friday',
+      saturday: 'Saturday',
+      sunday: 'Sunday'
+    },
+
+    my: {
+      storeInfo: 'Store Information',
+      contactAddress: 'Contact Address',
+      userManagement: 'User Management',
+      changePassword: 'Change Password',
+      storeSettlement: 'Store Settlement',
+      shopSettlement: 'Shop Settlement',
+      withdrawalRecords: 'Withdrawal Records',
+      verifier: 'Verifier',
+      switchLanguage: 'Switch Language',
+      logout: 'Logout',
+      confirmLogout: 'Are you sure you want to log out of the current account?',
+      cancel: 'Cancel',
+      confirm: 'Confirm'
+    },
+
+    config: {
+      storePackage: 'Store Package',
+      mainIndustry: 'Main Industry',
+      storeName: 'Store Name',
+      storeLogo: 'Store Logo',
+      logoImageSize: 'Recommended image size: 200*60',
+      storeAvatar: 'Store Avatar',
+      avatarImageSize: 'Recommended image size: 800*800 pixels',
+      storeBanner: 'Store Banner',
+      bannerImageHeight: 'Recommended image height: 150 pixels',
+      storeDescription: 'Store Description',
+      enterStoreDescription: 'Please enter store description',
+      storeKeywords: 'Store Keywords',
+      enterStoreKeywords: 'Please enter store keywords, separated by commas',
+      keywordsSeparator: "Separate multiple keywords with English ','",
+      save: 'Save'
+    },
+
+    contact: {
+      name: 'Contact Name',
+      'name.placeholder': 'Please enter contact name',
+      mobile: 'Contact Mobile',
+      'mobile.placeholder': 'Please enter contact mobile',
+      phone: 'Contact Phone',
+      'phone.placeholder': 'Please enter contact phone',
+      address: 'Contact Address',
+      'address.region': 'Please select province, city, and district',
+      'address.detail': 'Detailed Address',
+      'address.detail.placeholder': 'Please enter detailed address',
+      qq: 'QQ Number',
+      'qq.placeholder': 'Please enter QQ number',
+      alibaba: 'Ali Wang Wang',
+      'alibaba.placeholder': 'Please enter Ali Wang Wang',
+      email: 'Email',
+      'email.placeholder': 'Please enter email',
+      days: 'Business Days',
+      'days.selected': 'Selected',
+      'days.placeholder': 'Please select business days',
+      hours: 'Business Hours',
+      'hours.start': 'Start Time',
+      'hours.end': 'End Time',
+      'days.select': 'Select Business Days',
+      confirm: 'Confirm'
+    },
+
+    user: {
+      'username.prompt': 'Please enter username',
+      add: 'Add User',
+      'username.label': 'Username: ',
+      normal: 'Normal',
+      locking: 'Locking',
+      'lastLoginIP.label': 'Last Login IP: ',
+      'lastLoginTime.label': 'Last Login Time: ',
+      edit: 'Edit',
+      resetPassword: 'Reset Password',
+      delete: 'Delete',
+      newPassword: 'New Password',
+      'newPassword.label': 'Please enter new password',
+      confirmNewPassword: 'Confirm New Password',
+      'confirmNewPassword.label': 'Please enter confirm new password',
+      cancel: 'Cancel',
+      confirm: 'Confirm',
+      noUserData: 'No user data',
+
+      'edit.username': 'Username',
+      'edit.username.placeholder': 'Please enter username',
+      'edit.password': 'Password',
+      'edit.password.placeholder': 'Please enter password',
+      'edit.password.confirm': 'Confirm Password',
+      'edit.password.confirm.placeholder': 'Please confirm password',
+      'edit.userGroup': 'User Group',
+      'edit.userGroup.placeholder': 'Please select user group',
+      'edit.userStatus': 'User Status'
     }
   },
 

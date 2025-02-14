@@ -16,41 +16,13 @@ export default {
       addressValue: '',
       option: {},
       week_list: [
-        {
-          name: '周一',
-          value: 1,
-          is_select: false
-        },
-        {
-          name: '周二',
-          value: 2,
-          is_select: false
-        },
-        {
-          name: '周三',
-          value: 3,
-          is_select: false
-        },
-        {
-          name: '周四',
-          value: 4,
-          is_select: false
-        },
-        {
-          name: '周五',
-          value: 5,
-          is_select: false
-        },
-        {
-          name: '周六',
-          value: 6,
-          is_select: false
-        },
-        {
-          name: '周日',
-          value: 7,
-          is_select: false
-        }
+        { name: this.$t('my.contact.monday'), value: 1, is_select: false },
+        { name: this.$t('my.contact.tuesday'), value: 2, is_select: false },
+        { name: this.$t('my.contact.wednesday'), value: 3, is_select: false },
+        { name: this.$t('my.contact.thursday'), value: 4, is_select: false },
+        { name: this.$t('my.contact.friday'), value: 5, is_select: false },
+        { name: this.$t('my.contact.saturday'), value: 6, is_select: false },
+        { name: this.$t('my.contact.sunday'), value: 7, is_select: false }
       ]
     }
   },
@@ -82,13 +54,13 @@ export default {
       if (!this.vertify()) return
       if (!this.shopInfo.longitude || !this.shopInfo.longitude) {
         this.$util.showToast({
-          title: '请选择地理位置'
+          title: this.$t('my.contact.select_location')
         })
         return
       }
       if (this.shopInfo.start_time > this.shopInfo.end_time) {
         this.$util.showToast({
-          title: '结束时间不能小于开始时间'
+          title: this.$t('my.contact.end_time_error')
         })
         return
       }
@@ -140,7 +112,7 @@ export default {
       var endTime = y + '-' + m + '-' + d + ' ' + this.timeHourMinute(this.shopInfo.end_time)
       if (startTime >= endTime && this.shopInfo.end_time) {
         this.$util.showToast({
-          title: '开始时间不能大于结束时间'
+          title: this.$t('my.contact.start_time_error')
         })
         return
       }
@@ -160,7 +132,7 @@ export default {
       var endTime = y + '-' + m + '-' + d + ' ' + e.detail.value
       if (startTime >= endTime) {
         this.$util.showToast({
-          title: '结束时间不能小于开始时间'
+          title: this.$t('my.contact.end_time_error')
         })
         return
       }
@@ -209,7 +181,7 @@ export default {
             this.shopInfo.district_name = res.data.district
           } else {
             this.$util.showToast({
-              title: '数据有误'
+              title: this.$t('my.contact.data_error')
             })
           }
         }
@@ -230,15 +202,15 @@ export default {
               var statu = res.authSetting
               if (!statu['scope.userLocation']) {
                 uni.showModal({
-                  title: '是否授权当前位置',
-                  content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                  title: this.$t('my.contact.auth_location'),
+                  content: this.$t('my.contact.auth_location_content'),
                   success(tip) {
                     if (tip.confirm) {
                       uni.openSetting({
                         success: function (data) {
                           if (data.authSetting['scope.userLocation'] === true) {
                             this.$util.showToast({
-                              title: '授权成功'
+                              title: this.$t('my.contact.auth_success')
                             })
                             //授权成功之后，再调用chooseLocation选择地方
                             setTimeout(function () {
@@ -254,7 +226,7 @@ export default {
                       })
                     } else {
                       this.$util.showToast({
-                        title: '授权失败'
+                        title: this.$t('my.contact.auth_failed')
                       })
                     }
                   }
@@ -266,7 +238,6 @@ export default {
       })
       // #endif
       // #ifdef H5
-
       let backurl = Config.h5Domain + '/pages/my/shop/contact'
       window.location.href = 'https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=' + encodeURIComponent(backurl) + '&key=' + Config.mpKey + '&referer=myapp'
       // #endif
@@ -292,17 +263,17 @@ export default {
         {
           name: 'name',
           checkType: 'required',
-          errorMsg: '联系人姓名不能为空'
+          errorMsg: this.$t('my.contact.name_required')
         },
         {
           name: 'mobile',
           checkType: 'required',
-          errorMsg: '手机号不能为空'
+          errorMsg: this.$t('my.contact.mobile_required')
         },
         {
           name: 'mobile',
           checkType: 'phoneno',
-          errorMsg: '请输入正确的手机号'
+          errorMsg: this.$t('my.contact.mobile_invalid')
         }
       ]
       var checkRes = validate.check(this.shopInfo, rule)

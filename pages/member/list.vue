@@ -3,7 +3,7 @@
 		<view class="search-inner">
 			<view class="search-wrap">
 				<text class="search-input-icon iconfont iconsousuo" @click.stop="searchMember()"></text>
-				<input class="uni-input font-size-tag" maxlength="50" v-model="searchMemberName" placeholder="请输入会员昵称 / 手机号 / 邮箱" @confirm="searchMember()" />
+				<input class="uni-input font-size-tag" maxlength="50" v-model="searchMemberName" :placeholder="$t('member.list.search_placeholder')" @confirm="searchMember()" />
 			</view>
 		</view>
 		<mescroll-uni class="list-wrap" @getData="getListData" top="160" refs="mescroll" :size="10">
@@ -23,11 +23,11 @@
 									{{ item.mobile }}
 								</view>
 							</view>
-							<view class="item-price font-size-tag" v-if="item.email">邮箱：{{ item.email }}</view>
+							<view class="item-price font-size-tag" v-if="item.email">{{ $t('member.list.email') }}：{{ item.email }}</view>
 							<view class="item-operation">
 								<text class="item-price">
-									店铺关注：
-									<text :class="item.is_subscribe ? 'color-base-text' : 'color-tip'">{{ item.is_subscribe ? '已关注' : '未关注' }}</text>
+									{{ $t('member.list.shop_follow') }}：
+									<text :class="item.is_subscribe ? 'color-base-text' : 'color-tip'">{{ item.is_subscribe ? $t('member.list.followed') : $t('member.list.unfollowed') }}</text>
 								</text>
 								<text class="iconshenglve iconfont"></text>
 							</view>
@@ -36,15 +36,15 @@
 					<view class="operation" @click.stop="showHide(item)" v-if="item.is_off">
 						<view class="operation-item" @click.stop="linkSkip(item)">
 							<image :src="$util.img('/upload/uniapp/shop_uniapp/member/member_01.png')" mode=""></image>
-							<text>查看详情</text>
+							<text>{{ $t('member.list.view_detail') }}</text>
 						</view>
 						<view class="operation-item" @click.stop="linkSkip(item, 'coupon')">
 							<image :src="$util.img('/upload/uniapp/shop_uniapp/member/member_02.png')" mode=""></image>
-							<text>发放优惠券</text>
+							<text>{{ $t('member.list.send_coupon') }}</text>
 						</view>
 					</view>
 				</view>
-				<ns-empty v-if="!dataList.length" text="暂无会员数据"></ns-empty>
+				<ns-empty v-if="!dataList.length" :text="$t('member.list.no_member_data')"></ns-empty>
 			</block>
 		</mescroll-uni>
 		<loading-cover ref="loadingCover"></loading-cover>

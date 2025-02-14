@@ -12,7 +12,7 @@
             <view class="list-wrap">
               <view class="item-wrap upload" @click="photograph()">
                 <text class="iconfont iconxiangji"></text>
-                <text class="txt">拍摄照片</text>
+                <text class="txt">{{ $t('goods.album.take_photo') }}</text>
               </view>
               <view class="item-wrap" v-for="(item, index) in picList" :key="index" @click="previewImg(item.pic_path)">
                 <image :src="$util.img(item.pic_path, { size: 'mid' })" mode="scaleToFill" @error="imgError(index)"></image>
@@ -28,7 +28,7 @@
     </view>
     <view class="footer-wrap">
       <button type="primary" :disabled="selectedImg.length == number" @click="save()" size="mini">
-        确定{{ selectedImg.length ? '（' + selectedImg.length + '）' : '' }}
+        {{ $t('goods.album.confirm') }}{{ selectedImg.length ? '（' + selectedImg.length + '）' : '' }}
       </button>
     </view>
     <loading-cover ref="loadingCover"></loading-cover>

@@ -5,22 +5,22 @@
 				<image :src="memberData.headimg ? $util.img(memberData.headimg) : $util.img($util.getDefaultImage().default_headimg)" @error="imgError('', 1)" class="head"></image>
 				<view>
 					<view class="nickname">{{ memberData.nickname }}</view>
-					<view class="color-sub font-size-tag">手机号：{{ memberData.mobile ? memberData.mobile : '--' }}</view>
-					<view class="color-sub font-size-tag">邮箱：{{ memberData.email ? memberData.email : '--' }}</view>
+					<view class="color-sub font-size-tag">{{ $t('member.detail.phone') }}：{{ memberData.mobile ? memberData.mobile : '--' }}</view>
+					<view class="color-sub font-size-tag">{{ $t('member.detail.email') }}：{{ memberData.email ? memberData.email : '--' }}</view>
 				</view>
 			</view>
 			<view class="account-about">
-				<view class="color-sub">关注状态：{{ memberData.is_subscribe == 1 ? '已关注' : '未关注' }}</view>
-				<view class="color-sub">关注时间：{{ $util.timeStampTurnTime(memberData.subscribe_time, 1) }}</view>
+				<view class="color-sub">{{ $t('member.detail.follow_status') }}：{{ memberData.is_subscribe == 1 ? $t('member.detail.followed') : $t('member.detail.unfollowed') }}</view>
+				<view class="color-sub">{{ $t('member.detail.follow_time') }}：{{ $util.timeStampTurnTime(memberData.subscribe_time, 1) }}</view>
 			</view>
 		</view>
-		<text class="order-title color-base-bg-before">交易信息</text>
+		<text class="order-title color-base-bg-before">{{ $t('member.detail.transaction_info') }}</text>
 		<mescroll-uni @getData="getOrderData" refs="mescroll" top="370" :size="10">
 			<block slot="list">
 				<view class="order-list">
 					<view class="item-inner" v-for="(item, index) in dataList" :key="index">
 						<view class="order-other-info">
-							<text class="color-tip">订单号：{{ item.order_no }}</text>
+							<text class="color-tip">{{ $t('member.detail.order_no') }}：{{ item.order_no }}</text>
 							<text>{{ item.order_status_name }}</text>
 						</view>
 						<view class="item-wrap" @click="linkSkip(item)" v-for="(goodsItem, goodsIndex) in item.order_goods" :key="goodsIndex">
@@ -47,10 +47,10 @@
 								</view>
 							</view>
 						</view>
-						<text class="place-time color-tip">下单时间：{{ $util.timeStampTurnTime(item.create_time) }}</text>
+						<text class="place-time color-tip">{{ $t('member.detail.order_time') }}：{{ $util.timeStampTurnTime(item.create_time) }}</text>
 					</view>
 				</view>
-				<ns-empty v-if="!dataList.length" text="暂无订单数据"></ns-empty>
+				<ns-empty v-if="!dataList.length" :text="$t('member.detail.no_order_data')"></ns-empty>
 			</block>
 		</mescroll-uni>
 		<loading-cover ref="loadingCover"></loading-cover>

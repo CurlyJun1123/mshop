@@ -1,6 +1,3 @@
-import login from './login'
-import my from './my'
-
 export default {
   // 底部选项卡
   tabBar: {
@@ -27,8 +24,186 @@ export default {
 
   lang: '语言',
 
-  ...login,
-  ...my,
+  goods: {
+    edit: {
+      edit_goods: '编辑商品',
+      add_goods: '添加商品',
+      goods_not_exist: '商品不存在',
+      please_select_first_category: '请选择一级商品分类',
+      please_select_second_category: '请选择二级商品分类',
+      please_select_third_category: '请选择三级商品分类',
+      please_upload_goods_image: '请上传商品图片',
+      please_enter_validity: '请输入有效期',
+      validity_format_error: '[有效期]格式输入错误',
+      please_enter_sale_price: '请输入销售价',
+      sale_price_format_error: '[销售价]格式输入错误',
+      strikethrough_price_format_error: '[划线价]格式输入错误',
+      cost_price_format_error: '[成本价]格式输入错误',
+      weight_format_error: '[重量(kg)]格式输入错误',
+      volume_format_error: '[体积(m³)]格式输入错误',
+      please_edit_spec_info: '请编辑规格信息',
+      please_enter_stock: '请输入库存',
+      stock_format_error: '[库存]格式输入错误',
+      stock_warning_format_error: '[库存预警]格式输入错误',
+      stock_warning_not_equal_stock: '[库存预警]不能等于库存数量',
+      stock_warning_exceed_stock: '[库存预警]不能超过库存数量',
+      please_select_shipping_template: '请选择运费模板',
+      please_fill_goods_details: '请填写商品详情',
+      purchase_limit_format_error: '[限购]格式输入错误',
+      purchase_limit_cannot_be_less_than: '限购数量不能小于',
+      starting_quantity_format_error: '[起售]格式输入错误',
+      starting_quantity_cannot_be_less_than: '起售数量不能小于',
+      starting_quantity_cannot_exceed_purchase_limit: '起售数量不能大于限购数量',
+      please_do_not_select_repeatedly: '请勿重复选择'
+    },
+
+    album: {
+      take_photo: '拍摄照片',
+      confirm: '确定'
+    },
+
+    list: {
+      enter_goods_name: '请输入商品名称',
+      add_goods: '添加商品',
+      all: '全部',
+      filter: '筛选',
+      stock: '库存',
+      sales: '销量',
+      edit: '编辑',
+      off_shelf: '下架',
+      on_shelf: '上架',
+      copy: '复制',
+      delete: '删除',
+      reason: '原因',
+      inventory_management: '库存管理',
+      no_goods_data: '暂无商品数据',
+      goods_name: '商品名称',
+      min_sales: '最低销量',
+      max_sales: '最高销量',
+      goods_type: '商品类型',
+      marketing_activity: '营销活动',
+      reset: '重置',
+      confirm: '确定',
+      on_sale: '销售中',
+      in_warehouse: '仓库中',
+      pending_review: '待审核',
+      review_failed: '审核失败',
+      illegal_off_shelf: '违规下架',
+      confirm_delete: '删除后进入回收站，确定删除吗?',
+      confirm_copy: '复制商品会存放在仓库中,确定复制吗',
+      no_violation_info: '暂无违规信息',
+      violation_reason: '违规原因',
+      physical_goods: '实物商品',
+      virtual_goods: '虚拟商品',
+      copied_to_warehouse: '商品已放入仓库中',
+      min_sales_cannot_exceed_max_sales: '最低销量不能大于最高销量'
+    },
+
+    output: {
+      specification: '规格',
+      sale_price: '销售价',
+      currency: '元',
+      stock: '库存',
+      placeholder_stock: '0',
+      unit: '件',
+      save: '保存',
+      enter_stock: '请输入[第{index}个规格]的库存',
+      invalid_stock_format: '[第{index}个规格的库存]格式输入错误'
+    }
+  },
+
+  index: {
+    error_message: '错误: {message}',
+    sales_amount: '销售额',
+    order_count: '订单数',
+    shop_expiring: '店铺即将到期，请尽快续费',
+    shop_paused: '店铺已暂停服务，无法正常营业',
+    shop_expired: '店铺已经过期，请尽快续费',
+    shop_remaining_days: '店铺剩余{days}天到期',
+    expired: '（已到期）',
+    certify_now: '立即认证',
+    renew_now: '立即续费',
+    seven_days: '7天',
+    fifteen_days: '15天',
+    thirty_days: '30天',
+    currency_unit: '元',
+    order_unit: '笔',
+    share_title: '多商户手机版商家端',
+    not_certified: '未认证',
+    certified: '已认证',
+    main_industry: '主营行业',
+    shop_status: '店铺状态',
+    normal: '正常',
+    closed: '关闭',
+    expiry_date: '到期时间',
+    permanent: '永久',
+    data_overview: '数据概况',
+    today: '今日',
+    yesterday: '昨日',
+    total: '总计',
+    collect_shop: '店铺收藏数',
+    pending_payment: '待支付',
+    pending_shipment: '待发货',
+    refunding: '退款中',
+    pending_review: '待审核',
+    illegal_removal: '违规下架',
+    product_release: '商品发布',
+    order_query: '订单查询',
+    financial_status: '财务状况',
+    transaction_analysis: '交易分析',
+    shop_settlement: '店铺结算',
+    member_management: '会员管理',
+    contact_address: '联系地址',
+    all: '全部',
+
+    all_menu: {
+      shop_management: '店铺经营',
+      publish_goods: '商品发布',
+      manage_goods: '商品管理',
+      manage_orders: '订单管理',
+      manage_members: '会员管理',
+      financial_management: '财务管理',
+      asset_overview: '资产概况',
+      withdrawal_records: '提现记录',
+      settlement_fees: '入驻费用',
+      shop_settlement: '店铺结算',
+      store_settlement: '门店结算',
+      statistics_analysis: '统计分析',
+      transaction_statistics: '交易统计',
+      shop_statistics: '店铺统计',
+      goods_statistics: '商品统计',
+      visit_statistics: '访问统计',
+      shop_settings: '店铺设置',
+      shop_info: '店铺信息',
+      user_management: '用户管理',
+      contact_address: '联系地址',
+      platform_notice: '平台公告',
+      verification_desk: '核销台',
+      verification_staff: '核销人员'
+    }
+  },
+
+  login: {
+    login: {
+      merchant_login: '商家登录',
+      enter_username: '请输入用户名',
+      enter_password: '请输入密码',
+      enter_captcha: '请输入验证码',
+      login_button: '登录',
+      not_partner: '还没成为我们的伙伴？',
+      apply_join: '申请入驻'
+    },
+    modify_pwd: {
+      old_password: '原密码',
+      new_password: '新密码',
+      confirm_password: '确认密码',
+      enter_old_password: '请输入原密码',
+      enter_new_password: '请输入新密码',
+      enter_confirm_password: '请输入确认密码',
+      save_button: '保存',
+      password_mismatch: '两次密码不一致'
+    }
+  },
 
   apply: {
     agreement: {
@@ -109,6 +284,162 @@ export default {
       platform_announcements: '平台公告',
       verification_platform: '核销台',
       verification_personnel: '核销人员'
+    }
+  },
+
+  member: {
+    coupon: {
+      min_use_amount: '满{amount}可用',
+      send_coupon: '发放优惠券',
+      send_success: '优惠券发放成功',
+      validity_period: '有效期：',
+      valid_days: '领取之日起{days}天有效',
+      no_data: '暂无优惠券数据'
+    },
+
+    detail: {
+      phone: '手机号',
+      email: '邮箱',
+      follow_status: '关注状态',
+      followed: '已关注',
+      unfollowed: '未关注',
+      follow_time: '关注时间',
+      order_no: '订单号',
+      order_time: '下单时间',
+      transaction_info: '交易信息',
+      no_order_data: '暂无订单数据'
+    },
+
+    list: {
+      search_placeholder: '请输入会员昵称 / 手机号 / 邮箱',
+      email: '邮箱',
+      shop_follow: '店铺关注',
+      followed: '已关注',
+      unfollowed: '未关注',
+      view_detail: '查看详情',
+      send_coupon: '发放优惠券',
+      no_member_data: '暂无会员数据'
+    }
+  },
+
+  my: {
+    contact: {
+      select_location: '请选择地理位置',
+      end_time_error: '结束时间不能小于开始时间',
+      start_time_error: '开始时间不能大于结束时间',
+      data_error: '数据有误',
+      auth_location: '是否授权当前位置',
+      auth_location_content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+      auth_success: '授权成功',
+      auth_failed: '授权失败',
+      name_required: '联系人姓名不能为空',
+      mobile_required: '手机号不能为空',
+      mobile_invalid: '请输入正确的手机号',
+      monday: '周一',
+      tuesday: '周二',
+      wednesday: '周三',
+      thursday: '周四',
+      friday: '周五',
+      saturday: '周六',
+      sunday: '周日'
+    },
+
+    storeInfo: '店铺信息',
+    contactAddress: '联系地址',
+    userManagement: '用户管理',
+    changePassword: '修改密码',
+    storeSettlement: '门店结算',
+    shopSettlement: '店铺结算',
+    withdrawalRecords: '提现记录',
+    verifier: '核销人员',
+    switchLanguage: '切换语言',
+    logout: '退出登录',
+    confirmLogout: '您确定要退出当前账号吗？',
+    cancel: '取消',
+    confirm: '确定',
+
+    config: {
+      storePackage: '开店套餐',
+      mainIndustry: '主营行业',
+      storeName: '店铺名称',
+      storeLogo: '店铺 Logo',
+      logoImageSize: '建议图片尺寸：200*60',
+      storeAvatar: '店铺头像',
+      avatarImageSize: '建议图片尺寸：800*800像素',
+      storeBanner: '店铺大图',
+      bannerImageHeight: '建议图片高度：150像素',
+      storeDescription: '店铺简介',
+      enterStoreDescription: '请输入店铺简介',
+      storeKeywords: '店铺关键字',
+      enterStoreKeywords: '请输入店铺关键字","用逗号隔开',
+      keywordsSeparator: '多个关键字之间请用英文","隔开',
+      save: '保存'
+    },
+
+    contact: {
+      name: '联系人姓名',
+      'name.placeholder': '请输入联系人姓名',
+      mobile: '联系人手机号',
+      'mobile.placeholder': '请输入联系人手机号',
+      phone: '联系人电话',
+      'phone.placeholder': '请输入联系人电话',
+      address: '联系地址',
+      'address.region': '请选择省市区',
+      'address.detail': '详细地址',
+      'address.detail.placeholder': '请输入详细地址',
+      qq: 'QQ号',
+      'qq.placeholder': '请输入QQ号',
+      alibaba: '阿里旺旺',
+      'alibaba.placeholder': '请输入阿里旺旺',
+      email: '邮箱',
+      'email.placeholder': '请输入邮箱',
+      days: '工作日',
+      'days.selected': '已选择',
+      'days.placeholder': '请选择工作日',
+      hours: '营业时间',
+      'hours.start': '开始时间',
+      'hours.end': '结束时间',
+      'days.select': '选择工作日',
+      confirm: '确定'
+    },
+
+    user: {
+      'username.prompt': '请输入用户名',
+      add: '添加用户',
+      'username.label': '用户名：',
+      normal: '正常',
+      locking: '锁定',
+      'lastLoginIP.label': '最后登录IP：',
+      'lastLoginTime.label': '最后登录时间：',
+      edit: '编辑',
+      resetPassword: '重置密码',
+      delete: '删除',
+      newPassword: '新密码',
+      'newPassword.label': '请输入新密码',
+      confirmNewPassword: '确认新密码',
+      'confirmNewPassword.label': '请输入确认新密码',
+      cancel: '取消',
+      confirm: '确定',
+      noUserData: '暂无用户数据'
+    },
+
+    edit: {
+      username: '用户名',
+      'username.placeholder': '请输入用户名',
+      password: '密码',
+      'password.placeholder': '请输入密码',
+      'password.confirm': '再次输入密码',
+      'password.confirm.placeholder': '请再次输入密码',
+      userGroup: '用户组',
+      'userGroup.placeholder': '请选择用户组',
+      userStatus: '用户状态',
+
+      'user.edit.confirm': '原密码',
+      'user.edit.confirm': '请输入原密码',
+      'user.edit.confirm': '新密码',
+      'user.edit.confirm': '请输入新密码',
+      'user.edit.confirm': '确认密码',
+      'user.edit.confirm': '请输入确认密码'
     }
   },
 
